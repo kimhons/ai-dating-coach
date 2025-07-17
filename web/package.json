@@ -6,10 +6,15 @@
   "author": "AI Dating Coach Team",
   "description": "AI Dating Coach Web Dashboard - React application for managing dating profiles and analytics",
   "scripts": {
-    "dev": "yes | pnpm install && vite",
-    "build": "yes | pnpm install && rm -rf node_modules/.vite-temp && tsc -b && vite build",
-    "lint": "yes | pnpm install && eslint .",
-    "preview": "yes | pnpm install && vite preview"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "deploy": "./deploy.sh",
+    "build:prod": "NODE_ENV=production npm run build",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist node_modules/.vite",
+    "analyze": "npm run build && npx vite-bundle-analyzer dist/stats.html"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
