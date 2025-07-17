@@ -2,6 +2,8 @@
   "name": "AIDatingCoachMobile",
   "version": "1.0.0",
   "private": true,
+  "author": "AI Dating Coach Team",
+  "description": "AI Dating Coach Mobile App - React Native application for iOS and Android with AI-powered dating insights",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios", 

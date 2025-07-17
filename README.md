@@ -221,7 +221,7 @@ For licensing inquiries, please contact: [contact@aidatingcoach.com](mailto:cont
 
 ## 🌟 Team
 
-**Built with ❤️ by MiniMax Agent**
+**Built with ❤️ by the AI Dating Coach Development Team**
 
 - 🤖 AI Development: Advanced machine learning integration
 - 📱 Mobile Development: React Native expertise

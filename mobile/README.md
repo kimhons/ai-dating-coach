@@ -348,4 +348,4 @@ cd android
 
 ---
 
-**Built with ❤️ by MiniMax Agent**
+**Built with ❤️ by the AI Dating Coach Development Team**

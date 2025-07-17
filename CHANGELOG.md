@@ -145,7 +145,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deployment Status
 
 #### Production Deployments
-- ✅ **Web Dashboard**: https://0r573w8kns5w.space.minimax.io
+- ✅ **Web Dashboard**: Production deployment ready
 - ✅ **Supabase Backend**: Fully configured and operational
 - ✅ **Edge Functions**: 5 functions deployed and tested
 - ✅ **Database**: Complete schema with RLS policies
@@ -204,7 +204,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Contributors
 
-- **Primary Development**: MiniMax Agent
+- **Primary Development**: AI Dating Coach Development Team
 - **Architecture Design**: AI-driven full-stack development
 - **UI/UX Design**: Modern mobile-first approach
 - **Backend Engineering**: Scalable cloud architecture
