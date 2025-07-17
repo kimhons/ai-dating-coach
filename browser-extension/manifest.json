@@ -1,0 +1,143 @@
+{
+  "manifest_version": 3,
+  "name": "AI Dating Coach Assistant",
+  "version": "2.0.0",
+  "description": "Real-time AI coaching for dating apps with tiered analysis and smart suggestions",
+  
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "background",
+    "alarms"
+  ],
+  
+  "host_permissions": [
+    "*://*.tinder.com/*",
+    "*://*.bumble.com/*",
+    "*://*.hinge.co/*",
+    "*://*.match.com/*",
+    "*://*.okcupid.com/*",
+    "*://*.pof.com/*",
+    "*://*.eharmony.com/*",
+    "*://*.zoosk.com/*"
+  ],
+  
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.tinder.com/*",
+        "*://*.bumble.com/*",
+        "*://*.hinge.co/*",
+        "*://*.match.com/*",
+        "*://*.okcupid.com/*",
+        "*://*.pof.com/*",
+        "*://*.eharmony.com/*",
+        "*://*.zoosk.com/*"
+      ],
+      "js": [
+        "content-scripts/platform-detector.js",
+        "content-scripts/ui-injector.js",
+        "content-scripts/conversation-monitor.js",
+        "content-scripts/profile-analyzer.js",
+        "content-scripts/main.js"
+      ],
+      "css": [
+        "styles/coaching-overlay.css",
+        "styles/tier-display.css",
+        "styles/suggestion-panel.css"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "AI Dating Coach",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/*",
+        "styles/*",
+        "components/*"
+      ],
+      "matches": [
+        "*://*.tinder.com/*",
+        "*://*.bumble.com/*",
+        "*://*.hinge.co/*",
+        "*://*.match.com/*",
+        "*://*.okcupid.com/*",
+        "*://*.pof.com/*",
+        "*://*.eharmony.com/*",
+        "*://*.zoosk.com/*"
+      ]
+    }
+  ],
+  
+  "options_page": "options/options.html",
+  
+  "commands": {
+    "toggle-coaching": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+C",
+        "mac": "Command+Shift+C"
+      },
+      "description": "Toggle AI coaching overlay"
+    },
+    "analyze-profile": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+A",
+        "mac": "Command+Shift+A"
+      },
+      "description": "Analyze current profile"
+    },
+    "generate-opener": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+O",
+        "mac": "Command+Shift+O"
+      },
+      "description": "Generate conversation opener"
+    }
+  },
+  
+  "externally_connectable": {
+    "matches": [
+      "https://app.aidatingcoach.com/*",
+      "https://aidatingcoach.vercel.app/*"
+    ]
+  },
+  
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' https://api.aidatingcoach.com https://*.supabase.co;"
+  },
+  
+  "minimum_chrome_version": "88",
+  
+  "author": "AI Dating Coach Team",
+  "homepage_url": "https://aidatingcoach.com",
+  
+  "storage": {
+    "managed_schema": "schema.json"
+  }
+}
+
