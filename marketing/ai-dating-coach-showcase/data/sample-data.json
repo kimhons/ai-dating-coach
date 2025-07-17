@@ -1,0 +1,209 @@
+{
+  "conversations": [
+    {
+      "id": 1,
+      "messages": [
+        {
+          "sender": "user",
+          "text": "Hey! I saw you're into hiking. What's your favorite trail?",
+          "timestamp": "2025-01-10T10:30:00Z"
+        },
+        {
+          "sender": "match",
+          "text": "Oh cool! I love the trails around Bear Mountain. Been there?",
+          "timestamp": "2025-01-10T10:32:00Z"
+        }
+      ],
+      "analysis": {
+        "engagement_score": 8.5,
+        "sentiment": "positive",
+        "interest_level": "high",
+        "suggestions": [
+          "Great opener! You referenced their interest and asked an engaging question.",
+          "They're showing genuine interest with detailed response and counter-question.",
+          "Perfect time to suggest meeting up for a hiking adventure."
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "messages": [
+        {
+          "sender": "user",
+          "text": "What's up?",
+          "timestamp": "2025-01-10T14:15:00Z"
+        },
+        {
+          "sender": "match",
+          "text": "Not much, just working",
+          "timestamp": "2025-01-10T14:45:00Z"
+        }
+      ],
+      "analysis": {
+        "engagement_score": 3.2,
+        "sentiment": "neutral",
+        "interest_level": "low",
+        "suggestions": [
+          "Generic opener received generic response - try referencing their profile.",
+          "Low engagement detected. Consider asking about their work or interests.",
+          "Response time was 30 minutes - they might be busy or not very interested."
+        ]
+      }
+    }
+  ],
+  "profile_tips": [
+    {
+      "category": "photos",
+      "tips": [
+        "Your main photo should be a clear, high-quality headshot with a genuine smile",
+        "Include at least one full-body photo to give a complete picture",
+        "Show your hobbies and interests through activity photos",
+        "Avoid group photos where you're hard to identify"
+      ]
+    },
+    {
+      "category": "bio",
+      "tips": [
+        "Keep it concise but informative - aim for 3-4 sentences",
+        "Include conversation starters like hobbies or interesting facts",
+        "Show your personality through humor or unique perspectives",
+        "End with a question or call-to-action to encourage messages"
+      ]
+    }
+  ],
+  "success_metrics": {
+    "response_rate_improvement": 85,
+    "engagement_score_average": 9.2,
+    "date_conversion_rate": 76,
+    "user_satisfaction": 92,
+    "total_users": 50000
+  },
+  "testimonials": [
+    {
+      "name": "Alex",
+      "age": 29,
+      "occupation": "Software Developer",
+      "plan": "Premium",
+      "rating": 5,
+      "text": "I went from zero dates to 3 meaningful relationships in 6 months. The conversation analysis completely changed how I communicate on dating apps.",
+      "improvement": "+180% more responses"
+    },
+    {
+      "name": "Sarah",
+      "age": 42,
+      "occupation": "Marketing Director",
+      "plan": "Elite",
+      "rating": 5,
+      "text": "After my divorce, I was terrified of dating again. The confidence-building tips and date prep simulator gave me the courage to put myself out there.",
+      "improvement": "Found lasting relationship"
+    },
+    {
+      "name": "Marcus",
+      "age": 35,
+      "occupation": "Financial Advisor",
+      "plan": "Premium",
+      "rating": 5,
+      "text": "The profile optimization alone got me 5x more matches. But the real game-changer was learning how to turn those matches into actual dates.",
+      "improvement": "5x more quality matches"
+    }
+  ],
+  "daily_tips": [
+    "Start conversations by referencing something specific from their profile",
+    "Ask open-ended questions that invite detailed responses",
+    "Share something interesting about yourself to build connection",
+    "Use humor appropriately to show your personality",
+    "Don't take too long to suggest meeting up if the conversation is going well"
+  ],
+  "conversation_starters": [
+    "I noticed you're into [hobby]. What got you started with that?",
+    "Your photo at [location] looks amazing! What's the story behind it?",
+    "I saw you mentioned [interest]. I've been wanting to try that - any tips for a beginner?",
+    "Your [pet/hobby/job] sounds really interesting. What's the best part about it?",
+    "I love that you're into [shared interest]. What's your favorite [related activity]?"
+  ],
+  "goal_templates": [
+    {
+      "type": "weekly",
+      "goals": [
+        "Send 5 personalized opening messages",
+        "Have 3 meaningful conversations lasting more than 10 messages",
+        "Ask for at least 1 phone number or date",
+        "Update profile based on AI feedback"
+      ]
+    },
+    {
+      "type": "monthly",
+      "goals": [
+        "Go on 2-3 first dates",
+        "Improve conversation engagement score to 8+",
+        "Build confidence score to 85+",
+        "Complete date preparation for upcoming meetings"
+      ]
+    }
+  ],
+  "voice_analysis": {
+    "sample_insights": [
+      {
+        "message": "Voice note received",
+        "duration": "0:15",
+        "tone": "enthusiastic",
+        "interest_level": "high",
+        "emotional_sentiment": "positive",
+        "analysis": "Enthusiastic tone with genuine excitement. High interest level detected through vocal inflection and pacing. Recommend responding with equal energy."
+      }
+    ]
+  },
+  "date_prep_scenarios": [
+    {
+      "scenario": "Coffee Date",
+      "topics": [
+        "Talk about your work without being boring",
+        "Ask about their travel experiences",
+        "Discuss shared interests from your profiles",
+        "Share a funny or interesting personal story"
+      ],
+      "conversation_flow": "Start light, build connection, find common ground, suggest future plans"
+    },
+    {
+      "scenario": "Dinner Date",
+      "topics": [
+        "Discuss food preferences and cooking",
+        "Share memorable experiences",
+        "Talk about goals and aspirations",
+        "Explore each other's values and lifestyle"
+      ],
+      "conversation_flow": "Establish comfort, deepen conversation, show genuine interest, create emotional connection"
+    }
+  ],
+  "pricing_features": {
+    "spark": {
+      "price": 0,
+      "features": [
+        "AI profile photo analysis (up to 5 photos)",
+        "One-time bio review and optimization",
+        "Daily confidence tips",
+        "5 AI conversation starters per week"
+      ]
+    },
+    "premium": {
+      "price": 19.99,
+      "features": [
+        "Everything in Spark",
+        "Unlimited conversation analysis via SMS",
+        "Real-time chat suggestions",
+        "Weekly goal setting & progress tracking",
+        "Advanced dating strategy library"
+      ]
+    },
+    "elite": {
+      "price": 39.99,
+      "features": [
+        "Everything in Premium",
+        "Personalized monthly action plans",
+        "Voice note analysis & insights",
+        "Date preparation simulator",
+        "Priority AI support"
+      ]
+    }
+  }
+}

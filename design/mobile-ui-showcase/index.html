@@ -1,0 +1,2790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Dating Coach - Mobile App UI/UX Design Showcase</title>
+    <meta name="description" content="Comprehensive mobile UI/UX design showcase for AI Dating Coach iOS and Android app with user journey mapping and interactive prototypes.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/mobile-styles.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=SF+Pro+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Mermaid for user flow diagrams -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e'
+                        },
+                        accent: {
+                            500: '#f97316',
+                            600: '#ea580c'
+                        },
+                        success: {
+                            500: '#22c55e',
+                            600: '#16a34a'
+                        },
+                        ios: {
+                            blue: '#007AFF',
+                            gray: '#8E8E93',
+                            background: '#F2F2F7'
+                        },
+                        android: {
+                            primary: '#6200EE',
+                            surface: '#FFFFFF',
+                            background: '#FAFAFA'
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'ios': ['SF Pro Display', 'system-ui', 'sans-serif'],
+                        'android': ['Roboto', 'system-ui', 'sans-serif']
+                    },
+                    screens: {
+                        'mobile': '375px',
+                        'iphone': '375px',
+                        'android': '360px'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-mobile-alt text-primary-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-900">AI Dating Coach Mobile</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#overview" class="text-gray-700 hover:text-primary-600 transition-colors">Overview</a>
+                    <a href="#screens" class="text-gray-700 hover:text-primary-600 transition-colors">Screen Designs</a>
+                    <a href="#user-flows" class="text-gray-700 hover:text-primary-600 transition-colors">User Flows</a>
+                    <a href="#prototypes" class="text-gray-700 hover:text-primary-600 transition-colors">Prototypes</a>
+                    <a href="#design-system" class="text-gray-700 hover:text-primary-600 transition-colors">Design System</a>
+                    <button class="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+                        View Full App
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#overview" class="block px-3 py-2 text-gray-700">Overview</a>
+                <a href="#screens" class="block px-3 py-2 text-gray-700">Screen Designs</a>
+                <a href="#user-flows" class="block px-3 py-2 text-gray-700">User Flows</a>
+                <a href="#prototypes" class="block px-3 py-2 text-gray-700">Prototypes</a>
+                <a href="#design-system" class="block px-3 py-2 text-gray-700">Design System</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-20 pb-16 bg-gradient-to-br from-primary-50 to-primary-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                    Mobile UI/UX Design Showcase
+                </h1>
+                <p class="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
+                    Complete iOS & Android app design system with native mobile interactions, user journey mapping, and interactive prototypes for the AI Dating Coach application.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-primary-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-700 transition-colors shadow-lg">
+                        <i class="fab fa-apple mr-2"></i>iOS Designs
+                    </button>
+                    <button class="bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-green-700 transition-colors shadow-lg">
+                        <i class="fab fa-android mr-2"></i>Android Designs
+                    </button>
+                </div>
+            </div>
+
+            <!-- Platform Comparison -->
+            <div class="grid lg:grid-cols-2 gap-8 mt-16">
+                <div class="bg-white rounded-2xl shadow-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-ios-blue rounded-xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fab fa-apple text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">iOS Design</h3>
+                    <p class="text-gray-600 mb-6">Following iOS Human Interface Guidelines with native navigation patterns, SF Symbols, and iOS typography for seamless user experience.</p>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>iOS Navigation Patterns</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Face ID / Touch ID Integration</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>iOS Haptic Feedback</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Apple Watch Companion</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-android-primary rounded-xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fab fa-android text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Android Design</h3>
+                    <p class="text-gray-600 mb-6">Implementing Material Design 3.0 principles with bottom sheets, floating action buttons, and adaptive card layouts.</p>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Material Design 3.0</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Fingerprint Authentication</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Android Adaptive Icons</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Wear OS Integration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile App Overview -->
+    <section id="overview" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                    Native Mobile Experience
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Designed from the ground up for mobile-first interaction patterns with intuitive gestures, seamless AI integration, and platform-specific optimizations.
+                </p>
+            </div>
+
+            <!-- Key Features Grid -->
+            <div class="grid lg:grid-cols-3 gap-8 mb-16">
+                <div class="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-camera text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Camera Integration</h3>
+                    <p class="text-gray-600 mb-6">
+                        Native camera access for instant photo analysis with real-time AI feedback and batch processing capabilities.
+                    </p>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>In-app photo capture</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Gallery batch import</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Real-time analysis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-accent-50 to-accent-100 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-accent-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-microphone text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Voice Analysis</h3>
+                    <p class="text-gray-600 mb-6">
+                        Advanced voice note analysis with sentiment detection, tone analysis, and emotional intelligence insights.
+                    </p>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Voice recording interface</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Sentiment analysis</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Interest level detection</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-success-50 to-success-100 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-success-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-mobile-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Screen Analysis</h3>
+                    <p class="text-gray-600 mb-6">
+                        Future feature: Analyze conversation screenshots from any dating app with OCR and AI-powered conversation coaching.
+                    </p>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>OCR text extraction</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Multi-app support</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Privacy-first approach</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Mockups Preview -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="images/mockups/iphone-mockup-1.jpg" alt="iPhone AI Dating Coach App" class="rounded-2xl shadow-2xl w-full h-auto">
+                    <div class="absolute -bottom-4 -right-4 bg-ios-blue text-white px-4 py-2 rounded-lg shadow-lg">
+                        <span class="font-semibold">iOS App</span>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="images/mockups/android-mockup-1.jpg" alt="Android AI Dating Coach App" class="rounded-2xl shadow-2xl w-full h-auto">
+                    <div class="absolute -bottom-4 -right-4 bg-android-primary text-white px-4 py-2 rounded-lg shadow-lg">
+                        <span class="font-semibold">Android App</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screen Designs Showcase -->
+    <section id="screens" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                    Complete Screen Design System
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive mobile interface designs covering every aspect of the user journey from onboarding to advanced AI coaching features.
+                </p>
+            </div>
+
+            <!-- Platform Toggle -->
+            <div class="flex justify-center mb-12">
+                <div class="bg-white rounded-lg p-1 shadow-lg">
+                    <button id="ios-tab" class="px-8 py-3 rounded-md font-semibold transition-colors bg-primary-600 text-white">
+                        <i class="fab fa-apple mr-2"></i>iOS
+                    </button>
+                    <button id="android-tab" class="px-8 py-3 rounded-md font-semibold transition-colors text-gray-600 hover:text-gray-900">
+                        <i class="fab fa-android mr-2"></i>Android
+                    </button>
+                </div>
+            </div>
+
+            <!-- Screen Categories -->
+            <div class="space-y-16">
+                <!-- Onboarding & Authentication -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Onboarding & Authentication</h3>
+                    <div class="grid md:grid-cols-4 gap-6">
+                        <div class="mobile-screen-container">
+                            <div class="mobile-screen ios-screen">
+                                <div class="mobile-status-bar">
+                                    <span class="font-semibold">9:41</span>
+                                    <div class="status-icons">
+                                        <i class="fas fa-signal"></i>
+                                        <i class="fas fa-wifi"></i>
+                                        <i class="fas fa-battery-three-quarters"></i>
+                                    </div>
+                                </div>
+                                <div class="screen-content">
+                                    <div class="text-center py-16">
+                                        <div class="w-20 h-20 bg-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                                            <i class="fas fa-heart text-white text-2xl"></i>
+                                        </div>
+                                        <h2 class="text-xl font-bold mb-4">Welcome to AI Dating Coach</h2>
+                                        <p class="text-gray-600 mb-8 px-4">Transform your dating success with personalized AI guidance</p>
+                                        <button class="bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold w-full mx-4">
+                                            Get Started
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center text-sm text-gray-600 mt-2">Splash Screen</p>
+                        </div>
+
+                        <div class="mobile-screen-container">
+                            <div class="mobile-screen ios-screen">
+                                <div class="mobile-status-bar">
+                                    <span class="font-semibold">9:41</span>
+                                    <div class="status-icons">
+                                        <i class="fas fa-signal"></i>
+                                        <i class="fas fa-wifi"></i>
+                                        <i class="fas fa-battery-three-quarters"></i>
+                                    </div>
+                                </div>
+                                <div class="screen-content">
+                                    <div class="p-6">
+                                        <h2 class="text-2xl font-bold mb-2">Tell Us About You</h2>
+                                        <p class="text-gray-600 mb-8">Help us personalize your coaching experience</p>
+                                        
+                                        <div class="space-y-4">
+                                            <div class="p-4 border-2 border-primary-600 rounded-lg bg-primary-50">
+                                                <h3 class="font-semibold text-gray-900">The Frustrated Professional</h3>
+                                                <p class="text-sm text-gray-600">Busy, looking for efficient dating strategies</p>
+                                            </div>
+                                            <div class="p-4 border-2 border-gray-200 rounded-lg">
+                                                <h3 class="font-semibold text-gray-900">The Recently Single</h3>
+                                                <p class="text-sm text-gray-600">New to dating, needs confidence building</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <button class="bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold w-full mt-8">
+                                            Continue
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center text-sm text-gray-600 mt-2">Persona Selection</p>
+                        </div>
+
+                        <div class="mobile-screen-container">
+                            <div class="mobile-screen ios-screen">
+                                <div class="mobile-status-bar">
+                                    <span class="font-semibold">9:41</span>
+                                    <div class="status-icons">
+                                        <i class="fas fa-signal"></i>
+                                        <i class="fas fa-wifi"></i>
+                                        <i class="fas fa-battery-three-quarters"></i>
+                                    </div>
+                                </div>
+                                <div class="screen-content">
+                                    <div class="p-6">
+                                        <h2 class="text-2xl font-bold mb-2">Create Account</h2>
+                                        <p class="text-gray-600 mb-8">Join thousands improving their dating success</p>
+                                        
+                                        <div class="space-y-4">
+                                            <input type="email" placeholder="Email address" class="w-full p-4 border border-gray-300 rounded-lg">
+                                            <input type="password" placeholder="Password" class="w-full p-4 border border-gray-300 rounded-lg">
+                                            <input type="password" placeholder="Confirm password" class="w-full p-4 border border-gray-300 rounded-lg">
+                                        </div>
+                                        
+                                        <button class="bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold w-full mt-8">
+                                            Create Account
+                                        </button>
+                                        
+                                        <div class="text-center mt-6">
+                                            <button class="bg-gray-100 text-gray-700 px-8 py-3 rounded-lg font-semibold w-full mb-4">
+                                                <i class="fab fa-apple mr-2"></i>Continue with Apple
+                                            </button>
+                                            <p class="text-sm text-gray-600">Already have an account? <span class="text-primary-600">Sign in</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center text-sm text-gray-600 mt-2">Sign Up</p>
+                        </div>
+
+                        <div class="mobile-screen-container">
+                            <div class="mobile-screen ios-screen">
+                                <div class="mobile-status-bar">
+                                    <span class="font-semibold">9:41</span>
+                                    <div class="status-icons">
+                                        <i class="fas fa-signal"></i>
+                                        <i class="fas fa-wifi"></i>
+                                        <i class="fas fa-battery-three-quarters"></i>
+                                    </div>
+                                </div>
+                                <div class="screen-content">
+                                    <div class="p-6">
+                                        <h2 class="text-2xl font-bold mb-2">Set Your Goals</h2>
+                                        <p class="text-gray-600 mb-8">What would you like to achieve?</p>
+                                        
+                                        <div class="space-y-4">
+                                            <div class="flex items-center p-4 border border-gray-300 rounded-lg">
+                                                <input type="checkbox" class="mr-4" checked>
+                                                <span>Get more quality matches</span>
+                                            </div>
+                                            <div class="flex items-center p-4 border border-gray-300 rounded-lg">
+                                                <input type="checkbox" class="mr-4" checked>
+                                                <span>Improve conversation skills</span>
+                                            </div>
+                                            <div class="flex items-center p-4 border border-gray-300 rounded-lg">
+                                                <input type="checkbox" class="mr-4">
+                                                <span>Build dating confidence</span>
+                                            </div>
+                                            <div class="flex items-center p-4 border border-gray-300 rounded-lg">
+                                                <input type="checkbox" class="mr-4">
+                                                <span>Find a serious relationship</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <button class="bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold w-full mt-8">
+                                            Complete Setup
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center text-sm text-gray-600 mt-2">Goal Setting</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Dashboard -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Main Dashboard</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="mobile-screen-container">
+                            <div class="mobile-screen ios-screen">
+                                <div class="mobile-status-bar">
+                                    <span class="font-semibold">9:41</span>
+                                    <div class="status-icons">
+                                        <i class="fas fa-signal"></i>
+                                        <i class="fas fa-wifi"></i>
+                                        <i class="fas fa-battery-three-quarters"></i>
+                                    </div>
+                                </div>
+                                <div class="screen-content">
+                                    <div class="p-6">
+                                        <div class="flex items-center justify-between mb-6">
+                                            <div>
+                                                <h2 class="text-xl font-bold">Good morning, Alex</h2>
+                                                <p class="text-gray-600">Ready to level up your dating game?</p>
+                                            </div>
+                                            <div class="w-12 h-12 bg-gray-200 rounded-full"></div>
+                                        </div>
+                                        
+                                        <!-- Confidence Score Card -->
+                                        <div class="bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl p-6 text-white mb-6">
+                                            <h3 class="text-lg font-semibold mb-2">Confidence Score</h3>
+                                            <div class="flex items-center">
+                                                <div class="text-3xl font-bold mr-4">78</div>
+                                                <div class="flex-1">
+                                                    <div class="bg-white bg-opacity-30 rounded-full h-2">
+                                                        <div class="bg-white rounded-full h-2" style="width: 78%"></div>
+                                                    </div>
+                                                    <p class="text-sm mt-2 opacity-90">+12 this week</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Quick Actions -->
+                                        <div class="grid grid-cols-2 gap-4 mb-6">
+                                            <button class="bg-gray-50 p-4 rounded-lg text-center">
+                                                <i class="fas fa-camera text-primary-600 text-xl mb-2"></i>
+                                                <p class="font-semibold text-sm">Analyze Photos</p>
+                                            </button>
+                                            <button class="bg-gray-50 p-4 rounded-lg text-center">
+                                                <i class="fas fa-comments text-accent-600 text-xl mb-2"></i>
+                                                <p class="font-semibold text-sm">Chat Coach</p>
+                                            </button>
+                                        </div>
+                                        
+                                        <!-- Daily Tip -->
+                                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                                            <h4 class="font-semibold text-yellow-800 mb-1">💡 Daily Tip</h4>
+                                            <p class="text-sm text-yellow-700">Ask open-ended questions to keep conversations flowing naturally.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Bottom Navigation -->
+                                    <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3">
+                                        <div class="flex justify-around">
+                                            <button class="text-primary-600">
+                                                <i class="fas fa-home text-xl"></i>
+                                            </button>
+                                            <button class="text-gray-400">
+                                                <i class="fas fa-chart-line text-xl"></i>
+                                            </button>
+                                            <button class="text-gray-400">
+                                                <i class="fas fa-camera text-xl"></i>
+                                            </button>
+                                            <button class="text-gray-400">
+                                                <i class="fas fa-cog text-xl"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center text-sm text-gray-600 mt-2">Home Dashboard</p>
+                        </div>
+
+                        <div class="mobile-screen-container">
+                            <div class="mobile-screen ios-screen">
+                                <div class="mobile-status-bar">
+                                    <span class="font-semibold">9:41</span>
+                                    <div class="status-icons">
+                                        <i class="fas fa-signal"></i>
+                                        <i class="fas fa-wifi"></i>
+                                        <i class="fas fa-battery-three-quarters"></i>
+                                    </div>
+                                </div>
+                                <div class="screen-content">
+                                    <div class="p-6">
+                                        <h2 class="text-2xl font-bold mb-6">Progress Tracking</h2>
+                                        
+                                        <!-- Weekly Goals -->
+                                        <div class="bg-gray-50 rounded-xl p-6 mb-6">
+                                            <h3 class="font-semibold mb-4">This Week's Goals</h3>
+                                            <div class="space-y-3">
+                                                <div class="flex items-center justify-between">
+                                                    <span class="text-sm">Send 5 messages</span>
+                                                    <div class="flex items-center">
+                                                        <div class="w-16 bg-gray-200 rounded-full h-2 mr-2">
+                                                            <div class="bg-primary-600 h-2 rounded-full" style="width: 60%"></div>
+                                                        </div>
+                                                        <span class="text-xs text-gray-600">3/5</span>
+                                                    </div>
+                                                </div>
+                                                <div class="flex items-center justify-between">
+                                                    <span class="text-sm">Get 1 phone number</span>
+                                                    <div class="flex items-center">
+                                                        <div class="w-16 bg-gray-200 rounded-full h-2 mr-2">
+                                                            <div class="bg-success-600 h-2 rounded-full" style="width: 100%"></div>
+                                                        </div>
+                                                        <span class="text-xs text-gray-600">1/1</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Stats -->
+                                        <div class="grid grid-cols-2 gap-4 mb-6">
+                                            <div class="text-center p-4 bg-primary-50 rounded-lg">
+                                                <div class="text-2xl font-bold text-primary-600">23</div>
+                                                <div class="text-sm text-gray-600">Conversations</div>
+                                            </div>
+                                            <div class="text-center p-4 bg-success-50 rounded-lg">
+                                                <div class="text-2xl font-bold text-success-600">7</div>
+                                                <div class="text-sm text-gray-600">Dates Scheduled</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Recent Activity */
+                                        <div>
+                                            <h3 class="font-semibold mb-4">Recent Activity</h3>
+                                            <div class="space-y-3">
+                                                <div class="flex items-center">
+                                                    <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center mr-3">
+                                                        <i class="fas fa-camera text-primary-600 text-xs"></i>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <p class="text-sm font-medium">Photo analysis completed</p>
+                                                        <p class="text-xs text-gray-500">2 hours ago</p>
+                                                    </div>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <div class="w-8 h-8 bg-success-100 rounded-full flex items-center justify-center mr-3">
+                                                        <i class="fas fa-comments text-success-600 text-xs"></i>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <p class="text-sm font-medium">Conversation analyzed</p>
+                                                        <p class="text-xs text-gray-500">1 day ago</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Bottom Navigation -->
+                                    <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3">
+                                        <div class="flex justify-around">
+                                            <button class="text-gray-400">
+                                                <i class="fas fa-home text-xl"></i>
+                                            </button>
+                                            <button class="text-primary-600">
+                                                <i class="fas fa-chart-line text-xl"></i>
+                                            </button>
+                                            <button class="text-gray-400">
+                                                <i class="fas fa-camera text-xl"></i>
+                                            </button>
+                                            <button class="text-gray-400">
+                                                <i class="fas fa-cog text-xl"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center text-sm text-gray-600 mt-2">Progress Tracking</p>
+                        </div>
+
+                        <div class="mobile-screen-container">
+                            <div class="mobile-screen ios-screen">
+                                <div class="mobile-status-bar">
+                                    <span class="font-semibold">9:41</span>
+                                    <div class="status-icons">
+                                        <i class="fas fa-signal"></i>
+                                        <i class="fas fa-wifi"></i>
+                                        <i class="fas fa-battery-three-quarters"></i>
+                                    </div>
+                                </div>
+                                <div class="screen-content">
+                                    <div class="p-6">
+                                        <h2 class="text-2xl font-bold mb-6">AI Analysis Hub</h2>
+                                        
+                                        <!-- Analysis Options -->
+                                        <div class="space-y-4 mb-6">
+                                            <button class="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white p-4 rounded-xl text-left">
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-camera text-2xl mr-4"></i>
+                                                    <div>
+                                                        <h3 class="font-semibold">Photo Analysis</h3>
+                                                        <p class="text-sm opacity-90">Optimize your profile pictures</p>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                            
+                                            <button class="w-full bg-gradient-to-r from-accent-500 to-accent-600 text-white p-4 rounded-xl text-left">
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-comments text-2xl mr-4"></i>
+                                                    <div>
+                                                        <h3 class="font-semibold">Conversation Coach</h3>
+                                                        <p class="text-sm opacity-90">Get real-time chat suggestions</p>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                            
+                                            <button class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white p-4 rounded-xl text-left">
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-microphone text-2xl mr-4"></i>
+                                                    <div>
+                                                        <h3 class="font-semibold">Voice Analysis</h3>
+                                                        <p class="text-sm opacity-90">Analyze voice message tone</p>
+                                                        <span class="text-xs bg-yellow-400 text-black px-2 py-1 rounded-full">ELITE</span>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </div>
+                                        
+                                        <!-- Recent Analyses */
+                                        <div>
+                                            <h3 class="font-semibold mb-4">Recent Analyses</h3>
+                                            <div class="space-y-3">
+                                                <div class="bg-gray-50 p-4 rounded-lg">
+                                                    <div class="flex justify-between items-start mb-2">
+                                                        <span class="font-medium text-sm">Profile Photo Review</span>
+                                                        <span class="text-xs text-gray-500">2h ago</span>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <div class="text-lg font-bold text-primary-600 mr-2">8.5/10</div>
+                                                        <div class="text-sm text-gray-600">Great lighting and smile!</div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="bg-gray-50 p-4 rounded-lg">
+                                                    <div class="flex justify-between items-start mb-2">
+                                                        <span class="font-medium text-sm">Chat Analysis</span>
+                                                        <span class="text-xs text-gray-500">1d ago</span>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <div class="text-lg font-bold text-success-600 mr-2">92%</div>
+                                                        <div class="text-sm text-gray-600">High engagement score</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Bottom Navigation -->
+                                    <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3">
+                                        <div class="flex justify-around">
+                                            <button class="text-gray-400">
+                                                <i class="fas fa-home text-xl"></i>
+                                            </button>
+                                            <button class="text-gray-400">
+                                                <i class="fas fa-chart-line text-xl"></i>
+                                            </button>
+                                            <button class="text-primary-600">
+                                                <i class="fas fa-camera text-xl"></i>
+                                            </button>
+                                            <button class="text-gray-400">
+                                                <i class="fas fa-cog text-xl"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center text-sm text-gray-600 mt-2">Analysis Hub</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Features -->
+                <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-2xl shadow-lg p-8 text-white">
+                    <h3 class="text-2xl font-bold mb-8 text-center">Premium & Elite Features</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="mobile-screen-container">
+                            <div class="mobile-screen ios-screen">
+                                <div class="mobile-status-bar">
+                                    <span class="font-semibold">9:41</span>
+                                    <div class="status-icons">
+                                        <i class="fas fa-signal"></i>
+                                        <i class="fas fa-wifi"></i>
+                                        <i class="fas fa-battery-three-quarters"></i>
+                                    </div>
+                                </div>
+                                <div class="screen-content">
+                                    <div class="p-6">
+                                        <h2 class="text-2xl font-bold mb-6">Voice Analysis</h2>
+                                        
+                                        <!-- Recording Interface -->
+                                        <div class="text-center mb-8">
+                                            <div class="w-32 h-32 bg-gradient-to-r from-red-400 to-red-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                                                <i class="fas fa-microphone text-white text-3xl"></i>
+                                            </div>
+                                            <p class="text-gray-600 mb-4">Tap and hold to record</p>
+                                            <div class="bg-gray-100 rounded-lg p-4 mb-4">
+                                                <div class="flex items-center justify-center">
+                                                    <div class="w-2 h-8 bg-red-500 rounded mx-1"></div>
+                                                    <div class="w-2 h-12 bg-red-500 rounded mx-1"></div>
+                                                    <div class="w-2 h-6 bg-red-500 rounded mx-1"></div>
+                                                    <div class="w-2 h-10 bg-red-500 rounded mx-1"></div>
+                                                    <div class="w-2 h-4 bg-red-500 rounded mx-1"></div>
+                                                </div>
+                                                <p class="text-center text-sm mt-2">0:15</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Analysis Results */
+                                        <div class="bg-purple-50 rounded-xl p-4">
+                                            <h3 class="font-semibold text-purple-800 mb-3">AI Analysis Results</h3>
+                                            <div class="space-y-2 text-sm">
+                                                <div class="flex justify-between">
+                                                    <span class="text-purple-700">Enthusiasm Level:</span>
+                                                    <span class="font-semibold text-purple-800">High</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-purple-700">Interest Detected:</span>
+                                                    <span class="font-semibold text-purple-800">92%</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-purple-700">Sentiment:</span>
+                                                    <span class="font-semibold text-purple-800">Positive</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center text-sm text-purple-100 mt-2">Voice Analysis (Elite)</p>
+                        </div>
+
+                        <div class="mobile-screen-container">
+                            <div class="mobile-screen ios-screen">
+                                <div class="mobile-status-bar">
+                                    <span class="font-semibold">9:41</span>
+                                    <div class="status-icons">
+                                        <i class="fas fa-signal"></i>
+                                        <i class="fas fa-wifi"></i>
+                                        <i class="fas fa-battery-three-quarters"></i>
+                                    </div>
+                                </div>
+                                <div class="screen-content">
+                                    <div class="p-6">
+                                        <h2 class="text-2xl font-bold mb-6">Date Prep Simulator</h2>
+                                        
+                                        <!-- Scenario Selection */
+                                        <div class="bg-blue-50 rounded-xl p-4 mb-6">
+                                            <h3 class="font-semibold text-blue-800 mb-3">Choose Scenario</h3>
+                                            <select class="w-full p-3 border border-blue-300 rounded-lg bg-white">
+                                                <option>Coffee Date - First Meeting</option>
+                                                <option>Dinner Date - Second Date</option>
+                                                <option>Activity Date - Hiking</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <!-- Chat Simulation */
+                                        <div class="bg-gray-50 rounded-xl p-4 mb-6 max-h-64 overflow-y-auto">
+                                            <div class="space-y-3">
+                                                <div class="flex justify-start">
+                                                    <div class="bg-gray-200 rounded-lg p-3 max-w-xs">
+                                                        <p class="text-sm">Hi! Thanks for meeting me here. How was your day?</p>
+                                                    </div>
+                                                </div>
+                                                <div class="flex justify-end">
+                                                    <div class="bg-primary-600 text-white rounded-lg p-3 max-w-xs">
+                                                        <p class="text-sm">It was great! I love this coffee shop. Do you come here often?</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Input Area */
+                                        <div class="flex items-center space-x-2">
+                                            <input type="text" placeholder="Type your response..." class="flex-1 p-3 border border-gray-300 rounded-lg">
+                                            <button class="bg-primary-600 text-white p-3 rounded-lg">
+                                                <i class="fas fa-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                        
+                                        <!-- AI Coaching Tip */
+                                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-3 mt-4 rounded-r-lg">
+                                            <p class="text-sm text-yellow-800">💡 Try asking about their interests to build connection</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center text-sm text-purple-100 mt-2">Date Prep Simulator (Elite)</p>
+                        </div>
+
+                        <div class="mobile-screen-container">
+                            <div class="mobile-screen ios-screen">
+                                <div class="mobile-status-bar">
+                                    <span class="font-semibold">9:41</span>
+                                    <div class="status-icons">
+                                        <i class="fas fa-signal"></i>
+                                        <i class="fas fa-wifi"></i>
+                                        <i class="fas fa-battery-three-quarters"></i>
+                                    </div>
+                                </div>
+                                <div class="screen-content">
+                                    <div class="p-6">
+                                        <h2 class="text-2xl font-bold mb-6">Monthly Action Plan</h2>
+                                        
+                                        <!-- Current Month Progress */
+                                        <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-6 text-white mb-6">
+                                            <h3 class="text-lg font-semibold mb-2">January 2025</h3>
+                                            <div class="flex items-center justify-between">
+                                                <span>Progress</span>
+                                                <span class="font-bold">75%</span>
+                                            </div>
+                                            <div class="w-full bg-green-400 rounded-full h-2 mt-2">
+                                                <div class="bg-white rounded-full h-2" style="width: 75%"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Weekly Breakdown */
+                                        <div class="space-y-4">
+                                            <div class="bg-gray-50 rounded-lg p-4">
+                                                <div class="flex items-center justify-between mb-2">
+                                                    <h4 class="font-semibold">Week 3: Advanced Conversations</h4>
+                                                    <i class="fas fa-check-circle text-green-500"></i>
+                                                </div>
+                                                <ul class="text-sm text-gray-600 space-y-1">
+                                                    <li>✓ Master the art of asking engaging questions</li>
+                                                    <li>✓ Practice active listening techniques</li>
+                                                    <li>✓ Learn to transition to phone/video calls</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500">
+                                                <div class="flex items-center justify-between mb-2">
+                                                    <h4 class="font-semibold">Week 4: Date Planning (Current)</h4>
+                                                    <span class="text-sm text-blue-600">In Progress</span>
+                                                </div>
+                                                <ul class="text-sm text-gray-600 space-y-1">
+                                                    <li>✓ Research creative first date ideas</li>
+                                                    <li>🔄 Practice suggesting meetups confidently</li>
+                                                    <li>◯ Prepare for handling date logistics</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Next Steps */
+                                        <div class="mt-6 bg-purple-50 rounded-lg p-4">
+                                            <h4 class="font-semibold text-purple-800 mb-2">Next Action</h4>
+                                            <p class="text-sm text-purple-700">Practice suggesting a coffee date in your next conversation with high engagement.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center text-sm text-purple-100 mt-2">Monthly Action Plan (Elite)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Journey Flows -->
+    <section id="user-flows" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                    User Journey Flow Mapping
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive flow diagrams showing how users navigate through the app from first launch to advanced AI coaching features.
+                </p>
+            </div>
+
+            <!-- Flow Diagram Tabs -->
+            <div class="flex justify-center mb-12">
+                <div class="bg-gray-100 rounded-lg p-1">
+                    <button id="first-time-flow" class="px-6 py-3 rounded-md font-semibold transition-colors bg-white shadow text-primary-600">
+                        First-Time User
+                    </button>
+                    <button id="daily-flow" class="px-6 py-3 rounded-md font-semibold transition-colors text-gray-600 hover:text-gray-900">
+                        Daily Usage
+                    </button>
+                    <button id="upgrade-flow" class="px-6 py-3 rounded-md font-semibold transition-colors text-gray-600 hover:text-gray-900">
+                        Upgrade Journey
+                    </button>
+                    <button id="persona-flow" class="px-6 py-3 rounded-md font-semibold transition-colors text-gray-600 hover:text-gray-900">
+                        Persona Flows
+                    </button>
+                </div>
+            </div>
+
+            <!-- Flow Diagrams -->
+            <div id="flow-content">
+                <!-- First-Time User Flow -->
+                <div id="first-time-content" class="flow-content">
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">First-Time User Journey</h3>
+                        
+                        <!-- Flow Chart -->
+                        <div class="mb-8">
+                            <div class="mermaid">
+                                graph TD
+                                    A[App Download] --> B[Splash Screen]
+                                    B --> C[Welcome & Permissions]
+                                    C --> D[Persona Quiz]
+                                    D --> E{Persona Type?}
+                                    E -->|Professional| F[Alex Onboarding]
+                                    E -->|Recently Single| G[Sarah Onboarding]
+                                    F --> H[Goal Setting]
+                                    G --> H
+                                    H --> I[Account Creation]
+                                    I --> J[Tutorial Walkthrough]
+                                    J --> K[First Analysis Prompt]
+                                    K --> L{Analysis Type?}
+                                    L -->|Photo| M[Photo Upload]
+                                    L -->|Bio| N[Bio Input]
+                                    L -->|Chat| O[Conversation Upload]
+                                    M --> P[AI Analysis Results]
+                                    N --> P
+                                    O --> P
+                                    P --> Q[Upgrade Prompt]
+                                    Q --> R[Dashboard Access]
+                            </div>
+                        </div>
+                        
+                        <!-- Key Steps Breakdown -->
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-primary-50 rounded-lg p-6">
+                                <h4 class="font-bold text-primary-800 mb-4">🎯 Discovery Phase</h4>
+                                <ul class="text-sm text-primary-700 space-y-2">
+                                    <li>• App store discovery</li>
+                                    <li>• Landing page conversion</li>
+                                    <li>• Download & installation</li>
+                                    <li>• Initial app launch</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-accent-50 rounded-lg p-6">
+                                <h4 class="font-bold text-accent-800 mb-4">👤 Personalization Phase</h4>
+                                <ul class="text-sm text-accent-700 space-y-2">
+                                    <li>• Persona identification</li>
+                                    <li>• Goal setting</li>
+                                    <li>• Account creation</li>
+                                    <li>• Permission requests</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-success-50 rounded-lg p-6">
+                                <h4 class="font-bold text-success-800 mb-4">🚀 Activation Phase</h4>
+                                <ul class="text-sm text-success-700 space-y-2">
+                                    <li>• First AI analysis</li>
+                                    <li>• Value demonstration</li>
+                                    <li>• Feature introduction</li>
+                                    <li>• Habit formation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Usage Flow -->
+                <div id="daily-content" class="flow-content hidden">
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Daily Usage Patterns</h3>
+                        
+                        <div class="grid lg:grid-cols-2 gap-8">
+                            <!-- Morning Routine -->
+                            <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-6">
+                                <h4 class="text-xl font-bold text-yellow-800 mb-4">🌅 Morning Routine</h4>
+                                <div class="space-y-3">
+                                    <div class="bg-white rounded-lg p-3 shadow-sm">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
+                                                <span class="text-white text-xs font-bold">1</span>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold text-sm">Check Daily Tip</p>
+                                                <p class="text-xs text-gray-600">Push notification opens app</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white rounded-lg p-3 shadow-sm">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
+                                                <span class="text-white text-xs font-bold">2</span>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold text-sm">Review Progress</p>
+                                                <p class="text-xs text-gray-600">Check confidence score & goals</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white rounded-lg p-3 shadow-sm">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
+                                                <span class="text-white text-xs font-bold">3</span>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold text-sm">Plan Day</p>
+                                                <p class="text-xs text-gray-600">Set dating intentions</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Evening Routine -->
+                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6">
+                                <h4 class="text-xl font-bold text-blue-800 mb-4">🌙 Evening Review</h4>
+                                <div class="space-y-3">
+                                    <div class="bg-white rounded-lg p-3 shadow-sm">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                                                <span class="text-white text-xs font-bold">1</span>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold text-sm">Submit Conversations</p>
+                                                <p class="text-xs text-gray-600">Upload chat screenshots</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white rounded-lg p-3 shadow-sm">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                                                <span class="text-white text-xs font-bold">2</span>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold text-sm">Get AI Feedback</p>
+                                                <p class="text-xs text-gray-600">Review analysis & suggestions</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white rounded-lg p-3 shadow-sm">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                                                <span class="text-white text-xs font-bold">3</span>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold text-sm">Update Progress</p>
+                                                <p class="text-xs text-gray-600">Log achievements & learnings</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Usage Statistics -->
+                        <div class="mt-8 bg-gray-50 rounded-xl p-6">
+                            <h4 class="text-lg font-bold text-gray-800 mb-4">📊 Usage Patterns</h4>
+                            <div class="grid grid-cols-4 gap-4 text-center">
+                                <div>
+                                    <div class="text-2xl font-bold text-primary-600">3.2</div>
+                                    <div class="text-sm text-gray-600">Avg Daily Sessions</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-accent-600">8m</div>
+                                    <div class="text-sm text-gray-600">Avg Session Length</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-success-600">85%</div>
+                                    <div class="text-sm text-gray-600">7-Day Retention</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-purple-600">12</div>
+                                    <div class="text-sm text-gray-600">Analyses/Week</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upgrade Journey Flow -->
+                <div id="upgrade-content" class="flow-content hidden">
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Conversion Funnel: Free to Premium to Elite</h3>
+                        
+                        <!-- Conversion Funnel Visualization -->
+                        <div class="mb-8">
+                            <div class="mermaid">
+                                graph TD
+                                    A[Free User - Spark Tier] --> B{Hit Usage Limit?}
+                                    B -->|Yes| C[Upgrade Prompt]
+                                    B -->|No| D[Continue Free Usage]
+                                    C --> E{Choose Upgrade?}
+                                    E -->|Yes| F[Premium Onboarding]
+                                    E -->|No| G[Dismiss - Future Prompts]
+                                    F --> H[Premium Features Access]
+                                    H --> I[Advanced Usage Patterns]
+                                    I --> J{High Engagement?}
+                                    J -->|Yes| K[Elite Upgrade Prompt]
+                                    J -->|No| L[Continue Premium]
+                                    K --> M{Choose Elite?}
+                                    M -->|Yes| N[Elite Onboarding]
+                                    M -->|No| O[Stay Premium]
+                                    N --> P[Full Feature Access]
+                            </div>
+                        </div>
+                        
+                        <!-- Conversion Triggers -->
+                        <div class="grid lg:grid-cols-3 gap-6">
+                            <div class="bg-gray-50 rounded-lg p-6">
+                                <h4 class="font-bold text-gray-800 mb-4">🎯 Free to Premium Triggers</h4>
+                                <ul class="text-sm text-gray-700 space-y-2">
+                                    <li>• 5 photo analyses used</li>
+                                    <li>• Bio review completed</li>
+                                    <li>• 5 conversation starters used</li>
+                                    <li>• High engagement with tips</li>
+                                    <li>• Multiple app sessions</li>
+                                </ul>
+                                <div class="mt-4 p-3 bg-primary-50 rounded border-l-4 border-primary-500">
+                                    <p class="text-sm text-primary-700 font-semibold">15% conversion rate</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-primary-50 rounded-lg p-6">
+                                <h4 class="font-bold text-primary-800 mb-4">💎 Premium to Elite Triggers</h4>
+                                <ul class="text-sm text-primary-700 space-y-2">
+                                    <li>• 30+ conversation analyses</li>
+                                    <li>• Consistent goal achievement</li>
+                                    <li>• High confidence score (80+)</li>
+                                    <li>• Voice analysis curiosity</li>
+                                    <li>• Date prep needs</li>
+                                </ul>
+                                <div class="mt-4 p-3 bg-primary-100 rounded border-l-4 border-primary-600">
+                                    <p class="text-sm text-primary-800 font-semibold">25% conversion rate</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-purple-50 rounded-lg p-6">
+                                <h4 class="font-bold text-purple-800 mb-4">⭐ Elite Retention Factors</h4>
+                                <ul class="text-sm text-purple-700 space-y-2">
+                                    <li>• Monthly action plan value</li>
+                                    <li>• Voice analysis insights</li>
+                                    <li>• Date prep confidence boost</li>
+                                    <li>• Priority support response</li>
+                                    <li>• Advanced psychological insights</li>
+                                </ul>
+                                <div class="mt-4 p-3 bg-purple-100 rounded border-l-4 border-purple-600">
+                                    <p class="text-sm text-purple-800 font-semibold">92% retention rate</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Persona-Specific Flows -->
+                <div id="persona-content" class="flow-content hidden">
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Persona-Specific User Journeys</h3>
+                        
+                        <div class="grid lg:grid-cols-2 gap-8">
+                            <!-- Alex - The Frustrated Professional -->
+                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6">
+                                <div class="flex items-center mb-6">
+                                    <img src="images/persona-alex.jpg" alt="Alex" class="w-16 h-16 rounded-full object-cover mr-4">
+                                    <div>
+                                        <h4 class="text-xl font-bold text-blue-800">Alex, 32</h4>
+                                        <p class="text-blue-600">Software Engineer</p>
+                                        <p class="text-sm text-blue-700">"The Frustrated Professional"</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <div class="bg-white rounded-lg p-4 shadow-sm">
+                                        <h5 class="font-semibold text-gray-800 mb-2">🎯 Primary Goals</h5>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>• Efficiency over quantity</li>
+                                            <li>• Serious relationship focus</li>
+                                            <li>• Time-saving strategies</li>
+                                            <li>• Results-driven approach</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white rounded-lg p-4 shadow-sm">
+                                        <h5 class="font-semibold text-gray-800 mb-2">📱 App Usage Pattern</h5>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>• Quick morning check (5 mins)</li>
+                                            <li>• Lunch break analysis (10 mins)</li>
+                                            <li>• Evening conversation review (15 mins)</li>
+                                            <li>• Weekend goal setting (20 mins)</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white rounded-lg p-4 shadow-sm">
+                                        <h5 class="font-semibold text-gray-800 mb-2">⭐ Preferred Features</h5>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>• Real-time chat suggestions</li>
+                                            <li>• Conversation efficiency scoring</li>
+                                            <li>• Goal-oriented progress tracking</li>
+                                            <li>• Quick photo optimization</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-blue-100 rounded-lg p-3 border-l-4 border-blue-500">
+                                        <p class="text-sm text-blue-800 font-semibold">Recommended Plan: Premium ($19.99/mo)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sarah - The Recently Single -->
+                            <div class="bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl p-6">
+                                <div class="flex items-center mb-6">
+                                    <img src="images/persona-sarah.jpg" alt="Sarah" class="w-16 h-16 rounded-full object-cover mr-4">
+                                    <div>
+                                        <h4 class="text-xl font-bold text-pink-800">Sarah, 45</h4>
+                                        <p class="text-pink-600">Marketing Manager</p>
+                                        <p class="text-sm text-pink-700">"The Recently Single"</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <div class="bg-white rounded-lg p-4 shadow-sm">
+                                        <h5 class="font-semibold text-gray-800 mb-2">🎯 Primary Goals</h5>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>• Confidence building</li>
+                                            <li>• Learning modern dating</li>
+                                            <li>• Emotional support</li>
+                                            <li>• Comprehensive guidance</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white rounded-lg p-4 shadow-sm">
+                                        <h5 class="font-semibold text-gray-800 mb-2">📱 App Usage Pattern</h5>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>• Morning confidence boost (10 mins)</li>
+                                            <li>• Date prep sessions (30 mins)</li>
+                                            <li>• Evening reflection (20 mins)</li>
+                                            <li>• Weekend coaching deep-dives (45 mins)</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white rounded-lg p-4 shadow-sm">
+                                        <h5 class="font-semibold text-gray-800 mb-2">⭐ Preferred Features</h5>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>• Date preparation simulator</li>
+                                            <li>• Voice analysis for confidence</li>
+                                            <li>• Monthly action plans</li>
+                                            <li>• Daily confidence tips</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-pink-100 rounded-lg p-3 border-l-4 border-pink-500">
+                                        <p class="text-sm text-pink-800 font-semibold">Recommended Plan: Elite ($39.99/mo)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Journey Comparison -->
+                        <div class="mt-8 bg-gray-50 rounded-xl p-6">
+                            <h4 class="text-lg font-bold text-gray-800 mb-4">📊 Journey Comparison</h4>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h5 class="font-semibold text-blue-800 mb-3">Alex's Journey</h5>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex justify-between">
+                                            <span>Time to first analysis:</span>
+                                            <span class="font-semibold">2 minutes</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>Time to premium upgrade:</span>
+                                            <span class="font-semibold">5 days</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>Primary usage time:</span>
+                                            <span class="font-semibold">Weekdays</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>Session frequency:</span>
+                                            <span class="font-semibold">2-3x daily</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="font-semibold text-pink-800 mb-3">Sarah's Journey</h5>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex justify-between">
+                                            <span>Time to first analysis:</span>
+                                            <span class="font-semibold">8 minutes</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>Time to elite upgrade:</span>
+                                            <span class="font-semibold">12 days</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>Primary usage time:</span>
+                                            <span class="font-semibold">Evenings/Weekends</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>Session frequency:</span>
+                                            <span class="font-semibold">1-2x daily</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Prototypes -->
+    <section id="prototypes" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                    Interactive Mobile Prototypes
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Experience the native mobile interactions with gesture-based navigation, animations, and real-time AI coaching demonstrations.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- iOS Prototype -->
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">iOS Interactive Prototype</h3>
+                    
+                    <div class="relative mx-auto" style="width: 300px;">
+                        <!-- iPhone Frame -->
+                        <div class="bg-black rounded-3xl p-2" style="height: 600px;">
+                            <div class="bg-white rounded-3xl overflow-hidden h-full relative">
+                                <!-- iOS Status Bar -->
+                                <div class="bg-white h-12 flex items-center justify-between px-6 text-sm font-semibold">
+                                    <span>9:41</span>
+                                    <div class="flex space-x-1">
+                                        <i class="fas fa-signal text-xs"></i>
+                                        <i class="fas fa-wifi text-xs"></i>
+                                        <i class="fas fa-battery-three-quarters text-xs"></i>
+                                    </div>
+                                </div>
+                                
+                                <!-- Prototype Content -->
+                                <div id="ios-prototype-content" class="flex-1 relative">
+                                    <!-- Home Screen -->
+                                    <div id="ios-home" class="prototype-screen active">
+                                        <div class="p-6">
+                                            <div class="flex items-center justify-between mb-6">
+                                                <div>
+                                                    <h2 class="text-lg font-bold">Good morning, Alex</h2>
+                                                    <p class="text-gray-600 text-sm">Ready to level up?</p>
+                                                </div>
+                                                <div class="w-10 h-10 bg-gray-200 rounded-full"></div>
+                                            </div>
+                                            
+                                            <!-- Confidence Score -->
+                                            <div class="bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl p-4 text-white mb-4">
+                                                <h3 class="font-semibold mb-2">Confidence Score</h3>
+                                                <div class="flex items-center">
+                                                    <div class="text-2xl font-bold mr-3">78</div>
+                                                    <div class="flex-1">
+                                                        <div class="bg-white bg-opacity-30 rounded-full h-2">
+                                                            <div class="bg-white rounded-full h-2" style="width: 78%"></div>
+                                                        </div>
+                                                        <p class="text-xs mt-1 opacity-90">+12 this week</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Quick Actions -->
+                                            <div class="grid grid-cols-2 gap-3 mb-4">
+                                                <button onclick="switchIOSScreen('photo-analysis')" class="bg-gray-50 p-3 rounded-lg text-center">
+                                                    <i class="fas fa-camera text-primary-600 text-lg mb-1"></i>
+                                                    <p class="font-semibold text-xs">Analyze Photos</p>
+                                                </button>
+                                                <button onclick="switchIOSScreen('chat-coach')" class="bg-gray-50 p-3 rounded-lg text-center">
+                                                    <i class="fas fa-comments text-accent-600 text-lg mb-1"></i>
+                                                    <p class="font-semibold text-xs">Chat Coach</p>
+                                                </button>
+                                            </div>
+                                            
+                                            <!-- Daily Tip -->
+                                            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded-r-lg">
+                                                <h4 class="font-semibold text-yellow-800 text-sm mb-1">💡 Daily Tip</h4>
+                                                <p class="text-xs text-yellow-700">Ask open-ended questions to keep conversations flowing.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Bottom Navigation -->
+                                        <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3">
+                                            <div class="flex justify-around">
+                                                <button class="text-primary-600">
+                                                    <i class="fas fa-home text-lg"></i>
+                                                </button>
+                                                <button onclick="switchIOSScreen('progress')" class="text-gray-400">
+                                                    <i class="fas fa-chart-line text-lg"></i>
+                                                </button>
+                                                <button onclick="switchIOSScreen('analysis')" class="text-gray-400">
+                                                    <i class="fas fa-camera text-lg"></i>
+                                                </button>
+                                                <button onclick="switchIOSScreen('settings')" class="text-gray-400">
+                                                    <i class="fas fa-cog text-lg"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Photo Analysis Screen -->
+                                    <div id="ios-photo-analysis" class="prototype-screen">
+                                        <div class="p-6">
+                                            <div class="flex items-center mb-6">
+                                                <button onclick="switchIOSScreen('home')" class="mr-4">
+                                                    <i class="fas fa-arrow-left text-primary-600"></i>
+                                                </button>
+                                                <h2 class="text-lg font-bold">Photo Analysis</h2>
+                                            </div>
+                                            
+                                            <!-- Upload Area -->
+                                            <div class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center mb-6">
+                                                <i class="fas fa-camera text-4xl text-gray-400 mb-4"></i>
+                                                <p class="text-gray-600 mb-4">Upload up to 5 photos for analysis</p>
+                                                <button class="bg-primary-600 text-white px-6 py-2 rounded-lg text-sm">
+                                                    Choose Photos
+                                                </button>
+                                            </div>
+                                            
+                                            <!-- Recent Analysis */
+                                            <div class="bg-gray-50 rounded-lg p-4">
+                                                <h3 class="font-semibold mb-3">Recent Analysis</h3>
+                                                <div class="flex items-center">
+                                                    <div class="w-12 h-12 bg-gray-200 rounded-lg mr-3"></div>
+                                                    <div class="flex-1">
+                                                        <p class="font-medium text-sm">Profile Photo #1</p>
+                                                        <p class="text-xs text-gray-600">Score: 8.5/10</p>
+                                                    </div>
+                                                    <div class="text-right">
+                                                        <p class="text-lg font-bold text-primary-600">8.5</p>
+                                                        <p class="text-xs text-gray-500">2h ago</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Chat Coach Screen -->
+                                    <div id="ios-chat-coach" class="prototype-screen">
+                                        <div class="p-6">
+                                            <div class="flex items-center mb-6">
+                                                <button onclick="switchIOSScreen('home')" class="mr-4">
+                                                    <i class="fas fa-arrow-left text-primary-600"></i>
+                                                </button>
+                                                <h2 class="text-lg font-bold">Chat Coach</h2>
+                                            </div>
+                                            
+                                            <!-- Input Methods */
+                                            <div class="space-y-3 mb-6">
+                                                <button class="w-full bg-primary-50 border border-primary-200 p-4 rounded-lg text-left">
+                                                    <div class="flex items-center">
+                                                        <i class="fas fa-image text-primary-600 text-lg mr-3"></i>
+                                                        <div>
+                                                            <p class="font-semibold text-primary-800">Upload Screenshot</p>
+                                                            <p class="text-sm text-primary-600">From any dating app</p>
+                                                        </div>
+                                                    </div>
+                                                </button>
+                                                
+                                                <button class="w-full bg-accent-50 border border-accent-200 p-4 rounded-lg text-left">
+                                                    <div class="flex items-center">
+                                                        <i class="fas fa-keyboard text-accent-600 text-lg mr-3"></i>
+                                                        <div>
+                                                            <p class="font-semibold text-accent-800">Type Conversation</p>
+                                                            <p class="text-sm text-accent-600">Copy and paste messages</p>
+                                                        </div>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                            
+                                            <!-- Demo Analysis -->
+                                            <div class="bg-green-50 rounded-lg p-4">
+                                                <h3 class="font-semibold text-green-800 mb-2">✅ Analysis Complete</h3>
+                                                <p class="text-sm text-green-700 mb-3">Engagement Score: 9.2/10</p>
+                                                <div class="bg-white rounded p-3">
+                                                    <p class="text-xs text-gray-700">💡 <strong>Suggestion:</strong> Great opener! They're showing high interest. Consider suggesting a specific activity: "I'd love to explore that trail with someone who knows the best spots!"</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-6">
+                        <p class="text-sm text-gray-600 mb-4">Try the interactive gestures:</p>
+                        <div class="flex justify-center space-x-4 text-xs">
+                            <div class="flex items-center">
+                                <i class="fas fa-hand-pointer text-primary-600 mr-2"></i>
+                                <span>Tap to navigate</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-arrows-alt text-accent-600 mr-2"></i>
+                                <span>Swipe gestures</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Android Prototype -->
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Android Interactive Prototype</h3>
+                    
+                    <div class="relative mx-auto" style="width: 300px;">
+                        <!-- Android Frame -->
+                        <div class="bg-black rounded-2xl p-2" style="height: 600px;">
+                            <div class="bg-white rounded-2xl overflow-hidden h-full relative">
+                                <!-- Android Status Bar -->
+                                <div class="bg-gray-900 text-white h-8 flex items-center justify-between px-4 text-xs">
+                                    <span>9:41</span>
+                                    <div class="flex space-x-1">
+                                        <i class="fas fa-signal text-xs"></i>
+                                        <i class="fas fa-wifi text-xs"></i>
+                                        <i class="fas fa-battery-full text-xs"></i>
+                                    </div>
+                                </div>
+                                
+                                <!-- Prototype Content -->
+                                <div id="android-prototype-content" class="flex-1 relative">
+                                    <!-- Home Screen -->
+                                    <div id="android-home" class="prototype-screen active">
+                                        <div class="p-6">
+                                            <!-- App Bar -->
+                                            <div class="flex items-center justify-between mb-6">
+                                                <div>
+                                                    <h2 class="text-lg font-bold">Good morning, Alex</h2>
+                                                    <p class="text-gray-600 text-sm">Ready to level up?</p>
+                                                </div>
+                                                <button class="w-10 h-10 bg-gray-200 rounded-full"></button>
+                                            </div>
+                                            
+                                            <!-- Material Card - Confidence Score -->
+                                            <div class="bg-gradient-to-r from-android-primary to-purple-600 rounded-2xl p-6 text-white mb-4 shadow-lg">
+                                                <h3 class="font-semibold mb-2">Confidence Score</h3>
+                                                <div class="flex items-center">
+                                                    <div class="text-3xl font-bold mr-4">78</div>
+                                                    <div class="flex-1">
+                                                        <div class="bg-white bg-opacity-30 rounded-full h-3">
+                                                            <div class="bg-white rounded-full h-3" style="width: 78%"></div>
+                                                        </div>
+                                                        <p class="text-sm mt-2 opacity-90">+12 this week</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Material Cards - Quick Actions -->
+                                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                                <div onclick="switchAndroidScreen('photo-analysis')" class="bg-white rounded-2xl p-4 shadow-lg cursor-pointer hover:shadow-xl transition-shadow">
+                                                    <i class="fas fa-camera text-primary-600 text-xl mb-2"></i>
+                                                    <p class="font-semibold text-sm">Photo Analysis</p>
+                                                    <p class="text-xs text-gray-500">Optimize your pics</p>
+                                                </div>
+                                                <div onclick="switchAndroidScreen('chat-coach')" class="bg-white rounded-2xl p-4 shadow-lg cursor-pointer hover:shadow-xl transition-shadow">
+                                                    <i class="fas fa-comments text-accent-600 text-xl mb-2"></i>
+                                                    <p class="font-semibold text-sm">Chat Coach</p>
+                                                    <p class="text-xs text-gray-500">Real-time help</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Material Card - Daily Tip -->
+                                            <div class="bg-amber-50 rounded-2xl p-4 border-l-4 border-amber-400">
+                                                <h4 class="font-semibold text-amber-800 text-sm mb-1">💡 Today's Tip</h4>
+                                                <p class="text-xs text-amber-700">Ask open-ended questions to keep conversations flowing naturally.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Material Bottom Navigation -->
+                                        <div class="absolute bottom-0 left-0 right-0 bg-white shadow-lg rounded-t-2xl px-6 py-4">
+                                            <div class="flex justify-around">
+                                                <button class="text-android-primary">
+                                                    <i class="fas fa-home text-xl mb-1"></i>
+                                                    <div class="text-xs">Home</div>
+                                                </button>
+                                                <button onclick="switchAndroidScreen('progress')" class="text-gray-400">
+                                                    <i class="fas fa-chart-line text-xl mb-1"></i>
+                                                    <div class="text-xs">Progress</div>
+                                                </button>
+                                                <button onclick="switchAndroidScreen('analysis')" class="text-gray-400">
+                                                    <i class="fas fa-camera text-xl mb-1"></i>
+                                                    <div class="text-xs">Analyze</div>
+                                                </button>
+                                                <button onclick="switchAndroidScreen('settings')" class="text-gray-400">
+                                                    <i class="fas fa-cog text-xl mb-1"></i>
+                                                    <div class="text-xs">Settings</div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Photo Analysis Screen -->
+                                    <div id="android-photo-analysis" class="prototype-screen">
+                                        <div class="p-6">
+                                            <!-- App Bar -->
+                                            <div class="flex items-center mb-6">
+                                                <button onclick="switchAndroidScreen('home')" class="mr-4 p-2">
+                                                    <i class="fas fa-arrow-left text-android-primary"></i>
+                                                </button>
+                                                <h2 class="text-lg font-bold">Photo Analysis</h2>
+                                            </div>
+                                            
+                                            <!-- Material FAB Area -->
+                                            <div class="border-2 border-dashed border-gray-300 rounded-2xl p-8 text-center mb-6 relative">
+                                                <i class="fas fa-camera text-4xl text-gray-400 mb-4"></i>
+                                                <p class="text-gray-600 mb-4">Upload photos for AI analysis</p>
+                                                
+                                                <!-- Floating Action Button -->
+                                                <button class="absolute bottom-4 right-4 w-14 h-14 bg-android-primary text-white rounded-full shadow-lg hover:shadow-xl transition-shadow">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                            
+                                            <!-- Material Card - Recent Analysis -->
+                                            <div class="bg-white rounded-2xl p-4 shadow-lg">
+                                                <h3 class="font-semibold mb-3">Recent Analysis</h3>
+                                                <div class="flex items-center">
+                                                    <div class="w-12 h-12 bg-gray-200 rounded-xl mr-3"></div>
+                                                    <div class="flex-1">
+                                                        <p class="font-medium text-sm">Profile Photo #1</p>
+                                                        <p class="text-xs text-gray-600">Analyzed 2 hours ago</p>
+                                                    </div>
+                                                    <div class="text-right">
+                                                        <div class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-bold">8.5</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Chat Coach Screen -->
+                                    <div id="android-chat-coach" class="prototype-screen">
+                                        <div class="p-6">
+                                            <!-- App Bar -->
+                                            <div class="flex items-center mb-6">
+                                                <button onclick="switchAndroidScreen('home')" class="mr-4 p-2">
+                                                    <i class="fas fa-arrow-left text-android-primary"></i>
+                                                </button>
+                                                <h2 class="text-lg font-bold">Chat Coach</h2>
+                                            </div>
+                                            
+                                            <!-- Material Cards - Input Methods -->
+                                            <div class="space-y-4 mb-6">
+                                                <div class="bg-white rounded-2xl p-4 shadow-lg">
+                                                    <div class="flex items-center">
+                                                        <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center mr-4">
+                                                            <i class="fas fa-image text-primary-600"></i>
+                                                        </div>
+                                                        <div>
+                                                            <p class="font-semibold">Screenshot Upload</p>
+                                                            <p class="text-sm text-gray-600">From any dating app</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="bg-white rounded-2xl p-4 shadow-lg">
+                                                    <div class="flex items-center">
+                                                        <div class="w-12 h-12 bg-accent-100 rounded-xl flex items-center justify-center mr-4">
+                                                            <i class="fas fa-keyboard text-accent-600"></i>
+                                                        </div>
+                                                        <div>
+                                                            <p class="font-semibold">Text Input</p>
+                                                            <p class="text-sm text-gray-600">Type or paste messages</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Bottom Sheet Simulation */
+                                            <div class="bg-green-50 rounded-t-2xl p-4 border border-green-200">
+                                                <div class="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-4"></div>
+                                                <h3 class="font-semibold text-green-800 mb-2">Analysis Complete</h3>
+                                                <div class="bg-white rounded-xl p-3">
+                                                    <div class="flex items-center mb-2">
+                                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-bold mr-2">9.2</span>
+                                                        <span class="text-sm">Engagement Score</span>
+                                                    </div>
+                                                    <p class="text-xs text-gray-700">💡 Great opener! Consider suggesting a specific activity to move the conversation forward.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-6">
+                        <p class="text-sm text-gray-600 mb-4">Experience Material Design interactions:</p>
+                        <div class="flex justify-center space-x-4 text-xs">
+                            <div class="flex items-center">
+                                <i class="fas fa-hand-pointer text-android-primary mr-2"></i>
+                                <span>Tap cards</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-plus-circle text-accent-600 mr-2"></i>
+                                <span>FAB actions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design System -->
+    <section id="design-system" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                    Mobile Design System
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive design specifications, component library, and platform-specific guidelines for consistent mobile user experience.
+                </p>
+            </div>
+
+            <!-- Design System Tabs -->
+            <div class="flex justify-center mb-12">
+                <div class="bg-gray-100 rounded-lg p-1">
+                    <button id="colors-tab" class="px-6 py-3 rounded-md font-semibold transition-colors bg-white shadow text-primary-600">
+                        Colors & Typography
+                    </button>
+                    <button id="components-tab" class="px-6 py-3 rounded-md font-semibold transition-colors text-gray-600 hover:text-gray-900">
+                        Components
+                    </button>
+                    <button id="interactions-tab" class="px-6 py-3 rounded-md font-semibold transition-colors text-gray-600 hover:text-gray-900">
+                        Interactions
+                    </button>
+                    <button id="guidelines-tab" class="px-6 py-3 rounded-md font-semibold transition-colors text-gray-600 hover:text-gray-900">
+                        Guidelines
+                    </button>
+                </div>
+            </div>
+
+            <!-- Design System Content -->
+            <div id="design-system-content">
+                <!-- Colors & Typography -->
+                <div id="colors-content" class="design-system-section">
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <!-- Color Palette -->
+                        <div class="bg-white rounded-2xl shadow-lg p-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6">Color Palette</h3>
+                            
+                            <div class="space-y-6">
+                                <!-- Primary Colors -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Primary Colors</h4>
+                                    <div class="grid grid-cols-5 gap-2">
+                                        <div class="text-center">
+                                            <div class="w-full h-16 bg-primary-50 rounded-lg mb-2"></div>
+                                            <p class="text-xs">50</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="w-full h-16 bg-primary-100 rounded-lg mb-2"></div>
+                                            <p class="text-xs">100</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="w-full h-16 bg-primary-500 rounded-lg mb-2"></div>
+                                            <p class="text-xs text-white">500</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="w-full h-16 bg-primary-600 rounded-lg mb-2"></div>
+                                            <p class="text-xs text-white">600</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="w-full h-16 bg-primary-900 rounded-lg mb-2"></div>
+                                            <p class="text-xs text-white">900</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Accent Colors -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Accent Colors</h4>
+                                    <div class="grid grid-cols-3 gap-2">
+                                        <div class="text-center">
+                                            <div class="w-full h-16 bg-accent-500 rounded-lg mb-2"></div>
+                                            <p class="text-xs text-white">Orange 500</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="w-full h-16 bg-success-500 rounded-lg mb-2"></div>
+                                            <p class="text-xs text-white">Green 500</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="w-full h-16 bg-purple-600 rounded-lg mb-2"></div>
+                                            <p class="text-xs text-white">Purple 600</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Platform Specific -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Platform Colors</h4>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <p class="text-sm font-medium mb-2">iOS</p>
+                                            <div class="flex space-x-2">
+                                                <div class="flex-1 text-center">
+                                                    <div class="w-full h-12 bg-ios-blue rounded-lg mb-1"></div>
+                                                    <p class="text-xs">System Blue</p>
+                                                </div>
+                                                <div class="flex-1 text-center">
+                                                    <div class="w-full h-12 bg-ios-gray rounded-lg mb-1"></div>
+                                                    <p class="text-xs">System Gray</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-medium mb-2">Android</p>
+                                            <div class="flex space-x-2">
+                                                <div class="flex-1 text-center">
+                                                    <div class="w-full h-12 bg-android-primary rounded-lg mb-1"></div>
+                                                    <p class="text-xs">Primary</p>
+                                                </div>
+                                                <div class="flex-1 text-center">
+                                                    <div class="w-full h-12 bg-android-surface rounded-lg mb-1 border"></div>
+                                                    <p class="text-xs">Surface</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Typography -->
+                        <div class="bg-white rounded-2xl shadow-lg p-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6">Typography</h3>
+                            
+                            <div class="space-y-6">
+                                <!-- iOS Typography -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">iOS Typography (SF Pro)</h4>
+                                    <div class="space-y-3">
+                                        <div class="font-ios">
+                                            <p class="text-3xl font-bold">Large Title</p>
+                                            <p class="text-xs text-gray-500">34pt / Bold</p>
+                                        </div>
+                                        <div class="font-ios">
+                                            <p class="text-xl font-semibold">Title 1</p>
+                                            <p class="text-xs text-gray-500">28pt / Semibold</p>
+                                        </div>
+                                        <div class="font-ios">
+                                            <p class="text-lg font-semibold">Title 2</p>
+                                            <p class="text-xs text-gray-500">22pt / Semibold</p>
+                                        </div>
+                                        <div class="font-ios">
+                                            <p class="text-base">Body</p>
+                                            <p class="text-xs text-gray-500">17pt / Regular</p>
+                                        </div>
+                                        <div class="font-ios">
+                                            <p class="text-sm">Caption</p>
+                                            <p class="text-xs text-gray-500">12pt / Regular</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Android Typography -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Android Typography (Roboto)</h4>
+                                    <div class="space-y-3">
+                                        <div class="font-android">
+                                            <p class="text-3xl font-normal">Headline 1</p>
+                                            <p class="text-xs text-gray-500">32sp / Regular</p>
+                                        </div>
+                                        <div class="font-android">
+                                            <p class="text-xl font-medium">Headline 6</p>
+                                            <p class="text-xs text-gray-500">20sp / Medium</p>
+                                        </div>
+                                        <div class="font-android">
+                                            <p class="text-base font-normal">Body 1</p>
+                                            <p class="text-xs text-gray-500">16sp / Regular</p>
+                                        </div>
+                                        <div class="font-android">
+                                            <p class="text-sm font-normal">Body 2</p>
+                                            <p class="text-xs text-gray-500">14sp / Regular</p>
+                                        </div>
+                                        <div class="font-android">
+                                            <p class="text-xs font-normal">Caption</p>
+                                            <p class="text-xs text-gray-500">12sp / Regular</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Components -->
+                <div id="components-content" class="design-system-section hidden">
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <!-- Buttons & Controls -->
+                        <div class="bg-white rounded-2xl shadow-lg p-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6">Buttons & Controls</h3>
+                            
+                            <div class="space-y-6">
+                                <!-- Primary Buttons -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Primary Buttons</h4>
+                                    <div class="space-y-3">
+                                        <button class="bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold w-full">
+                                            iOS Style Button
+                                        </button>
+                                        <button class="bg-android-primary text-white px-6 py-3 rounded-2xl font-medium w-full">
+                                            Material Button
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Secondary Buttons -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Secondary Buttons</h4>
+                                    <div class="space-y-3">
+                                        <button class="border-2 border-primary-600 text-primary-600 px-6 py-3 rounded-lg font-semibold w-full">
+                                            iOS Outline Button
+                                        </button>
+                                        <button class="border-2 border-android-primary text-android-primary px-6 py-3 rounded-2xl font-medium w-full">
+                                            Material Outline Button
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Button States -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Button States</h4>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <button class="bg-primary-600 text-white px-4 py-2 rounded-lg text-sm">
+                                            Normal
+                                        </button>
+                                        <button class="bg-primary-700 text-white px-4 py-2 rounded-lg text-sm">
+                                            Pressed
+                                        </button>
+                                        <button class="bg-gray-300 text-gray-500 px-4 py-2 rounded-lg text-sm cursor-not-allowed">
+                                            Disabled
+                                        </button>
+                                        <button class="bg-primary-600 text-white px-4 py-2 rounded-lg text-sm relative">
+                                            Loading
+                                            <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                                                <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cards & Layout -->
+                        <div class="bg-white rounded-2xl shadow-lg p-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6">Cards & Layout</h3>
+                            
+                            <div class="space-y-6">
+                                <!-- iOS Cards -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">iOS Cards</h4>
+                                    <div class="bg-gray-50 rounded-xl p-4">
+                                        <div class="flex items-center mb-3">
+                                            <div class="w-10 h-10 bg-primary-600 rounded-full mr-3"></div>
+                                            <div>
+                                                <p class="font-semibold">Card Title</p>
+                                                <p class="text-sm text-gray-600">Subtitle</p>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-700 mb-3">Card content goes here with descriptive text.</p>
+                                        <button class="text-primary-600 text-sm font-semibold">Action</button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Material Cards -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Material Cards</h4>
+                                    <div class="bg-white rounded-2xl p-4 shadow-lg border">
+                                        <div class="flex items-center mb-3">
+                                            <div class="w-10 h-10 bg-android-primary rounded-xl mr-3"></div>
+                                            <div>
+                                                <p class="font-semibold">Material Card</p>
+                                                <p class="text-sm text-gray-600">With elevation</p>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-700 mb-3">Material Design card with proper elevation and rounded corners.</p>
+                                        <button class="text-android-primary text-sm font-medium uppercase">Action</button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Input Fields -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Input Fields</h4>
+                                    <div class="space-y-3">
+                                        <input type="text" placeholder="iOS Text Field" class="w-full p-3 border border-gray-300 rounded-lg">
+                                        <input type="text" placeholder="Material Text Field" class="w-full p-3 border-2 border-gray-300 rounded-t-lg border-b-android-primary">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactions -->
+                <div id="interactions-content" class="design-system-section hidden">
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Mobile Interactions & Gestures</h3>
+                        
+                        <div class="grid lg:grid-cols-3 gap-8">
+                            <!-- Touch Interactions -->
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-4">Touch Interactions</h4>
+                                <div class="space-y-4">
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-hand-pointer text-primary-600 mr-3"></i>
+                                            <span class="font-semibold">Tap</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600">Primary interaction for buttons, links, and selectable items</p>
+                                        <div class="mt-2 text-xs text-gray-500">Min size: 44px × 44px</div>
+                                    </div>
+                                    
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-hand-paper text-accent-600 mr-3"></i>
+                                            <span class="font-semibold">Long Press</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600">Secondary actions, context menus, drag initiation</p>
+                                        <div class="mt-2 text-xs text-gray-500">Duration: 500ms</div>
+                                    </div>
+                                    
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-expand-arrows-alt text-success-600 mr-3"></i>
+                                            <span class="font-semibold">Pinch & Zoom</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600">Photo viewing, content scaling</p>
+                                        <div class="mt-2 text-xs text-gray-500">Scale: 0.5x - 3x</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Swipe Gestures -->
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-4">Swipe Gestures</h4>
+                                <div class="space-y-4">
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-arrow-left text-blue-600 mr-3"></i>
+                                            <span class="font-semibold">Swipe Right</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600">Back navigation, dismiss modals</p>
+                                        <div class="mt-2 text-xs text-gray-500">iOS edge swipe</div>
+                                    </div>
+                                    
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-arrow-up text-purple-600 mr-3"></i>
+                                            <span class="font-semibold">Swipe Up</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600">Bottom sheets, app switching</p>
+                                        <div class="mt-2 text-xs text-gray-500">Material bottom sheets</div>
+                                    </div>
+                                    
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-arrow-down text-green-600 mr-3"></i>
+                                            <span class="font-semibold">Pull to Refresh</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600">Content refresh, update data</p>
+                                        <div class="mt-2 text-xs text-gray-500">Pull distance: 80px</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Animations -->
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-4">Animations</h4>
+                                <div class="space-y-4">
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-play text-primary-600 mr-3"></i>
+                                            <span class="font-semibold">Screen Transitions</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600">Slide, fade, scale transitions</p>
+                                        <div class="mt-2 text-xs text-gray-500">Duration: 300ms</div>
+                                    </div>
+                                    
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-spinner text-accent-600 mr-3"></i>
+                                            <span class="font-semibold">Loading States</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600">Spinners, skeletons, progress bars</p>
+                                        <div class="mt-2 text-xs text-gray-500">Easing: ease-in-out</div>
+                                    </div>
+                                    
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-bell text-yellow-600 mr-3"></i>
+                                            <span class="font-semibold">Micro-interactions</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600">Button feedback, haptics</p>
+                                        <div class="mt-2 text-xs text-gray-500">Haptic feedback</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Interactive Demo -->
+                        <div class="mt-8 bg-gradient-to-r from-primary-50 to-primary-100 rounded-2xl p-6">
+                            <h4 class="font-semibold text-primary-800 mb-4 text-center">Try Interactive Elements</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <button class="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-all transform hover:scale-105">
+                                    <i class="fas fa-hand-pointer text-primary-600 text-xl mb-2"></i>
+                                    <p class="text-sm font-semibold">Tap Me</p>
+                                </button>
+                                
+                                <button class="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-all transform active:scale-95">
+                                    <i class="fas fa-hand-paper text-accent-600 text-xl mb-2"></i>
+                                    <p class="text-sm font-semibold">Hold Me</p>
+                                </button>
+                                
+                                <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+                                    <i class="fas fa-sync-alt text-success-600 text-xl mb-2 animate-spin"></i>
+                                    <p class="text-sm font-semibold">Loading</p>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+                                    <i class="fas fa-check-circle text-green-600 text-xl mb-2"></i>
+                                    <p class="text-sm font-semibold">Complete</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guidelines -->
+                <div id="guidelines-content" class="design-system-section hidden">
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <!-- iOS Guidelines -->
+                        <div class="bg-white rounded-2xl shadow-lg p-8">
+                            <div class="flex items-center mb-6">
+                                <i class="fab fa-apple text-ios-blue text-2xl mr-4"></i>
+                                <h3 class="text-2xl font-bold text-gray-900">iOS Guidelines</h3>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Navigation Patterns</h4>
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li>• Tab bar for primary navigation (5 items max)</li>
+                                        <li>• Navigation bar for hierarchical content</li>
+                                        <li>• Modal presentation for temporary tasks</li>
+                                        <li>• Swipe from left edge to go back</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Visual Design</h4>
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li>• Use SF Symbols for icons</li>
+                                        <li>• Rounded corners (8-12px radius)</li>
+                                        <li>• Subtle shadows and depth</li>
+                                        <li>• Dynamic Type support</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Interaction Design</h4>
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li>• 44pt minimum touch target</li>
+                                        <li>• Haptic feedback for interactions</li>
+                                        <li>• Pull to refresh pattern</li>
+                                        <li>• Contextual menus with 3D Touch</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Platform Features</h4>
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li>• Face ID / Touch ID integration</li>
+                                        <li>• Siri Shortcuts support</li>
+                                        <li>• App Clips for quick access</li>
+                                        <li>• Widget support (iOS 14+)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Android Guidelines -->
+                        <div class="bg-white rounded-2xl shadow-lg p-8">
+                            <div class="flex items-center mb-6">
+                                <i class="fab fa-android text-android-primary text-2xl mr-4"></i>
+                                <h3 class="text-2xl font-bold text-gray-900">Android Guidelines</h3>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Navigation Patterns</h4>
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li>• Bottom navigation for top-level views</li>
+                                        <li>• Navigation drawer for secondary navigation</li>
+                                        <li>• Bottom sheets for contextual actions</li>
+                                        <li>• System back button behavior</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Material Design</h4>
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li>• Material 3.0 design system</li>
+                                        <li>• Elevation and shadow system</li>
+                                        <li>• Motion design principles</li>
+                                        <li>• Adaptive icons and themes</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Interaction Design</h4>
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li>• 48dp minimum touch target</li>
+                                        <li>• Ripple effect for feedback</li>
+                                        <li>• Floating Action Button (FAB)</li>
+                                        <li>• Swipe gestures for actions</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3">Platform Features</h4>
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li>• Biometric authentication</li>
+                                        <li>• Google Assistant integration</li>
+                                        <li>• Adaptive brightness and dark mode</li>
+                                        <li>• Live wallpapers and widgets</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Accessibility -->
+                    <div class="mt-8 bg-white rounded-2xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Accessibility Guidelines</h3>
+                        
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-3">Visual Accessibility</h4>
+                                <ul class="text-sm text-gray-600 space-y-2">
+                                    <li>• WCAG AA contrast ratios (4.5:1)</li>
+                                    <li>• Dynamic Type support</li>
+                                    <li>• High contrast mode</li>
+                                    <li>• Color blind friendly palette</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-3">Motor Accessibility</h4>
+                                <ul class="text-sm text-gray-600 space-y-2">
+                                    <li>• Large touch targets (44pt/48dp)</li>
+                                    <li>• One-handed operation</li>
+                                    <li>• Voice control support</li>
+                                    <li>• Switch control compatibility</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-3">Cognitive Accessibility</h4>
+                                <ul class="text-sm text-gray-600 space-y-2">
+                                    <li>• Clear navigation hierarchy</li>
+                                    <li>• Consistent interaction patterns</li>
+                                    <li>• Reduced motion options</li>
+                                    <li>• Screen reader optimization</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                    Technical Implementation
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive technical specifications for building the AI Dating Coach mobile application with cross-platform compatibility and native performance.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Development Stack -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Development Stack</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-3">Frontend Framework</h4>
+                            <div class="bg-blue-50 rounded-lg p-4">
+                                <p class="font-semibold text-blue-800 mb-2">React Native</p>
+                                <ul class="text-sm text-blue-700 space-y-1">
+                                    <li>• Cross-platform development</li>
+                                    <li>• Native performance</li>
+                                    <li>• Shared business logic</li>
+                                    <li>• Platform-specific customizations</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-3">AI Integration</h4>
+                            <div class="space-y-3">
+                                <div class="bg-green-50 rounded-lg p-3">
+                                    <p class="font-semibold text-green-800">OpenAI GPT-4</p>
+                                    <p class="text-sm text-green-700">Conversation analysis & suggestions</p>
+                                </div>
+                                <div class="bg-purple-50 rounded-lg p-3">
+                                    <p class="font-semibold text-purple-800">Google Gemini Pro</p>
+                                    <p class="text-sm text-purple-700">Advanced reasoning & context</p>
+                                </div>
+                                <div class="bg-orange-50 rounded-lg p-3">
+                                    <p class="font-semibold text-orange-800">Anthropic Claude</p>
+                                    <p class="text-sm text-orange-700">Safety & content moderation</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-3">Backend Services</h4>
+                            <div class="space-y-2 text-sm text-gray-600">
+                                <div class="flex justify-between">
+                                    <span>Authentication:</span>
+                                    <span class="font-semibold">Firebase Auth</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Database:</span>
+                                    <span class="font-semibold">Firestore</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>File Storage:</span>
+                                    <span class="font-semibold">Firebase Storage</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Push Notifications:</span>
+                                    <span class="font-semibold">FCM</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Analytics:</span>
+                                    <span class="font-semibold">Firebase Analytics</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance & Security -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Performance & Security</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-3">Performance Optimization</h4>
+                            <ul class="text-sm text-gray-600 space-y-2">
+                                <li>• Lazy loading for screens and components</li>
+                                <li>• Image caching and optimization</li>
+                                <li>• Background task management</li>
+                                <li>• Memory leak prevention</li>
+                                <li>• Offline capability with cached data</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-3">Security Measures</h4>
+                            <ul class="text-sm text-gray-600 space-y-2">
+                                <li>• End-to-end encryption for conversations</li>
+                                <li>• Biometric authentication</li>
+                                <li>• Secure API key management</li>
+                                <li>• Data anonymization</li>
+                                <li>• GDPR compliance</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-3">App Store Requirements</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-ios-blue bg-opacity-10 rounded-lg p-3">
+                                    <p class="font-semibold text-ios-blue mb-2">iOS App Store</p>
+                                    <ul class="text-xs text-gray-600 space-y-1">
+                                        <li>• iOS 14.0+ support</li>
+                                        <li>• App Store Review Guidelines</li>
+                                        <li>• Privacy nutrition labels</li>
+                                        <li>• App Tracking Transparency</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-android-primary bg-opacity-10 rounded-lg p-3">
+                                    <p class="font-semibold text-android-primary mb-2">Google Play Store</p>
+                                    <ul class="text-xs text-gray-600 space-y-1">
+                                        <li>• Android 8.0+ (API 26+)</li>
+                                        <li>• Google Play policies</li>
+                                        <li>• Data safety declarations</li>
+                                        <li>• Target SDK compliance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-3">Monitoring & Analytics</h4>
+                            <div class="space-y-2 text-sm text-gray-600">
+                                <div class="flex justify-between">
+                                    <span>Crash Reporting:</span>
+                                    <span class="font-semibold">Firebase Crashlytics</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Performance:</span>
+                                    <span class="font-semibold">Firebase Performance</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>User Analytics:</span>
+                                    <span class="font-semibold">Mixpanel</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>A/B Testing:</span>
+                                    <span class="font-semibold">Firebase Remote Config</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Implementation -->
+            <div class="mt-8 bg-white rounded-2xl shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Key Feature Implementation</h3>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-primary-50 rounded-lg p-6">
+                        <h4 class="font-semibold text-primary-800 mb-4">📸 Camera Integration</h4>
+                        <ul class="text-sm text-primary-700 space-y-2">
+                            <li>• react-native-image-picker</li>
+                            <li>• Native camera permissions</li>
+                            <li>• Image compression & optimization</li>
+                            <li>• Batch upload capability</li>
+                            <li>• Real-time photo analysis</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-accent-50 rounded-lg p-6">
+                        <h4 class="font-semibold text-accent-800 mb-4">🎤 Voice Analysis</h4>
+                        <ul class="text-sm text-accent-700 space-y-2">
+                            <li>• react-native-audio-recorder</li>
+                            <li>• Voice to text conversion</li>
+                            <li>• Sentiment analysis API</li>
+                            <li>• Tone detection algorithms</li>
+                            <li>• Real-time voice feedback</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-success-50 rounded-lg p-6">
+                        <h4 class="font-semibold text-success-800 mb-4">🔔 Push Notifications</h4>
+                        <ul class="text-sm text-success-700 space-y-2">
+                            <li>• Daily tip notifications</li>
+                            <li>• Analysis completion alerts</li>
+                            <li>• Goal reminders</li>
+                            <li>• Personalized coaching prompts</li>
+                            <li>• Smart notification timing</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Development Timeline */
+                <div class="mt-8 bg-gray-50 rounded-xl p-6">
+                    <h4 class="text-lg font-bold text-gray-800 mb-4 text-center">Development Timeline</h4>
+                    <div class="grid md:grid-cols-4 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-bold text-primary-600 mb-1">Phase 1</div>
+                            <div class="text-sm font-semibold mb-2">MVP Development</div>
+                            <div class="text-xs text-gray-600">8-10 weeks</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-accent-600 mb-1">Phase 2</div>
+                            <div class="text-sm font-semibold mb-2">AI Integration</div>
+                            <div class="text-xs text-gray-600">6-8 weeks</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-success-600 mb-1">Phase 3</div>
+                            <div class="text-sm font-semibold mb-2">Premium Features</div>
+                            <div class="text-xs text-gray-600">4-6 weeks</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-purple-600 mb-1">Phase 4</div>
+                            <div class="text-sm font-semibold mb-2">App Store Launch</div>
+                            <div class="text-xs text-gray-600">2-4 weeks</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-primary-600 to-primary-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">
+                Ready to Build the Future of Dating?
+            </h2>
+            <p class="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
+                This comprehensive mobile UI/UX design system provides everything needed to develop a world-class AI-powered dating coach application.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                <button class="bg-white text-primary-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+                    <i class="fas fa-download mr-2"></i>Download Design Assets
+                </button>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors">
+                    <i class="fas fa-code mr-2"></i>View Technical Specs
+                </button>
+            </div>
+            
+            <div class="flex items-center justify-center space-x-8 text-primary-100 text-sm">
+                <div class="flex items-center">
+                    <i class="fab fa-apple mr-2"></i>
+                    <span>iOS Ready</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fab fa-android mr-2"></i>
+                    <span>Android Ready</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-rocket mr-2"></i>
+                    <span>Production Ready</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-4 gap-8">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-mobile-alt text-primary-400 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold">AI Dating Coach Mobile</span>
+                    </div>
+                    <p class="text-gray-400 mb-6 max-w-md">
+                        Comprehensive mobile UI/UX design system for the AI Dating Coach application. Native iOS and Android experiences with powerful AI integration.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-figma text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-dribbble text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Design System</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#screens" class="hover:text-white transition-colors">Screen Designs</a></li>
+                        <li><a href="#user-flows" class="hover:text-white transition-colors">User Flows</a></li>
+                        <li><a href="#prototypes" class="hover:text-white transition-colors">Prototypes</a></li>
+                        <li><a href="#design-system" class="hover:text-white transition-colors">Components</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Design Guidelines</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Technical Specs</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Asset Downloads</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Implementation Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 AI Dating Coach Mobile Design System. Designed for modern mobile experiences.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/mobile-app.js"></script>
+    
+    <!-- Initialize Mermaid for flowcharts -->
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+    </script>
+
+<style>
+#minimax-floating-ball {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 12px;
+  background: #222222;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  color: #F8F8F8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  z-index: 9999;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#minimax-floating-ball:hover {
+  transform: translateY(-2px);
+  background: #383838;
+}
+
+.minimax-ball-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.minimax-logo-wave {
+  width: 26px;
+  height: 22px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='22' viewBox='0 0 26 22' fill='none'%3E%3Cg clip-path='url(%23clip0_3442_102412)'%3E%3Cpath d='M12.8405 14.6775C12.8405 14.9897 13.0932 15.2424 13.4055 15.2424C13.7178 15.2424 13.9705 14.9897 13.9705 14.6775V2.98254C13.9705 1.88957 13.0809 1 11.9879 1C10.895 1 10.0054 1.88957 10.0054 2.98254V11.566V17.1068C10.0054 17.5773 9.62327 17.9594 9.1528 17.9594C8.68233 17.9594 8.30021 17.5773 8.30021 17.1068V8.04469C8.30021 6.95172 7.41063 6.06215 6.31767 6.06215C5.22471 6.06215 4.33513 6.95172 4.33513 8.04469V11.8855C4.33513 12.3559 3.953 12.7381 3.48254 12.7381C3.01207 12.7381 2.62994 12.3559 2.62994 11.8855V10.4936C2.62994 10.1813 2.37725 9.92861 2.06497 9.92861C1.7527 9.92861 1.5 10.1813 1.5 10.4936V11.8855C1.5 12.9784 2.38957 13.868 3.48254 13.868C4.5755 13.868 5.46508 12.9784 5.46508 11.8855V8.04469C5.46508 7.57422 5.8472 7.19209 6.31767 7.19209C6.78814 7.19209 7.17026 7.57422 7.17026 8.04469V17.1068C7.17026 18.1998 8.05984 19.0894 9.1528 19.0894C10.2458 19.0894 11.1353 18.1998 11.1353 17.1068V2.98254C11.1353 2.51207 11.5175 2.12994 11.9879 2.12994C12.4584 2.12994 12.8405 2.51207 12.8405 2.98254V14.6775Z' fill='%23F8F8F8'/%3E%3Cpath d='M23.3278 6.06215C22.2348 6.06215 21.3452 6.95172 21.3452 8.04469V15.6143C21.3452 16.0847 20.9631 16.4669 20.4926 16.4669C20.0222 16.4669 19.6401 16.0847 19.6401 15.6143V2.98254C19.6401 1.88957 18.7505 1 17.6575 1C16.5645 1 15.675 1.88957 15.675 2.98254V19.0175C15.675 19.4879 15.2928 19.8701 14.8224 19.8701C14.3519 19.8701 13.9698 19.4879 13.9698 19.0175V17.0329C13.9698 16.7206 13.7171 16.4679 13.4048 16.4679C13.0925 16.4679 12.8398 16.7206 12.8398 17.0329V19.0175C12.8398 20.1104 13.7294 21 14.8224 21C15.9153 21 16.8049 20.1104 16.8049 19.0175V2.98254C16.8049 2.51207 17.187 2.12994 17.6575 2.12994C18.128 2.12994 18.5101 2.51207 18.5101 2.98254V15.6143C18.5101 16.7072 19.3997 17.5968 20.4926 17.5968C21.5856 17.5968 22.4752 16.7072 22.4752 15.6143V8.04469C22.4752 7.57422 22.8573 7.19209 23.3278 7.19209C23.7982 7.19209 24.1804 7.57422 24.1804 8.04469V14.6775C24.1804 14.9897 24.4331 15.2424 24.7453 15.2424C25.0576 15.2424 25.3103 14.9897 25.3103 14.6775V8.04469C25.3103 6.95172 24.4207 6.06215 23.3278 6.06215Z' fill='%23F8F8F8'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_3442_102412'%3E%3Crect width='25' height='22' fill='white' transform='translate(0.5)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.minimax-ball-text {
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.minimax-close-icon {
+  margin-left: 8px;
+  font-size: 16px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.minimax-close-icon:hover {
+  opacity: 1;
+}
+</style>
+<div id="minimax-floating-ball">
+  <div class="minimax-ball-content">
+    <div class="minimax-logo-wave"></div>
+    <span class="minimax-ball-text">Created by MiniMax Agent</span>
+  </div>
+  <div class="minimax-close-icon">×</div>
+</div>
+<script>
+// Initialize floating ball functionality
+function initFloatingBall() {
+  const ball = document.getElementById('minimax-floating-ball');
+  if (!ball) return;
+
+  // Initial animation
+  ball.style.opacity = '0';
+  ball.style.transform = 'translateY(20px)';
+
+  setTimeout(() => {
+    ball.style.opacity = '1';
+    ball.style.transform = 'translateY(0)';
+  }, 500);
+
+  // Handle logo click
+  const ballContent = ball.querySelector('.minimax-ball-content');
+  ballContent.addEventListener('click', function (e) {
+    e.stopPropagation();
+    window.open('https://agent.minimax.io/agent', '_blank');
+    ball.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      ball.style.transform = 'scale(1)';
+    }, 100);
+  });
+
+  // Handle close button click
+  const closeIcon = ball.querySelector('.minimax-close-icon');
+  closeIcon.addEventListener('click', function (e) {
+    e.stopPropagation();
+    ball.style.opacity = '0';
+    ball.style.transform = 'translateY(20px)';
+
+    setTimeout(() => {
+      ball.style.display = 'none';
+    }, 300);
+  });
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', initFloatingBall); 
+</script>
+
+</body>
+</html>

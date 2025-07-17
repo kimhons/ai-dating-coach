@@ -1,0 +1,9 @@
+{
+  "name": "AIDatingCoachMobile",
+  "displayName": "AI Dating Coach",
+  "version": "1.0.0",
+  "description": "AI-powered dating coach app with photo analysis, conversation coaching, and voice feedback",
+  "author": "MiniMax Agent",
+  "bundleId": "com.aidatingcoach.mobile",
+  "package": "com.aidatingcoach.mobile"
+}

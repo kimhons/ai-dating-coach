@@ -1,0 +1,1052 @@
+{
+  "app_info": {
+    "name": "AI Dating Coach",
+    "version": "1.0.0",
+    "platforms": ["iOS", "Android"],
+    "minimum_ios_version": "14.0",
+    "minimum_android_version": "8.0",
+    "target_sdk": 34,
+    "bundle_id": "com.aidatingcoach.mobile",
+    "package_name": "com.aidatingcoach.android"
+  },
+  
+  "user_personas": {
+    "alex": {
+      "name": "Alex",
+      "age": 32,
+      "occupation": "Software Engineer",
+      "type": "The Frustrated Professional",
+      "goals": [
+        "Efficiency over quantity",
+        "Serious relationship focus",
+        "Time-saving strategies",
+        "Results-driven approach"
+      ],
+      "pain_points": [
+        "Limited time for dating apps",
+        "Superficial conversations",
+        "Difficulty standing out",
+        "Inefficient matching"
+      ],
+      "app_usage_pattern": {
+        "session_frequency": "2-3x daily",
+        "session_duration": "5-15 minutes",
+        "peak_usage_times": ["8:00 AM", "12:30 PM", "8:00 PM"],
+        "preferred_features": [
+          "Real-time chat suggestions",
+          "Conversation efficiency scoring",
+          "Goal-oriented progress tracking",
+          "Quick photo optimization"
+        ]
+      },
+      "recommended_plan": "Premium",
+      "conversion_timeline": "5 days",
+      "confidence_score": 78
+    },
+    "sarah": {
+      "name": "Sarah",
+      "age": 45,
+      "occupation": "Marketing Manager",
+      "type": "The Recently Single",
+      "goals": [
+        "Confidence building",
+        "Learning modern dating",
+        "Emotional support",
+        "Comprehensive guidance"
+      ],
+      "pain_points": [
+        "Overwhelming app choices",
+        "Outdated dating knowledge",
+        "Fear of rejection",
+        "Technology barriers"
+      ],
+      "app_usage_pattern": {
+        "session_frequency": "1-2x daily",
+        "session_duration": "15-45 minutes",
+        "peak_usage_times": ["7:00 AM", "7:30 PM", "9:00 PM"],
+        "preferred_features": [
+          "Date preparation simulator",
+          "Voice analysis for confidence",
+          "Monthly action plans",
+          "Daily confidence tips"
+        ]
+      },
+      "recommended_plan": "Elite",
+      "conversion_timeline": "12 days",
+      "confidence_score": 65
+    }
+  },
+  
+  "mobile_screens": {
+    "onboarding": [
+      {
+        "id": "splash",
+        "title": "Welcome to AI Dating Coach",
+        "subtitle": "Transform your dating success with personalized AI guidance",
+        "type": "splash_screen",
+        "elements": [
+          "App logo",
+          "Welcome message",
+          "Get Started button",
+          "Terms and Privacy links"
+        ],
+        "ios_specific": ["Face ID prompt", "Notification permissions"],
+        "android_specific": ["Biometric setup", "Notification channels"]
+      },
+      {
+        "id": "permissions",
+        "title": "Allow Permissions",
+        "subtitle": "To provide personalized coaching, we need access to:",
+        "type": "permissions_screen",
+        "permissions": [
+          {
+            "type": "camera",
+            "reason": "Upload and analyze profile photos",
+            "required": true
+          },
+          {
+            "type": "photos",
+            "reason": "Select photos from your gallery",
+            "required": true
+          },
+          {
+            "type": "microphone",
+            "reason": "Record and analyze voice messages",
+            "required": false
+          },
+          {
+            "type": "notifications",
+            "reason": "Send daily tips and analysis updates",
+            "required": false
+          }
+        ]
+      },
+      {
+        "id": "persona_quiz",
+        "title": "Tell Us About You",
+        "subtitle": "Help us personalize your coaching experience",
+        "type": "quiz_screen",
+        "questions": [
+          {
+            "id": "dating_experience",
+            "question": "How would you describe your current dating situation?",
+            "options": [
+              "Busy professional looking for efficiency",
+              "Recently single, new to modern dating",
+              "Experienced but not getting results",
+              "Confident but want to optimize"
+            ]
+          },
+          {
+            "id": "primary_goal",
+            "question": "What's your primary dating goal?",
+            "options": [
+              "Find a serious long-term relationship",
+              "Build confidence and dating skills",
+              "Get more quality matches",
+              "Improve conversation success rate"
+            ]
+          },
+          {
+            "id": "biggest_challenge",
+            "question": "What's your biggest dating challenge?",
+            "options": [
+              "Don't have time for lengthy conversations",
+              "Nervous about putting myself out there",
+              "Profile doesn't attract the right people",
+              "Conversations fizzle out quickly"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "goal_setting",
+        "title": "Set Your Goals",
+        "subtitle": "What would you like to achieve?",
+        "type": "goal_selection_screen",
+        "goals": [
+          {
+            "id": "more_matches",
+            "title": "Get More Quality Matches",
+            "description": "Optimize your profile to attract compatible people",
+            "icon": "heart"
+          },
+          {
+            "id": "better_conversations",
+            "title": "Improve Conversation Skills",
+            "description": "Learn to start and maintain engaging chats",
+            "icon": "chat"
+          },
+          {
+            "id": "build_confidence",
+            "title": "Build Dating Confidence",
+            "description": "Overcome anxiety and approach dating positively",
+            "icon": "shield"
+          },
+          {
+            "id": "find_relationship",
+            "title": "Find a Serious Relationship",
+            "description": "Move beyond casual dating to meaningful connection",
+            "icon": "users"
+          }
+        ]
+      }
+    ],
+    
+    "main_dashboard": {
+      "id": "dashboard",
+      "title": "Dashboard",
+      "type": "home_screen",
+      "components": [
+        {
+          "type": "greeting_header",
+          "content": "Good morning, {user_name}",
+          "subtitle": "Ready to level up your dating game?",
+          "profile_image": true
+        },
+        {
+          "type": "confidence_score_card",
+          "title": "Confidence Score",
+          "current_score": 78,
+          "weekly_change": "+12",
+          "trend": "up",
+          "color_scheme": "primary_gradient"
+        },
+        {
+          "type": "quick_actions_grid",
+          "actions": [
+            {
+              "id": "analyze_photos",
+              "title": "Analyze Photos",
+              "subtitle": "Optimize your pics",
+              "icon": "camera",
+              "color": "primary"
+            },
+            {
+              "id": "chat_coach",
+              "title": "Chat Coach",
+              "subtitle": "Real-time help",
+              "icon": "comments",
+              "color": "accent"
+            },
+            {
+              "id": "voice_analysis",
+              "title": "Voice Analysis",
+              "subtitle": "Elite feature",
+              "icon": "microphone",
+              "color": "purple",
+              "premium": true
+            },
+            {
+              "id": "date_prep",
+              "title": "Date Prep",
+              "subtitle": "Practice conversations",
+              "icon": "theater-masks",
+              "color": "success",
+              "premium": true
+            }
+          ]
+        },
+        {
+          "type": "daily_tip_card",
+          "title": "💡 Daily Tip",
+          "content": "Ask open-ended questions to keep conversations flowing naturally.",
+          "type_indicator": "conversation_skills"
+        },
+        {
+          "type": "recent_activity",
+          "title": "Recent Activity",
+          "items": [
+            {
+              "type": "photo_analysis",
+              "title": "Photo analysis completed",
+              "subtitle": "Score: 8.5/10",
+              "timestamp": "2 hours ago",
+              "icon": "camera"
+            },
+            {
+              "type": "conversation_analysis",
+              "title": "Conversation analyzed",
+              "subtitle": "High engagement detected",
+              "timestamp": "1 day ago",
+              "icon": "comments"
+            }
+          ]
+        }
+      ],
+      "bottom_navigation": [
+        {
+          "id": "home",
+          "title": "Home",
+          "icon": "home",
+          "active": true
+        },
+        {
+          "id": "progress",
+          "title": "Progress",
+          "icon": "chart-line",
+          "active": false
+        },
+        {
+          "id": "analyze",
+          "title": "Analyze",
+          "icon": "camera",
+          "active": false
+        },
+        {
+          "id": "settings",
+          "title": "Settings",
+          "icon": "cog",
+          "active": false
+        }
+      ]
+    },
+    
+    "photo_analysis": {
+      "id": "photo_analysis",
+      "title": "Photo Analysis",
+      "type": "analysis_screen",
+      "components": [
+        {
+          "type": "upload_area",
+          "title": "Upload Photos for Analysis",
+          "subtitle": "Get AI-powered scoring and optimization tips",
+          "max_photos": 5,
+          "supported_formats": ["JPG", "PNG", "HEIC"],
+          "upload_methods": ["camera", "gallery", "cloud"]
+        },
+        {
+          "type": "analysis_results",
+          "title": "Recent Analysis",
+          "results": [
+            {
+              "id": "photo_1",
+              "score": 8.5,
+              "timestamp": "2 hours ago",
+              "feedback": "Great lighting and genuine smile! Consider using this as your primary photo.",
+              "improvements": [
+                "Excellent facial expression",
+                "Good lighting quality",
+                "Clear and sharp image"
+              ],
+              "suggestions": [
+                "Try a slightly closer crop",
+                "Consider a more interesting background"
+              ]
+            },
+            {
+              "id": "photo_2",
+              "score": 6.2,
+              "timestamp": "1 day ago",
+              "feedback": "Good photo but could be improved with better lighting.",
+              "improvements": [
+                "Nice outfit choice",
+                "Good posture"
+              ],
+              "suggestions": [
+                "Retake with better lighting",
+                "Avoid shadows on face",
+                "Try outdoor natural light"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tips_section",
+          "title": "Photo Tips",
+          "tips": [
+            "Use natural lighting when possible",
+            "Show your genuine smile",
+            "Include full-body shots",
+            "Avoid group photos as primary",
+            "Use high-resolution images"
+          ]
+        }
+      ]
+    },
+    
+    "conversation_coaching": {
+      "id": "conversation_coaching",
+      "title": "Conversation Coach",
+      "type": "coaching_screen",
+      "components": [
+        {
+          "type": "input_methods",
+          "title": "How would you like to get help?",
+          "methods": [
+            {
+              "id": "screenshot_upload",
+              "title": "Upload Screenshot",
+              "subtitle": "From any dating app",
+              "icon": "image",
+              "color": "primary"
+            },
+            {
+              "id": "text_input",
+              "title": "Type Conversation",
+              "subtitle": "Copy and paste messages",
+              "icon": "keyboard",
+              "color": "accent"
+            },
+            {
+              "id": "voice_input",
+              "title": "Voice Analysis",
+              "subtitle": "Analyze voice messages",
+              "icon": "microphone",
+              "color": "purple",
+              "premium": true
+            }
+          ]
+        },
+        {
+          "type": "real_time_analysis",
+          "title": "AI Analysis Results",
+          "sample_analysis": {
+            "engagement_score": 9.2,
+            "sentiment": "positive",
+            "interest_level": "high",
+            "response_quality": "excellent",
+            "suggestions": [
+              "Great opener! They're showing high interest with detailed responses.",
+              "Perfect time to suggest meeting up - they mentioned loving the area you referenced.",
+              "Consider asking about their favorite hiking spots to keep the conversation flowing."
+            ],
+            "next_message_suggestion": "That sounds amazing! I'd love to explore that trail with someone who knows the best spots. Would you be up for showing me around this weekend?"
+          }
+        },
+        {
+          "type": "conversation_simulator",
+          "title": "Practice Mode",
+          "subtitle": "Practice with AI before real conversations",
+          "scenarios": [
+            "First message on dating app",
+            "Asking for a phone number",
+            "Suggesting a first date",
+            "Keeping conversation flowing"
+          ]
+        }
+      ]
+    },
+    
+    "progress_tracking": {
+      "id": "progress_tracking",
+      "title": "Progress Tracking",
+      "type": "analytics_screen",
+      "components": [
+        {
+          "type": "confidence_chart",
+          "title": "Confidence Score Trend",
+          "current_score": 78,
+          "chart_data": [
+            {"date": "2025-01-01", "score": 65},
+            {"date": "2025-01-08", "score": 70},
+            {"date": "2025-01-15", "score": 75},
+            {"date": "2025-01-22", "score": 78}
+          ]
+        },
+        {
+          "type": "weekly_goals",
+          "title": "This Week's Goals",
+          "goals": [
+            {
+              "id": "send_messages",
+              "title": "Send 5 personalized messages",
+              "progress": 3,
+              "target": 5,
+              "status": "in_progress"
+            },
+            {
+              "id": "get_number",
+              "title": "Get 1 phone number",
+              "progress": 1,
+              "target": 1,
+              "status": "completed"
+            },
+            {
+              "id": "analyze_photos",
+              "title": "Analyze profile photos",
+              "progress": 1,
+              "target": 1,
+              "status": "completed"
+            }
+          ]
+        },
+        {
+          "type": "stats_overview",
+          "title": "Your Stats",
+          "stats": [
+            {
+              "label": "Conversations Analyzed",
+              "value": 23,
+              "change": "+5 this week",
+              "trend": "up"
+            },
+            {
+              "label": "Dates Scheduled",
+              "value": 7,
+              "change": "+2 this week",
+              "trend": "up"
+            },
+            {
+              "label": "Response Rate",
+              "value": "85%",
+              "change": "+15% improvement",
+              "trend": "up"
+            },
+            {
+              "label": "Avg Conversation Length",
+              "value": "12 messages",
+              "change": "+3 messages",
+              "trend": "up"
+            }
+          ]
+        },
+        {
+          "type": "achievements",
+          "title": "Recent Achievements",
+          "achievements": [
+            {
+              "id": "first_analysis",
+              "title": "First Analysis Complete",
+              "description": "Completed your first photo analysis",
+              "icon": "camera",
+              "unlocked": true,
+              "date": "2025-01-15"
+            },
+            {
+              "id": "conversation_master",
+              "title": "Conversation Master",
+              "description": "Analyzed 10 conversations",
+              "icon": "comments",
+              "unlocked": true,
+              "date": "2025-01-20"
+            },
+            {
+              "id": "confidence_builder",
+              "title": "Confidence Builder",
+              "description": "Reached 75+ confidence score",
+              "icon": "shield",
+              "unlocked": true,
+              "date": "2025-01-22"
+            }
+          ]
+        }
+      ]
+    },
+    
+    "premium_features": {
+      "voice_analysis": {
+        "id": "voice_analysis",
+        "title": "Voice Analysis",
+        "tier": "Elite",
+        "description": "Analyze voice messages for tone, emotion, and interest level",
+        "components": [
+          {
+            "type": "recording_interface",
+            "title": "Record or Upload Voice Message",
+            "max_duration": "2 minutes",
+            "supported_formats": ["MP3", "M4A", "WAV"]
+          },
+          {
+            "type": "analysis_results",
+            "title": "AI Voice Analysis",
+            "sample_results": {
+              "enthusiasm_level": "High",
+              "interest_detected": "92%",
+              "emotional_sentiment": "Positive",
+              "tone_indicators": [
+                "Excitement in voice",
+                "Genuine laughter detected",
+                "Confident speaking pace"
+              ],
+              "recommendations": [
+                "They sound genuinely excited about the conversation topic",
+                "High interest level suggests they're open to meeting",
+                "Consider reciprocating their energy level in your response"
+              ]
+            }
+          }
+        ]
+      },
+      
+      "date_prep_simulator": {
+        "id": "date_prep_simulator",
+        "title": "Date Prep Simulator",
+        "tier": "Elite",
+        "description": "Practice conversations with AI to build confidence",
+        "components": [
+          {
+            "type": "scenario_selection",
+            "title": "Choose Date Scenario",
+            "scenarios": [
+              {
+                "id": "coffee_first_date",
+                "title": "Coffee Date - First Meeting",
+                "description": "Practice casual conversation starters",
+                "difficulty": "Beginner"
+              },
+              {
+                "id": "dinner_second_date",
+                "title": "Dinner Date - Second Date",
+                "description": "Deeper conversation and connection building",
+                "difficulty": "Intermediate"
+              },
+              {
+                "id": "activity_date",
+                "title": "Activity Date - Hiking/Sports",
+                "description": "Conversation during shared activities",
+                "difficulty": "Advanced"
+              }
+            ]
+          },
+          {
+            "type": "conversation_practice",
+            "title": "Practice Conversation",
+            "ai_responses": [
+              "Hi! Thanks for meeting me here. How was your day?",
+              "It was great! I love this coffee shop. Do you come here often?",
+              "This is my first time actually. I usually go to the place downtown, but I wanted to try somewhere new."
+            ],
+            "coaching_tips": [
+              "Great opening! Now ask a follow-up question about their day",
+              "Perfect! You're showing interest and sharing something personal",
+              "Good balance of sharing and curiosity. Try asking about their favorite coffee shops"
+            ]
+          }
+        ]
+      },
+      
+      "monthly_action_plan": {
+        "id": "monthly_action_plan",
+        "title": "Monthly Action Plan",
+        "tier": "Elite",
+        "description": "Personalized monthly dating strategy and goals",
+        "components": [
+          {
+            "type": "current_month_overview",
+            "title": "January 2025 Progress",
+            "progress_percentage": 75,
+            "weeks_completed": 3,
+            "total_weeks": 4
+          },
+          {
+            "type": "weekly_breakdown",
+            "weeks": [
+              {
+                "week": 1,
+                "title": "Profile Optimization",
+                "status": "completed",
+                "tasks": [
+                  "Complete photo analysis",
+                  "Optimize bio and prompts",
+                  "Update dating app profiles"
+                ]
+              },
+              {
+                "week": 2,
+                "title": "Conversation Foundations",
+                "status": "completed",
+                "tasks": [
+                  "Learn opening message strategies",
+                  "Practice active listening techniques",
+                  "Master question-asking skills"
+                ]
+              },
+              {
+                "week": 3,
+                "title": "Advanced Conversations",
+                "status": "completed",
+                "tasks": [
+                  "Practice transitioning topics smoothly",
+                  "Learn to build emotional connection",
+                  "Master the art of flirting"
+                ]
+              },
+              {
+                "week": 4,
+                "title": "Date Planning & Execution",
+                "status": "in_progress",
+                "tasks": [
+                  "Practice suggesting dates confidently",
+                  "Plan creative first date ideas",
+                  "Prepare for handling logistics"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "next_action",
+            "title": "Your Next Action",
+            "action": "Practice suggesting a coffee date in your next high-engagement conversation",
+            "rationale": "Based on your conversation analysis, you're great at building rapport but hesitate to suggest meeting up"
+          }
+        ]
+      }
+    }
+  },
+  
+  "user_flows": {
+    "first_time_user": {
+      "title": "First-Time User Journey",
+      "description": "Complete onboarding flow from app download to first analysis",
+      "steps": [
+        {
+          "step": 1,
+          "screen": "app_store",
+          "action": "Download app",
+          "duration": "30 seconds"
+        },
+        {
+          "step": 2,
+          "screen": "splash",
+          "action": "View welcome screen",
+          "duration": "10 seconds"
+        },
+        {
+          "step": 3,
+          "screen": "permissions",
+          "action": "Grant permissions",
+          "duration": "45 seconds",
+          "decision_point": true
+        },
+        {
+          "step": 4,
+          "screen": "persona_quiz",
+          "action": "Complete persona identification",
+          "duration": "2 minutes"
+        },
+        {
+          "step": 5,
+          "screen": "goal_setting",
+          "action": "Select dating goals",
+          "duration": "1 minute"
+        },
+        {
+          "step": 6,
+          "screen": "account_creation",
+          "action": "Create account",
+          "duration": "2 minutes"
+        },
+        {
+          "step": 7,
+          "screen": "dashboard",
+          "action": "View main dashboard",
+          "duration": "30 seconds"
+        },
+        {
+          "step": 8,
+          "screen": "first_analysis",
+          "action": "Complete first photo analysis",
+          "duration": "3 minutes",
+          "conversion_point": true
+        }
+      ],
+      "total_duration": "9 minutes 45 seconds",
+      "conversion_rate": "68%",
+      "drop_off_points": ["permissions", "account_creation"]
+    },
+    
+    "daily_usage": {
+      "title": "Daily Usage Patterns",
+      "description": "Typical daily interaction flow for active users",
+      "morning_routine": [
+        {
+          "time": "8:00 AM",
+          "action": "Check daily tip notification",
+          "duration": "1 minute"
+        },
+        {
+          "time": "8:01 AM",
+          "action": "Review confidence score progress",
+          "duration": "30 seconds"
+        },
+        {
+          "time": "8:02 AM",
+          "action": "Set daily dating intention",
+          "duration": "30 seconds"
+        }
+      ],
+      "lunch_break": [
+        {
+          "time": "12:30 PM",
+          "action": "Upload conversation screenshot",
+          "duration": "2 minutes"
+        },
+        {
+          "time": "12:32 PM",
+          "action": "Review AI analysis and suggestions",
+          "duration": "3 minutes"
+        }
+      ],
+      "evening_routine": [
+        {
+          "time": "8:00 PM",
+          "action": "Submit today's conversations for analysis",
+          "duration": "5 minutes"
+        },
+        {
+          "time": "8:05 PM",
+          "action": "Update goal progress",
+          "duration": "2 minutes"
+        },
+        {
+          "time": "8:07 PM",
+          "action": "Review improvement suggestions",
+          "duration": "3 minutes"
+        }
+      ]
+    },
+    
+    "upgrade_journey": {
+      "title": "Free to Premium Conversion Flow",
+      "description": "User journey from free tier to paid subscription",
+      "triggers": [
+        {
+          "trigger": "Usage limit reached",
+          "description": "User has completed 5 photo analyses",
+          "probability": "45%"
+        },
+        {
+          "trigger": "High engagement",
+          "description": "User has 7+ daily sessions",
+          "probability": "35%"
+        },
+        {
+          "trigger": "Success story",
+          "description": "User got their first date",
+          "probability": "60%"
+        }
+      ],
+      "conversion_flow": [
+        {
+          "step": 1,
+          "screen": "upgrade_prompt",
+          "message": "You've used all your free analyses this week",
+          "cta": "Unlock unlimited analyses"
+        },
+        {
+          "step": 2,
+          "screen": "feature_comparison",
+          "message": "See what you get with Premium",
+          "features_highlighted": ["Unlimited analyses", "Real-time suggestions", "Goal tracking"]
+        },
+        {
+          "step": 3,
+          "screen": "pricing_selection",
+          "message": "Choose your plan",
+          "options": ["Premium $19.99/mo", "Elite $39.99/mo"],
+          "recommended": "Premium"
+        },
+        {
+          "step": 4,
+          "screen": "payment_flow",
+          "message": "Start your free trial",
+          "trial_period": "7 days"
+        },
+        {
+          "step": 5,
+          "screen": "premium_onboarding",
+          "message": "Welcome to Premium!",
+          "new_features_tour": true
+        }
+      ],
+      "conversion_rates": {
+        "free_to_premium": "15%",
+        "premium_to_elite": "25%",
+        "trial_to_paid": "72%"
+      }
+    }
+  },
+  
+  "design_system": {
+    "colors": {
+      "ios": {
+        "primary": "#007AFF",
+        "secondary": "#5856D6",
+        "success": "#34C759",
+        "warning": "#FF9500",
+        "error": "#FF3B30",
+        "background": "#F2F2F7",
+        "surface": "#FFFFFF",
+        "text_primary": "#000000",
+        "text_secondary": "#8E8E93"
+      },
+      "android": {
+        "primary": "#6200EE",
+        "primary_variant": "#3700B3",
+        "secondary": "#03DAC6",
+        "success": "#4CAF50",
+        "warning": "#FF9800",
+        "error": "#F44336",
+        "background": "#FAFAFA",
+        "surface": "#FFFFFF",
+        "text_primary": "#212121",
+        "text_secondary": "#757575"
+      }
+    },
+    
+    "typography": {
+      "ios": {
+        "font_family": "SF Pro Display",
+        "sizes": {
+          "large_title": "34pt",
+          "title_1": "28pt",
+          "title_2": "22pt",
+          "title_3": "20pt",
+          "headline": "17pt",
+          "body": "17pt",
+          "callout": "16pt",
+          "subhead": "15pt",
+          "footnote": "13pt",
+          "caption_1": "12pt",
+          "caption_2": "11pt"
+        }
+      },
+      "android": {
+        "font_family": "Roboto",
+        "sizes": {
+          "headline_1": "32sp",
+          "headline_2": "28sp",
+          "headline_3": "24sp",
+          "headline_4": "20sp",
+          "headline_5": "18sp",
+          "headline_6": "16sp",
+          "subtitle_1": "16sp",
+          "subtitle_2": "14sp",
+          "body_1": "16sp",
+          "body_2": "14sp",
+          "button": "14sp",
+          "caption": "12sp",
+          "overline": "10sp"
+        }
+      }
+    },
+    
+    "spacing": {
+      "xs": "4px",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "24px",
+      "xl": "32px",
+      "xxl": "48px",
+      "xxxl": "64px"
+    },
+    
+    "border_radius": {
+      "ios": {
+        "small": "8px",
+        "medium": "12px",
+        "large": "16px",
+        "card": "16px",
+        "button": "12px"
+      },
+      "android": {
+        "small": "4px",
+        "medium": "8px",
+        "large": "16px",
+        "card": "16px",
+        "button": "20px"
+      }
+    },
+    
+    "shadows": {
+      "ios": {
+        "small": "0 2px 4px rgba(0, 0, 0, 0.1)",
+        "medium": "0 4px 12px rgba(0, 0, 0, 0.15)",
+        "large": "0 8px 24px rgba(0, 0, 0, 0.2)"
+      },
+      "android": {
+        "elevation_1": "0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)",
+        "elevation_2": "0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)",
+        "elevation_3": "0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23)"
+      }
+    }
+  },
+  
+  "interactions": {
+    "gestures": [
+      {
+        "name": "tap",
+        "description": "Primary interaction for buttons and selectable items",
+        "minimum_size": "44px",
+        "feedback": "Visual state change, optional haptic feedback"
+      },
+      {
+        "name": "long_press",
+        "description": "Secondary actions and context menus",
+        "duration": "500ms",
+        "feedback": "Haptic feedback, visual indication"
+      },
+      {
+        "name": "swipe_right",
+        "description": "Back navigation (iOS), dismiss actions",
+        "distance": "50px minimum",
+        "feedback": "Screen transition animation"
+      },
+      {
+        "name": "pull_to_refresh",
+        "description": "Refresh content in scrollable views",
+        "distance": "80px",
+        "feedback": "Loading indicator, haptic feedback"
+      },
+      {
+        "name": "pinch_zoom",
+        "description": "Scale content like photos",
+        "scale_range": "0.5x to 3x",
+        "feedback": "Smooth scaling animation"
+      }
+    ],
+    
+    "animations": {
+      "screen_transitions": {
+        "duration": "300ms",
+        "easing": "ease-in-out",
+        "types": ["slide", "fade", "scale"]
+      },
+      "micro_interactions": {
+        "duration": "150ms",
+        "easing": "ease-out",
+        "types": ["button_press", "toggle", "loading"]
+      },
+      "loading_states": {
+        "duration": "1000ms",
+        "easing": "linear",
+        "types": ["spinner", "skeleton", "progress_bar"]
+      }
+    }
+  },
+  
+  "technical_specs": {
+    "performance_targets": {
+      "app_launch_time": "< 2 seconds",
+      "screen_transition_time": "< 300ms",
+      "api_response_time": "< 1 second",
+      "image_upload_time": "< 5 seconds",
+      "memory_usage": "< 100MB",
+      "battery_impact": "Low"
+    },
+    
+    "offline_capabilities": [
+      "View previously analyzed content",
+      "Access daily tips cache",
+      "Review progress history",
+      "Browse strategy library content"
+    ],
+    
+    "security_features": [
+      "Biometric authentication",
+      "End-to-end encryption for sensitive data",
+      "Secure API key storage",
+      "Data anonymization",
+      "GDPR compliance"
+    ],
+    
+    "accessibility_features": [
+      "VoiceOver/TalkBack support",
+      "Dynamic Type/Font scaling",
+      "High contrast mode",
+      "Reduced motion support",
+      "Switch control compatibility"
+    ]
+  }
+}
