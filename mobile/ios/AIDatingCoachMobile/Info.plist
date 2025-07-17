@@ -36,13 +36,13 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>AI Dating Coach needs camera access to analyze your photos and help improve your dating profile.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>AI Dating Coach needs microphone access for voice analysis and conversation practice features.</string>
+	<string>This app needs access to camera to analyze photos for dating profile optimization.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>AI Dating Coach needs photo library access to analyze your existing photos and provide feedback.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>AI Dating Coach uses location to provide better dating insights and local recommendations.</string>
+	<string>This app needs access to photo library to help analyze and improve your dating profile photos.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app needs access to microphone to provide voice conversation coaching and analysis.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>This app needs access to contacts to help you practice conversation with AI coaching.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -68,14 +68,14 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>aidatingcoach</string>
+			<string>com.aidatingcoach.mobile</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>aidatingcoach</string>
 			</array>
 		</dict>
 	</array>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>
