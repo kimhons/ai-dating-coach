@@ -5,8 +5,10 @@
  * using advanced prompting techniques and multi-model strategies.
  */
 
-import { AdvancedPromptEngine, PromptContext, PromptResponse } from './prompts/AdvancedPromptEngine';
-import { OpenAI } from 'openai';
+import { AdvancedPromptEngine } from './prompts/AdvancedPromptEngine';
+import { PromptInjectionDefense } from '../security/PromptInjectionDefense';
+import { createClient } from '@supabase/supabase-js';
+import OpenAI from 'openai';
 
 export interface AnalysisRequest {
   type: 'profile' | 'conversation' | 'compatibility' | 'opening_message' | 'photo';
