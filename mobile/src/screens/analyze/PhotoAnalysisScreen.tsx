@@ -11,10 +11,16 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
 import {checkCameraPermission, requestCameraPermission} from '@/utils/permissions';
+import { AnalysisService } from '../../services/AnalysisService';
+import { AnalyticsService } from '../../services/AnalyticsService';
+import { TierService } from '../../services/TierService';
 
 export const PhotoAnalysisScreen: React.FC = () => {
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [analysisResult, setAnalysisResult] = useState<any>(null);
+  const [showResults, setShowResults] = useState(false);
+  const [userTier] = useState('premium'); // TODO: Get from user context
 
   const handlePhotoSelection = () => {
     Alert.alert(
@@ -68,11 +74,28 @@ export const PhotoAnalysisScreen: React.FC = () => {
     if (!selectedPhoto) return;
     
     setIsAnalyzing(true);
-    // TODO: Implement actual photo analysis
-    setTimeout(() => {
+    try {
+      const response = await AnalysisService.getInstance().analyzePhoto({
+        imageUri: selectedPhoto,
+        tier: userTier,
+        analysisDepth: 'comprehensive',
+        analysisType: 'photo'
+      });
+      
+      setAnalysisResult(response);
+      setShowResults(true);
+      
+      // Track analytics
+      AnalyticsService.track('photo_analysis_completed', {
+        tier: userTier,
+        imageSize: selectedPhoto.length
+      });
+    } catch (error) {
+      console.error('Photo analysis failed:', error);
+      Alert.alert('Analysis Failed', 'Unable to analyze photo. Please check your connection and try again.');
+    } finally {
       setIsAnalyzing(false);
-      Alert.alert('Analysis Complete', 'Photo analysis feature coming soon!');
-    }, 2000);
+    }
   };
 
   return (

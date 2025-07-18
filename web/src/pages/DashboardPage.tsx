@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { 
   Camera, 
@@ -18,6 +18,8 @@ import {
 } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 import { useSubscription } from '@/hooks/useSubscription'
+import { AnalyticsService } from '@/services/AnalyticsService'
+import { AnalysisService } from '@/services/AnalysisService'
 import { useTierFeatures } from '@/hooks/useAIAnalysis'
 import { Button } from '@/components/ui/Button'
 import { cn, formatRelativeTime } from '@/lib/utils'
@@ -26,6 +28,37 @@ export function DashboardPage() {
   const { user } = useAuth()
   const { currentPlan, usageLimits } = useSubscription()
   const { hasFeature } = useTierFeatures()
+  const [achievements, setAchievements] = useState(0)
+  const [recentAnalyses, setRecentAnalyses] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+
+  // Load dashboard data
+  useEffect(() => {
+    const loadDashboardData = async () => {
+      if (!user) return
+      
+      try {
+        setLoading(true)
+        // For now, set mock data. TODO: Replace with actual API calls
+        setAchievements(3)
+        setRecentAnalyses([
+          {
+            id: 1,
+            type: 'photo',
+            title: 'Profile Photo Analysis',
+            timestamp: new Date().toISOString(),
+            score: 85
+          }
+        ])
+      } catch (error) {
+        console.error('Failed to load dashboard data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    loadDashboardData()
+  }, [user])
 
   const quickActions = [
     {
@@ -88,15 +121,13 @@ export function DashboardPage() {
     },
     {
       label: 'Achievements',
-      value: 0, // TODO: Get from achievements table
+      value: achievements,
       icon: Award,
       color: 'text-yellow-600'
     }
   ]
 
-  const recentAnalyses = [
-    // TODO: Get from recent analyses
-  ]
+  // recentAnalyses state is now loaded from the useEffect above
 
   const getTierIcon = (tier: string) => {
     switch (tier) {
@@ -239,7 +270,26 @@ export function DashboardPage() {
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             {recentAnalyses.length > 0 ? (
               <div className="space-y-4">
-                {/* TODO: Map recent analyses */}
+                {recentAnalyses.length > 0 ? (
+              recentAnalyses.map((analysis) => (
+                <div key={analysis.id} className="p-4 bg-gray-50 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-medium">{analysis.title}</h4>
+                      <p className="text-sm text-gray-600">
+                        {formatRelativeTime(new Date(analysis.timestamp))}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-lg font-semibold">{analysis.score}/100</div>
+                      <div className="text-xs text-gray-500">Score</div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-500 text-center py-8">No recent analyses</p>
+            )}
               </div>
             ) : (
               <div className="text-center py-8">
