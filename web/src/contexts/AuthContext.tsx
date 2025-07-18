@@ -1,30 +1,9 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { User as SupabaseUser, Session } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase'
 import { User } from '@/types'
 import toast from 'react-hot-toast'
-
-interface AuthContextType {
-  user: User | null
-  supabaseUser: SupabaseUser | null
-  session: Session | null
-  loading: boolean
-  signIn: (email: string, password: string) => Promise<void>
-  signUp: (email: string, password: string, fullName?: string) => Promise<void>
-  signOut: () => Promise<void>
-  updateProfile: (updates: Partial<User>) => Promise<void>
-  refreshUser: () => Promise<void>
-}
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined)
-
-export function useAuth() {
-  const context = useContext(AuthContext)
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider')
-  }
-  return context
-}
+import { AuthContext, AuthContextType } from './AuthContextType'
 
 interface AuthProviderProps {
   children: React.ReactNode

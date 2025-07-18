@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  User, Shield, Bell, Palette, Globe, Smartphone, 
+  User, Bell, Palette, Globe, Smartphone, 
   Monitor, Download, Upload, Trash2, Eye, EyeOff,
   Lock, Unlock, Key, CreditCard, HelpCircle, 
   Save, RefreshCw, AlertTriangle, CheckCircle,
-  Settings as SettingsIcon, Privacy, Database,
+  Settings as SettingsIcon, Shield, Database,
   Zap, Target, MessageSquare, Camera, Mic,
   Calendar, Clock, Filter, Search, Star
 } from 'lucide-react';

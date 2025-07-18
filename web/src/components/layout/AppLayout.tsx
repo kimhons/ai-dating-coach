@@ -17,7 +17,7 @@ import {
   Crown,
   Sparkles
 } from 'lucide-react'
-import { useAuth } from '@/contexts/AuthContext'
+import { useAuth } from '@/hooks/useAuth'
 import { useSubscription } from '@/hooks/useSubscription'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
