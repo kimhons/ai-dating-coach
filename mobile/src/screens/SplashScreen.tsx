@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {
   View,
   Text,
@@ -6,58 +6,189 @@ import {
   Animated,
   Dimensions,
   StatusBar,
+  Platform,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import LottieView from 'lottie-react-native';
+import { MobileTokens } from '../../shared/design-system/tokens';
 
 const {width, height} = Dimensions.get('window');
 
-export const SplashScreen: React.FC = () => {
-  const fadeAnim = new Animated.Value(0);
-  const scaleAnim = new Animated.Value(0.8);
+interface SplashScreenProps {
+  onFinish?: () => void;
+}
+
+export const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const scaleAnim = useRef(new Animated.Value(0.8)).current;
+  const logoRotateAnim = useRef(new Animated.Value(0)).current;
+  const textSlideAnim = useRef(new Animated.Value(50)).current;
 
   useEffect(() => {
-    Animated.parallel([
+    // Sequence of animations for better UX
+    const animationSequence = Animated.sequence([
+      // Initial fade and scale
+      Animated.parallel([
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 800,
+          useNativeDriver: true,
+        }),
+        Animated.spring(scaleAnim, {
+          toValue: 1,
+          tension: 50,
+          friction: 7,
+          useNativeDriver: true,
+        }),
+      ]),
+      
+      // Logo rotation and text slide
+      Animated.parallel([
+        Animated.timing(logoRotateAnim, {
+          toValue: 1,
+          duration: 1000,
+          useNativeDriver: true,
+        }),
+        Animated.spring(textSlideAnim, {
+          toValue: 0,
+          tension: 80,
+          friction: 8,
+          useNativeDriver: true,
+        }),
+      ]),
+      
+      // Hold for a moment
+      Animated.delay(1500),
+      
+      // Fade out
       Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 1000,
+        toValue: 0,
+        duration: 500,
         useNativeDriver: true,
       }),
-      Animated.spring(scaleAnim, {
-        toValue: 1,
-        tension: 50,
-        friction: 7,
-        useNativeDriver: true,
-      }),
-    ]).start();
-  }, []);
+    ]);
+
+    animationSequence.start(() => {
+      onFinish?.();
+    });
+
+    // Auto-finish after maximum time
+    const timeout = setTimeout(() => {
+      onFinish?.();
+    }, 4000);
+
+    return () => clearTimeout(timeout);
+  }, [fadeAnim, scaleAnim, logoRotateAnim, textSlideAnim, onFinish]);
+
+  const logoRotation = logoRotateAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
 
   return (
     <LinearGradient
-      colors={['#667eea', '#764ba2', '#f093fb']}
-      style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#667eea" />
+      colors={[
+        MobileTokens.colors.primary[400],
+        MobileTokens.colors.secondary[500],
+        MobileTokens.colors.primary[600]
+      ]}
+      style={styles.container}
+      start={{x: 0, y: 0}}
+      end={{x: 1, y: 1}}
+    >
+      <StatusBar 
+        barStyle="light-content" 
+        backgroundColor={MobileTokens.colors.primary[400]}
+        translucent={Platform.OS === 'android'}
+      />
       
       <Animated.View
         style={[
           styles.content,
           {
             opacity: fadeAnim,
-            transform: [{scale: scaleAnim}],
+            transform: [
+              { scale: scaleAnim },
+              { translateY: textSlideAnim }
+            ],
           },
         ]}>
+        
         <View style={styles.logoContainer}>
-          {/* You can add a Lottie animation here */}
-          <Text style={styles.emoji}>💘</Text>
-          <Text style={styles.title}>AI Dating Coach</Text>
-          <Text style={styles.subtitle}>Your Personal Dating Assistant</Text>
+          <Animated.View
+            style={[
+              styles.logoWrapper,
+              {
+                transform: [{ rotate: logoRotation }]
+              }
+            ]}
+          >
+            {/* Main logo - using emoji for now, can be replaced with actual logo */}
+            <View style={styles.logoBackground}>
+              <Text style={styles.logoEmoji}>💘</Text>
+            </View>
+          </Animated.View>
+          
+          <View style={styles.brandingContainer}>
+            <Text style={styles.title}>AI Dating Coach</Text>
+            <Text style={styles.subtitle}>Your Personal Dating Assistant</Text>
+            <View style={styles.taglineContainer}>
+              <Text style={styles.tagline}>Transform Your Dating Life</Text>
+            </View>
+          </View>
         </View>
 
         <View style={styles.loadingContainer}>
+          <View style={styles.loadingDots}>
+            {[0, 1, 2].map((index) => (
+              <LoadingDot key={index} delay={index * 200} />
+            ))}
+          </View>
           <Text style={styles.loadingText}>Preparing your experience...</Text>
+        </View>
+        
+        {/* Version info */}
+        <View style={styles.versionContainer}>
+          <Text style={styles.versionText}>Version 1.0.0</Text>
         </View>
       </Animated.View>
     </LinearGradient>
+  );
+};
+
+// Loading dot component with individual animation
+const LoadingDot: React.FC<{ delay: number }> = ({ delay }) => {
+  const scaleAnim = useRef(new Animated.Value(0.5)).current;
+
+  useEffect(() => {
+    const animate = () => {
+      Animated.sequence([
+        Animated.timing(scaleAnim, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(scaleAnim, {
+          toValue: 0.5,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+      ]).start(() => animate());
+    };
+
+    const timeout = setTimeout(animate, delay);
+    return () => clearTimeout(timeout);
+  }, [scaleAnim, delay]);
+
+  return (
+    <Animated.View
+      style={[
+        styles.loadingDot,
+        {
+          transform: [{ scale: scaleAnim }],
+        },
+      ]}
+    />
   );
 };
 
@@ -69,40 +200,101 @@ const styles = StyleSheet.create({
   },
   content: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     flex: 1,
+    paddingVertical: MobileTokens.spacing[16],
   },
   logoContainer: {
     alignItems: 'center',
-    marginBottom: 80,
+    flex: 1,
+    justifyContent: 'center',
   },
-  emoji: {
-    fontSize: 80,
-    marginBottom: 20,
+  logoWrapper: {
+    marginBottom: MobileTokens.spacing[8],
   },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 10,
-    textAlign: 'center',
+  logoBackground: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
   },
-  subtitle: {
-    fontSize: 18,
-    color: '#ffffff',
-    opacity: 0.9,
-    textAlign: 'center',
-    marginBottom: 10,
+  logoEmoji: {
+    fontSize: 60,
   },
-  loadingContainer: {
-    position: 'absolute',
-    bottom: 100,
+  brandingContainer: {
     alignItems: 'center',
   },
-  loadingText: {
-    fontSize: 16,
-    color: '#ffffff',
+  title: {
+    fontSize: MobileTokens.typography.fontSize['4xl'],
+    fontWeight: MobileTokens.typography.fontWeight.bold,
+    color: MobileTokens.colors.neutral[0],
+    marginBottom: MobileTokens.spacing[2],
+    textAlign: 'center',
+    fontFamily: Platform.OS === 'ios' ? 
+      MobileTokens.typography.fontFamily.ios[0] : 
+      MobileTokens.typography.fontFamily.android[0],
+    letterSpacing: MobileTokens.typography.letterSpacing.tight,
+  },
+  subtitle: {
+    fontSize: MobileTokens.typography.fontSize.lg,
+    color: MobileTokens.colors.neutral[0],
+    opacity: 0.9,
+    textAlign: 'center',
+    marginBottom: MobileTokens.spacing[4],
+    fontWeight: MobileTokens.typography.fontWeight.medium,
+  },
+  taglineContainer: {
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    paddingHorizontal: MobileTokens.spacing[4],
+    paddingVertical: MobileTokens.spacing[2],
+    borderRadius: MobileTokens.borderRadius.full,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
+  },
+  tagline: {
+    fontSize: MobileTokens.typography.fontSize.sm,
+    color: MobileTokens.colors.neutral[0],
+    fontWeight: MobileTokens.typography.fontWeight.medium,
+    textAlign: 'center',
+    letterSpacing: MobileTokens.typography.letterSpacing.wide,
+  },
+  loadingContainer: {
+    alignItems: 'center',
+    marginBottom: MobileTokens.spacing[8],
+  },
+  loadingDots: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: MobileTokens.spacing[4],
+  },
+  loadingDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: MobileTokens.colors.neutral[0],
+    marginHorizontal: MobileTokens.spacing[1],
     opacity: 0.8,
-    marginTop: 10,
+  },
+  loadingText: {
+    fontSize: MobileTokens.typography.fontSize.base,
+    color: MobileTokens.colors.neutral[0],
+    opacity: 0.8,
+    fontWeight: MobileTokens.typography.fontWeight.medium,
+  },
+  versionContainer: {
+    alignItems: 'center',
+  },
+  versionText: {
+    fontSize: MobileTokens.typography.fontSize.xs,
+    color: MobileTokens.colors.neutral[0],
+    opacity: 0.6,
+    fontWeight: MobileTokens.typography.fontWeight.normal,
   },
 });
+
+export default SplashScreen;

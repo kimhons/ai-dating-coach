@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View,
   TouchableOpacity,
@@ -10,16 +10,15 @@ import {
   Alert,
   Vibration,
   Platform,
+  Haptics,
 } from 'react-native';
 import { captureScreen } from 'react-native-view-shot';
 import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { useAuth } from '../hooks/useAuth';
-import { useTier } from '../hooks/useTier';
-import { useAnalytics } from '../hooks/useAnalytics';
+import { useAuth } from '../contexts/AuthContext';
+import { useSubscription } from '../contexts/SubscriptionContext';
 import { AnalysisService } from '../services/AnalysisService';
-import { TierService } from '../services/TierService';
-import { FloatingButtonConfig } from '../types';
+import { MobileTokens } from '../../shared/design-system/tokens';
 
 interface FloatingButtonProps {
   onAnalysisComplete?: (result: any) => void;
