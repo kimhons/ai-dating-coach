@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Dating Coach - Transform Your Dating Success with Personalized AI Guidance</title>
+    <meta name="description" content="Get personalized AI-powered dating coaching. Optimize your profile, master conversations, and build confidence with our comprehensive dating coach app.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e'
+                        },
+                        accent: {
+                            500: '#f97316',
+                            600: '#ea580c'
+                        },
+                        success: {
+                            500: '#22c55e',
+                            600: '#16a34a'
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-heart text-primary-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-900">AI Dating Coach</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-primary-600 transition-colors">Features</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-primary-600 transition-colors">Pricing</a>
+                    <a href="#personas" class="text-gray-700 hover:text-primary-600 transition-colors">For You</a>
+                    <a href="#demo" class="text-gray-700 hover:text-primary-600 transition-colors">Demo</a>
+                    <button class="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+                        Get Started Free
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#features" class="block px-3 py-2 text-gray-700">Features</a>
+                <a href="#pricing" class="block px-3 py-2 text-gray-700">Pricing</a>
+                <a href="#personas" class="block px-3 py-2 text-gray-700">For You</a>
+                <a href="#demo" class="block px-3 py-2 text-gray-700">Demo</a>
+                <button class="w-full text-left bg-primary-600 text-white px-3 py-2 rounded">Get Started Free</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-20 pb-16 bg-gradient-to-br from-primary-50 to-primary-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                        Transform Your <span class="text-primary-600">Dating Success</span> with AI
+                    </h1>
+                    <p class="mt-6 text-xl text-gray-600 leading-relaxed">
+                        Get personalized AI coaching to optimize your profile, master conversations, and build lasting confidence. Turn more matches into meaningful dates.
+                    </p>
+                    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button class="bg-primary-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-700 transition-colors shadow-lg">
+                            Start Free Coaching
+                        </button>
+                        <button class="border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-50 transition-colors">
+                            Watch Demo
+                        </button>
+                    </div>
+                    <div class="mt-8 flex items-center justify-center lg:justify-start space-x-6 text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-success-500 mr-2"></i>
+                            <span>No Credit Card Required</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-shield-alt text-success-500 mr-2"></i>
+                            <span>100% Private & Secure</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="relative z-10">
+                        <img src="images/hero-dating-couple.jpg" alt="Happy couple using dating app" class="rounded-2xl shadow-2xl w-full h-auto">
+                    </div>
+                    <!-- Background decoration -->
+                    <div class="absolute -top-4 -right-4 w-full h-full bg-primary-200 rounded-2xl -z-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div class="p-6">
+                    <div class="text-3xl font-bold text-primary-600 mb-2">85%</div>
+                    <div class="text-gray-600">More Quality Matches</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-3xl font-bold text-primary-600 mb-2">3x</div>
+                    <div class="text-gray-600">Faster Response Rate</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-3xl font-bold text-primary-600 mb-2">92%</div>
+                    <div class="text-gray-600">User Satisfaction</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-3xl font-bold text-primary-600 mb-2">50K+</div>
+                    <div class="text-gray-600">Success Stories</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Personas Section -->
+    <section id="personas" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                    Designed for Your Dating Journey
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Whether you're a busy professional or returning to dating, our AI coach adapts to your unique needs and goals.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Persona 1: Alex -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="flex items-center mb-6">
+                        <img src="images/persona-alex.jpg" alt="Alex - The Frustrated Professional" class="w-16 h-16 rounded-full object-cover mr-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Alex, 32</h3>
+                            <p class="text-gray-600">Software Engineer</p>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-3">"The Frustrated Professional"</h4>
+                        <p class="text-gray-600 mb-4">
+                            Too busy for endless swiping. Frustrated with superficial conversations that go nowhere. 
+                            Needs efficient, results-driven dating guidance.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-primary-500 pl-4">
+                            <h5 class="font-semibold text-gray-900">Pain Points:</h5>
+                            <ul class="text-gray-600 text-sm mt-1 space-y-1">
+                                <li>• Limited time for dating apps</li>
+                                <li>• Struggles with meaningful conversations</li>
+                                <li>• Wants serious relationships, not casual dating</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="border-l-4 border-success-500 pl-4">
+                            <h5 class="font-semibold text-gray-900">Perfect Solution:</h5>
+                            <ul class="text-gray-600 text-sm mt-1 space-y-1">
+                                <li>• Real-time conversation analysis</li>
+                                <li>• Efficient profile optimization</li>
+                                <li>• Goal-oriented progress tracking</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium text-gray-700">Recommended Plan:</span>
+                            <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-sm font-semibold">Premium ($19.99/mo)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Persona 2: Sarah -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="flex items-center mb-6">
+                        <img src="images/persona-sarah.jpg" alt="Sarah - The Recently Single" class="w-16 h-16 rounded-full object-cover mr-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Sarah, 45</h3>
+                            <p class="text-gray-600">Marketing Manager</p>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-3">"The Recently Single"</h4>
+                        <p class="text-gray-600 mb-4">
+                            Re-entering the dating world after a long relationship. Needs confidence building and 
+                            comprehensive guidance on modern dating rules.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-primary-500 pl-4">
+                            <h5 class="font-semibold text-gray-900">Pain Points:</h5>
+                            <ul class="text-gray-600 text-sm mt-1 space-y-1">
+                                <li>• Overwhelmed by dating app choices</li>
+                                <li>• Unsure about profile creation</li>
+                                <li>• Nervous about rejection and first moves</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="border-l-4 border-success-500 pl-4">
+                            <h5 class="font-semibold text-gray-900">Perfect Solution:</h5>
+                            <ul class="text-gray-600 text-sm mt-1 space-y-1">
+                                <li>• Comprehensive monthly action plans</li>
+                                <li>• Date preparation simulator</li>
+                                <li>• Daily confidence building tips</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium text-gray-700">Recommended Plan:</span>
+                            <span class="bg-accent-100 text-accent-800 px-3 py-1 rounded-full text-sm font-semibold">Elite ($39.99/mo)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                    Powerful AI Features That Actually Work
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    From profile optimization to real-time conversation coaching, our AI provides actionable guidance that transforms your dating success.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 mb-16">
+                <!-- Feature 1: Profile Analysis -->
+                <div class="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-user-edit text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">AI Profile Analysis</h3>
+                    <p class="text-gray-600 mb-6">
+                        Upload up to 5 photos for AI-powered scoring on confidence, quality, and appeal. Get your best primary photo recommendation.
+                    </p>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Facial emotion detection</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Image quality assessment</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Composition analysis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2: Conversation Analysis -->
+                <div class="bg-gradient-to-br from-accent-50 to-accent-100 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-accent-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-comments text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Real-Time Chat Analysis</h3>
+                    <p class="text-gray-600 mb-6">
+                        Forward conversation screenshots via SMS for instant AI analysis and actionable suggestions to keep conversations engaging.
+                    </p>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Sentiment analysis</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Response timing insights</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Next message suggestions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3: Progress Tracking -->
+                <div class="bg-gradient-to-br from-success-50 to-success-100 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-success-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Progress & Goal Tracking</h3>
+                    <p class="text-gray-600 mb-6">
+                        Set weekly dating goals and track your confidence score as you improve your dating skills with personalized milestones.
+                    </p>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Weekly goal setting</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Confidence score tracking</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-success-500 mr-2"></i>
+                            <span>Achievement badges</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Features -->
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-2xl p-8 text-white">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold mb-4">Elite Exclusive Features</h3>
+                    <p class="text-purple-100">Advanced AI coaching tools for serious daters</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-microphone text-white"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Voice Note Analysis</h4>
+                        <p class="text-sm text-purple-100">AI analyzes voice messages for tone, interest level, and emotional sentiment</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-theater-masks text-white"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Date Prep Simulator</h4>
+                        <p class="text-sm text-purple-100">Practice conversations with AI to build confidence before real dates</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-calendar-check text-white"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Monthly Action Plans</h4>
+                        <p class="text-sm text-purple-100">Personalized dating strategies with specific weekly milestones</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section id="demo" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                    See AI Coaching in Action
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Experience how our AI analyzes conversations and provides actionable feedback to improve your dating success.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Demo Interface -->
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Conversation Analysis Demo</h3>
+                        <p class="text-gray-600">Try our AI conversation analyzer with sample messages</p>
+                    </div>
+
+                    <!-- Chat Messages -->
+                    <div class="space-y-4 mb-6 max-h-64 overflow-y-auto bg-gray-50 p-4 rounded-lg">
+                        <div class="flex justify-end">
+                            <div class="bg-primary-600 text-white rounded-lg p-3 max-w-xs">
+                                Hey! I saw you're into hiking. What's your favorite trail?
+                            </div>
+                        </div>
+                        <div class="flex justify-start">
+                            <div class="bg-gray-200 text-gray-800 rounded-lg p-3 max-w-xs">
+                                Oh cool! I love the trails around Bear Mountain. Been there?
+                            </div>
+                        </div>
+                        <div class="flex justify-end">
+                            <div class="bg-primary-600 text-white rounded-lg p-3 max-w-xs">
+                                <span id="demo-message">Not yet, but it's on my list...</span>
+                                <span id="demo-cursor" class="animate-pulse">|</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Analysis -->
+                    <div id="ai-analysis" class="bg-gradient-to-r from-primary-50 to-primary-100 rounded-lg p-4 mb-6">
+                        <h4 class="font-semibold text-primary-800 mb-2">
+                            <i class="fas fa-robot mr-2"></i>AI Analysis
+                        </h4>
+                        <div id="analysis-content" class="text-sm text-primary-700">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-2 mt-1"></i>
+                                <span>Great opener! You referenced their interest and asked an engaging question.</span>
+                            </div>
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-chart-line text-green-500 mr-2 mt-1"></i>
+                                <span>Engagement Score: 8.5/10 - They're showing genuine interest!</span>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-comments text-blue-500 mr-2 mt-1"></i>
+                                <span id="suggestion">Suggest: "I've heard amazing things! Would you be up for showing me around sometime?"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Demo Controls -->
+                    <div class="flex space-x-3">
+                        <button id="analyze-btn" class="flex-1 bg-primary-600 text-white py-2 px-4 rounded-lg hover:bg-primary-700 transition-colors">
+                            <i class="fas fa-brain mr-2"></i>Analyze Conversation
+                        </button>
+                        <button id="suggest-btn" class="flex-1 bg-accent-600 text-white py-2 px-4 rounded-lg hover:bg-accent-700 transition-colors">
+                            <i class="fas fa-magic mr-2"></i>Get Suggestion
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Demo Results -->
+                <div class="space-y-6">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">Real-Time Insights</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-600">Response Rate Improvement</span>
+                                <div class="flex items-center">
+                                    <div class="w-32 bg-gray-200 rounded-full h-2 mr-3">
+                                        <div class="bg-success-500 h-2 rounded-full" style="width: 85%"></div>
+                                    </div>
+                                    <span class="text-sm font-semibold text-success-600">+85%</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-600">Conversation Engagement</span>
+                                <div class="flex items-center">
+                                    <div class="w-32 bg-gray-200 rounded-full h-2 mr-3">
+                                        <div class="bg-primary-500 h-2 rounded-full" style="width: 92%"></div>
+                                    </div>
+                                    <span class="text-sm font-semibold text-primary-600">9.2/10</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-600">Date Conversion Rate</span>
+                                <div class="flex items-center">
+                                    <div class="w-32 bg-gray-200 rounded-full h-2 mr-3">
+                                        <div class="bg-accent-500 h-2 rounded-full" style="width: 76%"></div>
+                                    </div>
+                                    <span class="text-sm font-semibold text-accent-600">+76%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">Success Metrics</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-primary-600 mb-1">23</div>
+                                <div class="text-sm text-gray-600">Conversations Analyzed</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-success-600 mb-1">18</div>
+                                <div class="text-sm text-gray-600">Successful Dates</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                    Choose Your Dating Success Plan
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Start free and upgrade as you see results. No commitment, cancel anytime.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Free Tier -->
+                <div class="bg-white border-2 border-gray-200 rounded-2xl p-8 relative">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Spark</h3>
+                        <div class="text-4xl font-bold text-gray-900 mb-1">
+                            $0
+                            <span class="text-lg font-normal text-gray-600">/month</span>
+                        </div>
+                        <p class="text-gray-600">Perfect for getting started</p>
+                    </div>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-success-500 mr-3 mt-1"></i>
+                            <span class="text-gray-700">AI profile photo analysis (up to 5 photos)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-success-500 mr-3 mt-1"></i>
+                            <span class="text-gray-700">One-time bio review and optimization</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-success-500 mr-3 mt-1"></i>
+                            <span class="text-gray-700">Daily confidence tips</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-success-500 mr-3 mt-1"></i>
+                            <span class="text-gray-700">5 AI conversation starters per week</span>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-gray-100 text-gray-800 py-3 px-6 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
+                        Get Started Free
+                    </button>
+                </div>
+
+                <!-- Premium Tier -->
+                <div class="bg-white border-2 border-primary-600 rounded-2xl p-8 relative transform scale-105">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-primary-600 text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+                    </div>
+                    
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
+                        <div class="text-4xl font-bold text-gray-900 mb-1">
+                            $19.99
+                            <span class="text-lg font-normal text-gray-600">/month</span>
+                        </div>
+                        <p class="text-gray-600">For serious daters</p>
+                    </div>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-success-500 mr-3 mt-1"></i>
+                            <span class="text-gray-700">Everything in Spark, plus:</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-success-500 mr-3 mt-1"></i>
+                            <span class="text-gray-700">Unlimited conversation analysis via SMS</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-success-500 mr-3 mt-1"></i>
+                            <span class="text-gray-700">Real-time chat suggestions</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-success-500 mr-3 mt-1"></i>
+                            <span class="text-gray-700">Weekly goal setting & progress tracking</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-success-500 mr-3 mt-1"></i>
+                            <span class="text-gray-700">Advanced dating strategy library</span>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary-700 transition-colors">
+                        Start Premium Trial
+                    </button>
+                </div>
+
+                <!-- Elite Tier -->
+                <div class="bg-white border-2 border-accent-600 rounded-2xl p-8 relative">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Elite</h3>
+                        <div class="text-4xl font-bold text-gray-900 mb-1">
+                            $39.99
+                            <span class="text-lg font-normal text-gray-600">/month</span>
+                        </div>
+                        <p class="text-gray-600">Maximum results & confidence</p>
+                    </div>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-success-500 mr-3 mt-1"></i>
+                            <span class="text-gray-700">Everything in Premium, plus:</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-success-500 mr-3 mt-1"></i>
+                            <span class="text-gray-700">Personalized monthly action plans</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-success-500 mr-3 mt-1"></i>
+                            <span class="text-gray-700">Voice note analysis & insights</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-success-500 mr-3 mt-1"></i>
+                            <span class="text-gray-700">Date preparation simulator</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-success-500 mr-3 mt-1"></i>
+                            <span class="text-gray-700">Priority AI support</span>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-accent-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-accent-700 transition-colors">
+                        Start Elite Trial
+                    </button>
+                </div>
+            </div>
+
+            <!-- Money-back guarantee -->
+            <div class="text-center mt-12">
+                <div class="inline-flex items-center bg-green-50 text-green-800 px-6 py-3 rounded-full">
+                    <i class="fas fa-shield-alt mr-2"></i>
+                    <span class="font-semibold">30-day money-back guarantee on all paid plans</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                    How SMS Integration Works
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Get instant AI coaching without leaving your dating apps. Simply forward your conversations for real-time analysis.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Sign Up</h3>
+                    <p class="text-gray-600">Create your account and get assigned a private AI coach number</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Forward Screenshots</h3>
+                    <p class="text-gray-600">Send conversation screenshots from any dating app to your AI coach via SMS</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Get AI Analysis</h3>
+                    <p class="text-gray-600">Receive instant feedback on tone, engagement, and next steps</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">4</div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Improve & Succeed</h3>
+                    <p class="text-gray-600">Apply suggestions to turn more matches into meaningful dates</p>
+                </div>
+            </div>
+
+            <!-- SMS Demo -->
+            <div class="mt-16 bg-white rounded-2xl shadow-xl p-8 max-w-2xl mx-auto">
+                <h3 class="text-xl font-bold text-gray-900 mb-6 text-center">SMS Coaching in Action</h3>
+                
+                <div class="space-y-4">
+                    <!-- User message -->
+                    <div class="flex justify-end">
+                        <div class="bg-blue-500 text-white rounded-lg p-3 max-w-xs">
+                            <div class="text-xs mb-1">Screenshot sent to AI Coach</div>
+                            <div class="bg-blue-400 rounded p-2 text-sm">
+                                [Dating app conversation image]
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI response -->
+                    <div class="flex justify-start">
+                        <div class="bg-gray-100 text-gray-800 rounded-lg p-4 max-w-md">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-robot text-primary-600 mr-2"></i>
+                                <span class="font-semibold text-primary-600">AI Dating Coach</span>
+                            </div>
+                            <div class="text-sm space-y-2">
+                                <p><strong>Analysis:</strong> Great opener! They responded positively with details about their interest.</p>
+                                <p><strong>Engagement Score:</strong> 8.5/10 - High interest level detected</p>
+                                <p><strong>Suggestion:</strong> "That sounds amazing! I'd love to check it out sometime. Any recommendations for a hiking newbie?"</p>
+                                <p class="text-xs text-gray-600 mt-2">📊 This keeps the conversation flowing while showing genuine interest</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                    Real Success Stories
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    See how our AI coaching has transformed the dating lives of thousands of users.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center text-white font-bold mr-4">M</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Michael, 29</h4>
+                            <p class="text-sm text-gray-600">Software Developer</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">
+                        "I went from zero dates to 3 meaningful relationships in 6 months. The conversation analysis completely changed how I communicate on dating apps."
+                    </p>
+                    <div class="text-sm text-primary-600 font-semibold">
+                        +180% more responses • Premium Plan
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-gradient-to-br from-accent-50 to-accent-100 rounded-2xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-accent-600 rounded-full flex items-center justify-center text-white font-bold mr-4">L</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Lisa, 42</h4>
+                            <p class="text-sm text-gray-600">Marketing Director</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">
+                        "After my divorce, I was terrified of dating again. The confidence-building tips and date prep simulator gave me the courage to put myself out there."
+                    </p>
+                    <div class="text-sm text-accent-600 font-semibold">
+                        Found lasting relationship • Elite Plan
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-gradient-to-br from-success-50 to-success-100 rounded-2xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-success-600 rounded-full flex items-center justify-center text-white font-bold mr-4">J</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Jake, 35</h4>
+                            <p class="text-sm text-gray-600">Financial Advisor</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">
+                        "The profile optimization alone got me 5x more matches. But the real game-changer was learning how to turn those matches into actual dates."
+                    </p>
+                    <div class="text-sm text-success-600 font-semibold">
+                        5x more quality matches • Premium Plan
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust & Security -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                    Your Privacy & Security Matter
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    We use enterprise-grade security to protect your data and never store or share your personal conversations.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lock text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">End-to-End Encryption</h3>
+                    <p class="text-gray-600 text-sm">All communications encrypted with AES-256 standards</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-secret text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Complete Anonymity</h3>
+                    <p class="text-gray-600 text-sm">No personal data stored or linked to your identity</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-certificate text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">GDPR Compliant</h3>
+                    <p class="text-gray-600 text-sm">Fully compliant with global privacy regulations</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-trash text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Auto-Delete</h3>
+                    <p class="text-gray-600 text-sm">Conversations automatically deleted after analysis</p>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-white rounded-2xl shadow-lg p-8 text-center">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Trusted by Industry Leaders</h3>
+                <div class="flex items-center justify-center space-x-8 opacity-60">
+                    <div class="text-2xl font-bold text-gray-400">TechCrunch</div>
+                    <div class="text-2xl font-bold text-gray-400">Forbes</div>
+                    <div class="text-2xl font-bold text-gray-400">Wired</div>
+                    <div class="text-2xl font-bold text-gray-400">Mashable</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-primary-600 to-primary-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">
+                Ready to Transform Your Dating Life?
+            </h2>
+            <p class="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
+                Join thousands of successful daters who've found love with AI coaching. Start your free trial today and see results within the first week.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                <button class="bg-white text-primary-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+                    Start Free Trial
+                </button>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors">
+                    Watch Demo Video
+                </button>
+            </div>
+            
+            <div class="flex items-center justify-center space-x-8 text-primary-100 text-sm">
+                <div class="flex items-center">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span>Free forever plan available</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-clock mr-2"></i>
+                    <span>Setup in under 2 minutes</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-mobile-alt mr-2"></i>
+                    <span>Works with all dating apps</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-4 gap-8">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-heart text-primary-400 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold">AI Dating Coach</span>
+                    </div>
+                    <p class="text-gray-400 mb-6 max-w-md">
+                        Transform your dating success with personalized AI coaching. From profile optimization to conversation mastery, we're here to help you find meaningful connections.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Product</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#features" class="hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#demo" class="hover:text-white transition-colors">Demo</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">API</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 AI Dating Coach. All rights reserved. Made with ❤️ for better connections.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+
+  </div>
+</div>
+
+</body>
+</html>

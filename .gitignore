@@ -1,0 +1,203 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.production
+
+# API Keys & Secrets
+secrets/
+*.key
+*.pem
+config/keys.js
+
+# Build Outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.output/
+
+# Mobile App Builds
+*.apk
+*.aab
+*.ipa
+ios/build/
+android/app/build/
+android/.gradle/
+
+# React Native
+metro.config.js.bak
+.metro-health-check*
+
+# Logs
+logs/
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary Files
+*.tmp
+*.temp
+.cache/
+.temp/
+
+# Coverage
+coverage/
+*.lcov
+.nyc_output/
+
+# Runtime Data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env.test
+
+# parcel-bundler cache (https://parceljs.org/)
+.parcel-cache
+
+# Next.js build output
+.next
+out
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Mobile specific
+# Android
+*.jks
+*.keystore
+local.properties
+android/app/google-services.json
+android/key.properties
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/GoogleService-Info.plist
+*.xcworkspace
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+*.xccheckout
+*.moved-aside
+DerivedData/
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
+
+# CocoaPods
+ios/Pods/
+ios/Podfile.lock
+
+# Fastlane
+ios/fastlane/report.xml
+ios/fastlane/Preview.html
+ios/fastlane/screenshots/**/*.png
+ios/fastlane/test_output
+
+# Bundle artifacts
+*.jsbundle
+
+# Flipper
+ios/Flipper/
+
+# Ruby
+.ruby-version
+
+# Supabase
+.env.local
+.env.production
+supabase/.temp/
+supabase/.branches/
+supabase/.git/

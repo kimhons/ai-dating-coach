@@ -1,0 +1,807 @@
+/* Mobile UI Showcase - Custom Styles */
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%);
+    --accent-gradient: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    --success-gradient: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    --ios-blue: #007AFF;
+    --ios-gray: #8E8E93;
+    --ios-background: #F2F2F7;
+    --android-primary: #6200EE;
+    --android-surface: #FFFFFF;
+    --android-background: #FAFAFA;
+    --mobile-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --mobile-shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Mobile-specific typography */
+.font-ios {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.font-android {
+    font-family: 'Roboto', system-ui, sans-serif;
+}
+
+/* Mobile Screen Containers */
+.mobile-screen-container {
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.mobile-screen {
+    width: 100%;
+    height: 560px;
+    background: #000;
+    border-radius: 24px;
+    padding: 8px;
+    box-shadow: var(--mobile-shadow-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.mobile-screen.ios-screen {
+    border-radius: 28px;
+}
+
+.mobile-screen.android-screen {
+    border-radius: 20px;
+}
+
+.mobile-status-bar {
+    height: 44px;
+    background: white;
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 20px 20px 0 0;
+}
+
+.mobile-status-bar.android {
+    background: #1a1a1a;
+    color: white;
+    height: 32px;
+    font-size: 12px;
+}
+
+.status-icons {
+    display: flex;
+    gap: 4px;
+    font-size: 12px;
+}
+
+.screen-content {
+    background: white;
+    height: calc(100% - 44px);
+    border-radius: 0 0 20px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Prototype Screen Management */
+.prototype-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease-in-out;
+    padding: 0;
+    overflow-y: auto;
+}
+
+.prototype-screen.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.prototype-screen.previous {
+    transform: translateX(-100%);
+}
+
+/* Mobile Navigation Animations */
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+/* iOS Specific Styles */
+.ios-screen .screen-content {
+    border-radius: 0 0 24px 24px;
+}
+
+.ios-button {
+    background: var(--ios-blue);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ios-button:hover {
+    background: #0056CC;
+    transform: translateY(-1px);
+}
+
+.ios-button:active {
+    transform: translateY(0);
+    background: #004BA0;
+}
+
+.ios-card {
+    background: var(--ios-background);
+    border-radius: 16px;
+    padding: 16px;
+    margin: 8px 0;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.ios-input {
+    background: white;
+    border: 1px solid #E5E5EA;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 16px;
+    width: 100%;
+    transition: border-color 0.2s ease;
+}
+
+.ios-input:focus {
+    border-color: var(--ios-blue);
+    outline: none;
+}
+
+/* Android Specific Styles */
+.android-screen .screen-content {
+    border-radius: 0 0 16px 16px;
+}
+
+.material-button {
+    background: var(--android-primary);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(98, 0, 238, 0.3);
+}
+
+.material-button:hover {
+    background: #5500CC;
+    box-shadow: 0 4px 12px rgba(98, 0, 238, 0.4);
+    transform: translateY(-1px);
+}
+
+.material-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(98, 0, 238, 0.3);
+}
+
+.material-card {
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    margin: 8px 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.material-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.material-input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #E0E0E0;
+    border-radius: 4px 4px 0 0;
+    padding: 12px 0;
+    font-size: 16px;
+    width: 100%;
+    transition: border-color 0.2s ease;
+}
+
+.material-input:focus {
+    border-bottom-color: var(--android-primary);
+    outline: none;
+}
+
+/* Floating Action Button */
+.fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    background: var(--android-primary);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(98, 0, 238, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(98, 0, 238, 0.4);
+}
+
+/* Mobile Gestures and Interactions */
+.swipeable {
+    touch-action: pan-y;
+    user-select: none;
+}
+
+.gesture-indicator {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 134px;
+    height: 5px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+
+.pull-indicator {
+    width: 40px;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+    margin: 8px auto;
+}
+
+/* Flow Content Management */
+.flow-content {
+    display: block;
+}
+
+.flow-content.hidden {
+    display: none;
+}
+
+.design-system-section {
+    display: block;
+}
+
+.design-system-section.hidden {
+    display: none;
+}
+
+/* Interactive Elements */
+.interactive-demo {
+    position: relative;
+    overflow: hidden;
+}
+
+.tap-animation {
+    animation: tapFeedback 0.3s ease;
+}
+
+@keyframes tapFeedback {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.long-press-feedback {
+    animation: longPressFeedback 0.6s ease;
+}
+
+@keyframes longPressFeedback {
+    0% { transform: scale(1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
+    50% { transform: scale(1.05); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); }
+    100% { transform: scale(1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
+}
+
+/* Ripple Effect for Android */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.ripple:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Mobile-Optimized Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-bottom {
+    animation: slideInFromBottom 0.4s ease-out;
+}
+
+.animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+}
+
+/* Loading States */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Progress Indicators */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-500), var(--primary-600));
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Modal and Overlay Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 400px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+/* Bottom Sheet Styles */
+.bottom-sheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 16px 16px 0 0;
+    padding: 24px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.bottom-sheet.active {
+    transform: translateY(0);
+}
+
+.bottom-sheet-handle {
+    width: 40px;
+    height: 4px;
+    background: #ccc;
+    border-radius: 2px;
+    margin: 0 auto 16px;
+}
+
+/* Notification Styles */
+.notification {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    max-width: 320px;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.success {
+    border-left: 4px solid #22c55e;
+}
+
+.notification.error {
+    border-left: 4px solid #ef4444;
+}
+
+.notification.info {
+    border-left: 4px solid #3b82f6;
+}
+
+/* Accessibility Enhancements */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.focus-visible:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .mobile-screen {
+        border: 2px solid #000;
+    }
+    
+    .ios-button, .material-button {
+        border: 2px solid #000;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .mobile-screen .screen-content {
+        background: #1a1a1a;
+        color: white;
+    }
+    
+    .ios-card {
+        background: #2a2a2a;
+    }
+    
+    .material-card {
+        background: #2a2a2a;
+    }
+}
+
+/* Responsive Design for Mobile Showcase */
+@media (max-width: 768px) {
+    .mobile-screen-container {
+        max-width: 260px;
+    }
+    
+    .mobile-screen {
+        height: 520px;
+    }
+    
+    .grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-screen-container {
+        max-width: 240px;
+    }
+    
+    .mobile-screen {
+        height: 480px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 16px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .mobile-screen {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .interactive-demo,
+    .prototype-screen,
+    .fab {
+        display: none;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (pointer: coarse) {
+    button, .ios-button, .material-button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .mobile-screen {
+        cursor: default;
+    }
+}
+
+/* Custom Scrollbar for Mobile Showcase */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}
+
+/* Performance Optimizations */
+.gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.optimized-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* Feature Detection Classes */
+.no-touch .hover-effect:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.touch .tap-effect:active {
+    transform: scale(0.95);
+}
+
+/* Platform-Specific Customizations */
+.ios-platform .android-only {
+    display: none;
+}
+
+.android-platform .ios-only {
+    display: none;
+}
+
+/* Utility Classes */
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text-wrap {
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+.no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.pointer-events-none {
+    pointer-events: none;
+}
+
+.pointer-events-auto {
+    pointer-events: auto;
+}
+
+/* Animation Classes */
+.bounce-in {
+    animation: bounceIn 0.6s ease-out;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.slide-up {
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Success and Error States */
+.success-state {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+}
+
+.error-state {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+}
+
+.warning-state {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+}
+
+.info-state {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+}
+
+/* Final Performance Optimizations */
+.will-change-transform {
+    will-change: transform;
+}
+
+.will-change-scroll {
+    will-change: scroll-position;
+}
+
+.contain-layout {
+    contain: layout;
+}
+
+.contain-paint {
+    contain: paint;
+}
