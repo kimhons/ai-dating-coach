@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback, useMemo} from 'react';
 import {
   View,
   Text,
@@ -8,12 +8,18 @@ import {
   ScrollView,
   RefreshControl,
   Dimensions,
+  StatusBar,
+  Platform,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useAuth} from '@/contexts/AuthContext';
 import {useSubscription} from '@/contexts/SubscriptionContext';
+import {MobileTokens} from '../../shared/design-system/tokens';
+import {PrimaryButton, OutlineButton} from '@/components/ui/Button';
+import {ProgressBar} from '@/components/ui/ProgressBar';
+import {Card} from '@/components/ui/Card';
 
 const {width} = Dimensions.get('window');
 
@@ -25,6 +31,14 @@ interface QuickAction {
   color: string;
   screen: string;
   locked?: boolean;
+  premium?: boolean;
+}
+
+interface UsageStats {
+  photoAnalysis: { used: number; limit: number };
+  conversationAnalysis: { used: number; limit: number };
+  voiceAnalysis: { used: number; limit: number };
+  screenMonitoring: { used: number; limit: number };
 }
 
 export const DashboardScreen: React.FC = () => {
@@ -32,216 +46,319 @@ export const DashboardScreen: React.FC = () => {
   const {user} = useAuth();
   const {currentPlan, getUsageStats} = useSubscription();
   const [refreshing, setRefreshing] = useState(false);
-  const [usageStats, setUsageStats] = useState<any>({});
+  const [usageStats, setUsageStats] = useState<UsageStats>({
+    photoAnalysis: { used: 0, limit: 5 },
+    conversationAnalysis: { used: 0, limit: 5 },
+    voiceAnalysis: { used: 0, limit: 0 },
+    screenMonitoring: { used: 0, limit: 0 },
+  });
 
-  const quickActions: QuickAction[] = [
+  // Quick actions configuration using design tokens
+  const quickActions: QuickAction[] = useMemo(() => [
     {
       id: 'photo',
       title: 'Photo Analysis',
       subtitle: 'Get AI feedback on your photos',
-      icon: 'camera-outline',
-      color: '#6366f1',
+      icon: 'photo-camera',
+      color: MobileTokens.colors.primary[500],
       screen: 'PhotoAnalysis',
     },
     {
       id: 'conversation',
       title: 'Conversation Coach',
       subtitle: 'Improve your chat skills',
-      icon: 'chatbubble-outline',
-      color: '#10b981',
+      icon: 'chat',
+      color: MobileTokens.colors.success[500],
       screen: 'ConversationAnalysis',
     },
     {
       id: 'voice',
       title: 'Voice Training',
       subtitle: 'Build confidence speaking',
-      icon: 'mic-outline',
-      color: '#f59e0b',
+      icon: 'mic',
+      color: MobileTokens.colors.warning[500],
       screen: 'VoiceAnalysis',
       locked: !currentPlan?.hasVoiceAnalysis,
+      premium: true,
     },
     {
       id: 'screen',
       title: 'Screen Monitor',
       subtitle: 'Real-time dating app help',
-      icon: 'phone-portrait-outline',
-      color: '#ef4444',
+      icon: 'phone-android',
+      color: MobileTokens.colors.secondary[500],
       screen: 'ScreenMonitoring',
       locked: !currentPlan?.hasScreenMonitoring,
+      premium: true,
     },
-  ];
+  ], [currentPlan]);
 
   useEffect(() => {
     loadUsageStats();
   }, []);
 
-  const loadUsageStats = async () => {
+  const loadUsageStats = useCallback(async () => {
     try {
       const stats = await getUsageStats();
       setUsageStats(stats);
     } catch (error) {
       console.error('Error loading usage stats:', error);
     }
-  };
+  }, [getUsageStats]);
 
-  const onRefresh = async () => {
+  const onRefresh = useCallback(async () => {
     setRefreshing(true);
     await loadUsageStats();
     setRefreshing(false);
-  };
+  }, [loadUsageStats]);
 
-  const getUsagePercentage = () => {
+  const getUsagePercentage = useCallback(() => {
     if (!currentPlan) return 0;
     
     const totalUsed = Object.values(usageStats).reduce(
-      (sum: number, stat: any) => sum + (stat?.usage_count || 0),
+      (sum, stat) => sum + stat.used,
       0
     );
     
-    return Math.min((totalUsed / currentPlan.monthlyAnalyses) * 100, 100);
-  };
+    const totalLimit = Object.values(usageStats).reduce(
+      (sum, stat) => sum + stat.limit,
+      0
+    );
+    
+    return totalLimit > 0 ? (totalUsed / totalLimit) * 100 : 0;
+  }, [usageStats, currentPlan]);
 
-  const getGreeting = () => {
-    const hour = new Date().getHours();
-    if (hour < 12) return 'Good morning';
-    if (hour < 18) return 'Good afternoon';
-    return 'Good evening';
-  };
+  const getPlanDisplayName = useCallback(() => {
+    switch (currentPlan?.type) {
+      case 'free': return 'Spark Plan';
+      case 'premium': return 'Premium Plan';
+      case 'pro': return 'Elite Plan';
+      default: return 'Free Plan';
+    }
+  }, [currentPlan]);
 
-  const handleQuickAction = (action: QuickAction) => {
+  const handleQuickActionPress = useCallback((action: QuickAction) => {
     if (action.locked) {
-      // Navigate to pricing page
+      // Navigate to upgrade screen
       navigation.navigate('Pricing' as never);
       return;
     }
-    
-    navigation.navigate('Analyze' as never, {
-      screen: action.screen,
-    });
-  };
+
+    // Check usage limits
+    const actionStats = usageStats[action.id as keyof UsageStats];
+    if (actionStats && actionStats.used >= actionStats.limit) {
+      // Show usage limit reached
+      navigation.navigate('Pricing' as never);
+      return;
+    }
+
+    navigation.navigate(action.screen as never);
+  }, [navigation, usageStats]);
+
+  const renderHeader = () => (
+    <View style={styles.header}>
+      <View style={styles.headerContent}>
+        <View>
+          <Text style={styles.welcomeText}>
+            Welcome back, {user?.full_name?.split(' ')[0] || 'there'}!
+          </Text>
+          <Text style={styles.planText}>
+            {getPlanDisplayName()}
+          </Text>
+        </View>
+        
+        <TouchableOpacity
+          style={styles.profileButton}
+          onPress={() => navigation.navigate('Profile' as never)}
+        >
+          <Icon 
+            name="account-circle" 
+            size={32} 
+            color={MobileTokens.colors.primary[500]} 
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+
+  const renderUsageCard = () => (
+    <Card style={styles.usageCard}>
+      <View style={styles.usageHeader}>
+        <Text style={styles.usageTitle}>Monthly Usage</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Pricing' as never)}>
+          <Text style={styles.upgradeLink}>Upgrade</Text>
+        </TouchableOpacity>
+      </View>
+      
+      <ProgressBar
+        progress={getUsagePercentage()}
+        color={MobileTokens.colors.primary[500]}
+        backgroundColor={MobileTokens.colors.neutral[200]}
+        height={8}
+        style={styles.progressBar}
+      />
+      
+      <View style={styles.usageStats}>
+        {Object.entries(usageStats).map(([key, stat]) => {
+          const action = quickActions.find(a => a.id === key);
+          if (!action) return null;
+          
+          return (
+            <View key={key} style={styles.usageItem}>
+              <Icon 
+                name={action.icon} 
+                size={16} 
+                color={action.color} 
+              />
+              <Text style={styles.usageItemText}>
+                {stat.used}/{stat.limit}
+              </Text>
+            </View>
+          );
+        })}
+      </View>
+    </Card>
+  );
+
+  const renderQuickAction = (action: QuickAction) => (
+    <TouchableOpacity
+      key={action.id}
+      style={styles.quickActionCard}
+      onPress={() => handleQuickActionPress(action)}
+      activeOpacity={0.8}
+    >
+      <LinearGradient
+        colors={action.locked ? 
+          [MobileTokens.colors.neutral[200], MobileTokens.colors.neutral[300]] :
+          [action.color, action.color + '80']
+        }
+        style={styles.quickActionGradient}
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 1}}
+      >
+        <View style={styles.quickActionContent}>
+          <View style={styles.quickActionIcon}>
+            <Icon 
+              name={action.icon} 
+              size={24} 
+              color={action.locked ? MobileTokens.colors.neutral[500] : MobileTokens.colors.neutral[0]} 
+            />
+            {action.premium && (
+              <View style={styles.premiumBadge}>
+                <Icon name="star" size={12} color={MobileTokens.colors.warning[500]} />
+              </View>
+            )}
+          </View>
+          
+          <Text style={[
+            styles.quickActionTitle,
+            { color: action.locked ? MobileTokens.colors.neutral[500] : MobileTokens.colors.neutral[0] }
+          ]}>
+            {action.title}
+          </Text>
+          
+          <Text style={[
+            styles.quickActionSubtitle,
+            { color: action.locked ? MobileTokens.colors.neutral[400] : MobileTokens.colors.neutral[100] }
+          ]}>
+            {action.subtitle}
+          </Text>
+          
+          {action.locked && (
+            <View style={styles.lockedOverlay}>
+              <Icon name="lock" size={16} color={MobileTokens.colors.neutral[500]} />
+            </View>
+          )}
+        </View>
+      </LinearGradient>
+    </TouchableOpacity>
+  );
+
+  const renderRecentActivity = () => (
+    <Card style={styles.activityCard}>
+      <Text style={styles.sectionTitle}>Recent Activity</Text>
+      
+      <View style={styles.activityList}>
+        <View style={styles.activityItem}>
+          <Icon name="photo-camera" size={20} color={MobileTokens.colors.primary[500]} />
+          <View style={styles.activityContent}>
+            <Text style={styles.activityTitle}>Photo analyzed</Text>
+            <Text style={styles.activityTime}>2 hours ago</Text>
+          </View>
+          <Text style={styles.activityScore}>8.5/10</Text>
+        </View>
+        
+        <View style={styles.activityItem}>
+          <Icon name="chat" size={20} color={MobileTokens.colors.success[500]} />
+          <View style={styles.activityContent}>
+            <Text style={styles.activityTitle}>Conversation reviewed</Text>
+            <Text style={styles.activityTime}>1 day ago</Text>
+          </View>
+          <Text style={styles.activityScore}>7.2/10</Text>
+        </View>
+      </View>
+      
+      <OutlineButton
+        title="View All Activity"
+        onPress={() => navigation.navigate('Progress' as never)}
+        style={styles.viewAllButton}
+        size="sm"
+      />
+    </Card>
+  );
+
+  const renderActionButtons = () => (
+    <View style={styles.actionButtons}>
+      <PrimaryButton
+        title="Start Analysis"
+        icon="play-arrow"
+        onPress={() => navigation.navigate('PhotoAnalysis' as never)}
+        style={styles.primaryActionButton}
+        fullWidth
+      />
+      
+      <OutlineButton
+        title="View Progress"
+        icon="trending-up"
+        onPress={() => navigation.navigate('Progress' as never)}
+        style={styles.secondaryActionButton}
+        fullWidth
+      />
+    </View>
+  );
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar 
+        barStyle={Platform.OS === 'ios' ? 'dark-content' : 'light-content'}
+        backgroundColor={MobileTokens.colors.neutral[0]}
+      />
+      
+      {renderHeader()}
+      
       <ScrollView
-        contentContainerStyle={styles.scrollContent}
+        style={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={[MobileTokens.colors.primary[500]]}
+            tintColor={MobileTokens.colors.primary[500]}
+          />
         }
-        showsVerticalScrollIndicator={false}>
+      >
+        {renderUsageCard()}
         
-        {/* Header */}
-        <LinearGradient
-          colors={['#667eea', '#764ba2']}
-          style={styles.header}>
-          <View style={styles.headerContent}>
-            <View style={styles.greetingContainer}>
-              <Text style={styles.greeting}>
-                {getGreeting()}, {user?.full_name?.split(' ')[0] || 'there'}!
-              </Text>
-              <Text style={styles.headerSubtitle}>
-                Ready to level up your dating game?
-              </Text>
-            </View>
-            
-            <TouchableOpacity 
-              style={styles.profileButton}
-              onPress={() => navigation.navigate('Profile' as never)}>
-              <Icon name="person-circle-outline" size={32} color="#ffffff" />
-            </TouchableOpacity>
-          </View>
-        </LinearGradient>
-
-        {/* Usage Progress */}
-        <View style={styles.usageCard}>
-          <View style={styles.usageHeader}>
-            <View>
-              <Text style={styles.usageTitle}>Monthly Usage</Text>
-              <Text style={styles.usagePlan}>{currentPlan?.name} Plan</Text>
-            </View>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Pricing' as never)}>
-              <Text style={styles.upgradeButton}>Upgrade</Text>
-            </TouchableOpacity>
-          </View>
-          
-          <View style={styles.progressContainer}>
-            <View style={styles.progressBar}>
-              <View 
-                style={[
-                  styles.progressFill,
-                  {width: `${getUsagePercentage()}%`}
-                ]} 
-              />
-            </View>
-            <Text style={styles.progressText}>
-              {Object.values(usageStats).reduce(
-                (sum: number, stat: any) => sum + (stat?.usage_count || 0),
-                0
-              )} / {currentPlan?.monthlyAnalyses} analyses used
-            </Text>
-          </View>
+        <Text style={styles.sectionTitle}>Quick Actions</Text>
+        <View style={styles.quickActionsGrid}>
+          {quickActions.map(renderQuickAction)}
         </View>
-
-        {/* Quick Actions */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Quick Actions</Text>
-          <View style={styles.actionsGrid}>
-            {quickActions.map((action) => (
-              <TouchableOpacity
-                key={action.id}
-                style={[styles.actionCard, action.locked && styles.lockedCard]}
-                onPress={() => handleQuickAction(action)}
-                activeOpacity={0.7}>
-                <View style={[styles.actionIcon, {backgroundColor: action.color}]}>
-                  <Icon name={action.icon} size={24} color="#ffffff" />
-                  {action.locked && (
-                    <View style={styles.lockOverlay}>
-                      <Icon name="lock-closed" size={16} color="#ffffff" />
-                    </View>
-                  )}
-                </View>
-                <Text style={styles.actionTitle}>{action.title}</Text>
-                <Text style={styles.actionSubtitle}>{action.subtitle}</Text>
-                {action.locked && (
-                  <Text style={styles.lockedText}>Premium Feature</Text>
-                )}
-              </TouchableOpacity>
-            ))}
-          </View>
-        </View>
-
-        {/* Recent Activity */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Recent Activity</Text>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Progress' as never)}>
-              <Text style={styles.seeAllButton}>See All</Text>
-            </TouchableOpacity>
-          </View>
-          
-          <View style={styles.activityCard}>
-            <Icon name="analytics-outline" size={24} color="#6366f1" />
-            <View style={styles.activityContent}>
-              <Text style={styles.activityTitle}>No recent activity</Text>
-              <Text style={styles.activitySubtitle}>
-                Start analyzing your photos or conversations to see your progress
-              </Text>
-            </View>
-          </View>
-        </View>
-
-        {/* Tips Card */}
-        <View style={styles.tipsCard}>
-          <View style={styles.tipsHeader}>
-            <Icon name="lightbulb-outline" size={24} color="#f59e0b" />
-            <Text style={styles.tipsTitle}>Daily Tip</Text>
-          </View>
-          <Text style={styles.tipsContent}>
-            Your first photo should clearly show your face and smile. 
-            Studies show that smiling photos get 14% more matches!
-          </Text>
-        </View>
+        
+        {renderRecentActivity()}
+        {renderActionButtons()}
+        
+        <View style={styles.bottomSpacing} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -250,217 +367,172 @@ export const DashboardScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8fafc',
-  },
-  scrollContent: {
-    paddingBottom: 20,
+    backgroundColor: MobileTokens.colors.neutral[50],
   },
   header: {
-    paddingTop: 20,
-    paddingBottom: 30,
-    paddingHorizontal: 24,
+    backgroundColor: MobileTokens.colors.neutral[0],
+    paddingHorizontal: MobileTokens.spacing[4],
+    paddingBottom: MobileTokens.spacing[4],
+    borderBottomWidth: 1,
+    borderBottomColor: MobileTokens.colors.neutral[200],
   },
   headerContent: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  greetingContainer: {
-    flex: 1,
+  welcomeText: {
+    fontSize: MobileTokens.typography.fontSize.xl,
+    fontWeight: MobileTokens.typography.fontWeight.bold,
+    color: MobileTokens.colors.neutral[900],
+    fontFamily: Platform.OS === 'ios' ? MobileTokens.typography.fontFamily.ios[0] : MobileTokens.typography.fontFamily.android[0],
   },
-  greeting: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 4,
-  },
-  headerSubtitle: {
-    fontSize: 16,
-    color: '#ffffff',
-    opacity: 0.9,
+  planText: {
+    fontSize: MobileTokens.typography.fontSize.sm,
+    color: MobileTokens.colors.neutral[600],
+    marginTop: MobileTokens.spacing[1],
   },
   profileButton: {
-    padding: 8,
+    padding: MobileTokens.spacing[2],
+  },
+  scrollContent: {
+    flex: 1,
+    paddingHorizontal: MobileTokens.spacing[4],
   },
   usageCard: {
-    backgroundColor: '#ffffff',
-    borderRadius: 16,
-    padding: 20,
-    marginHorizontal: 24,
-    marginTop: -15,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
+    marginTop: MobileTokens.spacing[4],
   },
   usageHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: MobileTokens.spacing[3],
   },
   usageTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#1f2937',
+    fontSize: MobileTokens.typography.fontSize.lg,
+    fontWeight: MobileTokens.typography.fontWeight.semibold,
+    color: MobileTokens.colors.neutral[900],
   },
-  usagePlan: {
-    fontSize: 14,
-    color: '#6b7280',
-    marginTop: 2,
-  },
-  upgradeButton: {
-    fontSize: 14,
-    color: '#6366f1',
-    fontWeight: '600',
-  },
-  progressContainer: {
-    marginTop: 8,
+  upgradeLink: {
+    fontSize: MobileTokens.typography.fontSize.sm,
+    color: MobileTokens.colors.primary[500],
+    fontWeight: MobileTokens.typography.fontWeight.medium,
   },
   progressBar: {
-    height: 8,
-    backgroundColor: '#e5e7eb',
-    borderRadius: 4,
-    marginBottom: 8,
+    marginBottom: MobileTokens.spacing[3],
   },
-  progressFill: {
-    height: '100%',
-    backgroundColor: '#6366f1',
-    borderRadius: 4,
-  },
-  progressText: {
-    fontSize: 12,
-    color: '#6b7280',
-    textAlign: 'center',
-  },
-  section: {
-    paddingHorizontal: 24,
-    marginTop: 24,
-  },
-  sectionHeader: {
+  usageStats: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
+  },
+  usageItem: {
+    flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
+  },
+  usageItemText: {
+    fontSize: MobileTokens.typography.fontSize.sm,
+    color: MobileTokens.colors.neutral[600],
+    marginLeft: MobileTokens.spacing[1],
   },
   sectionTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#1f2937',
+    fontSize: MobileTokens.typography.fontSize.lg,
+    fontWeight: MobileTokens.typography.fontWeight.semibold,
+    color: MobileTokens.colors.neutral[900],
+    marginTop: MobileTokens.spacing[6],
+    marginBottom: MobileTokens.spacing[3],
   },
-  seeAllButton: {
-    fontSize: 14,
-    color: '#6366f1',
-    fontWeight: '500',
-  },
-  actionsGrid: {
+  quickActionsGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
-  actionCard: {
-    backgroundColor: '#ffffff',
-    borderRadius: 16,
-    padding: 16,
-    width: (width - 60) / 2,
-    marginBottom: 12,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
+  quickActionCard: {
+    width: (width - MobileTokens.spacing[4] * 2 - MobileTokens.spacing[3]) / 2,
+    marginBottom: MobileTokens.spacing[3],
+    borderRadius: MobileTokens.borderRadius.card,
+    overflow: 'hidden',
   },
-  lockedCard: {
-    opacity: 0.7,
+  quickActionGradient: {
+    padding: MobileTokens.spacing[4],
+    minHeight: 120,
   },
-  actionIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 12,
-    position: 'relative',
+  quickActionContent: {
+    flex: 1,
+    justifyContent: 'space-between',
   },
-  lockOverlay: {
-    position: 'absolute',
-    top: -4,
-    right: -4,
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-    borderRadius: 10,
-    width: 20,
-    height: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  actionTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1f2937',
-    marginBottom: 4,
-  },
-  actionSubtitle: {
-    fontSize: 12,
-    color: '#6b7280',
-    lineHeight: 16,
-  },
-  lockedText: {
-    fontSize: 10,
-    color: '#f59e0b',
-    fontWeight: '600',
-    marginTop: 4,
-  },
-  activityCard: {
-    backgroundColor: '#ffffff',
-    borderRadius: 12,
-    padding: 16,
+  quickActionIcon: {
     flexDirection: 'row',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 1},
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 1,
+    marginBottom: MobileTokens.spacing[2],
+  },
+  premiumBadge: {
+    backgroundColor: MobileTokens.colors.neutral[0],
+    borderRadius: MobileTokens.borderRadius.full,
+    padding: MobileTokens.spacing[1],
+    marginLeft: MobileTokens.spacing[2],
+  },
+  quickActionTitle: {
+    fontSize: MobileTokens.typography.fontSize.base,
+    fontWeight: MobileTokens.typography.fontWeight.semibold,
+    marginBottom: MobileTokens.spacing[1],
+  },
+  quickActionSubtitle: {
+    fontSize: MobileTokens.typography.fontSize.sm,
+    lineHeight: MobileTokens.typography.lineHeight.snug,
+  },
+  lockedOverlay: {
+    position: 'absolute',
+    top: MobileTokens.spacing[2],
+    right: MobileTokens.spacing[2],
+  },
+  activityCard: {
+    marginTop: MobileTokens.spacing[4],
+  },
+  activityList: {
+    marginBottom: MobileTokens.spacing[4],
+  },
+  activityItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: MobileTokens.spacing[3],
+    borderBottomWidth: 1,
+    borderBottomColor: MobileTokens.colors.neutral[100],
   },
   activityContent: {
     flex: 1,
-    marginLeft: 12,
+    marginLeft: MobileTokens.spacing[3],
   },
   activityTitle: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#1f2937',
-    marginBottom: 2,
+    fontSize: MobileTokens.typography.fontSize.base,
+    fontWeight: MobileTokens.typography.fontWeight.medium,
+    color: MobileTokens.colors.neutral[900],
   },
-  activitySubtitle: {
-    fontSize: 12,
-    color: '#6b7280',
-    lineHeight: 16,
+  activityTime: {
+    fontSize: MobileTokens.typography.fontSize.sm,
+    color: MobileTokens.colors.neutral[600],
+    marginTop: MobileTokens.spacing[1],
   },
-  tipsCard: {
-    backgroundColor: '#fffbeb',
-    borderRadius: 12,
-    padding: 16,
-    marginHorizontal: 24,
-    marginTop: 24,
-    borderWidth: 1,
-    borderColor: '#fed7aa',
+  activityScore: {
+    fontSize: MobileTokens.typography.fontSize.base,
+    fontWeight: MobileTokens.typography.fontWeight.semibold,
+    color: MobileTokens.colors.success[500],
   },
-  tipsHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 8,
+  viewAllButton: {
+    alignSelf: 'center',
   },
-  tipsTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#92400e',
-    marginLeft: 8,
+  actionButtons: {
+    marginTop: MobileTokens.spacing[6],
+    gap: MobileTokens.spacing[3],
   },
-  tipsContent: {
-    fontSize: 14,
-    color: '#92400e',
-    lineHeight: 20,
+  primaryActionButton: {
+    // Additional styling if needed
+  },
+  secondaryActionButton: {
+    // Additional styling if needed
+  },
+  bottomSpacing: {
+    height: MobileTokens.spacing[8],
   },
 });
+
+export default DashboardScreen;
