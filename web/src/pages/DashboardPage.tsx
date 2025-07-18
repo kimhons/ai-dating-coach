@@ -16,7 +16,7 @@ import {
   Calendar,
   Award
 } from 'lucide-react'
-import { useAuth } from '@/contexts/AuthContext'
+import { useAuth } from '@/hooks/useAuth'
 import { useSubscription } from '@/hooks/useSubscription'
 import { useTierFeatures } from '@/hooks/useAIAnalysis'
 import { Button } from '@/components/ui/Button'

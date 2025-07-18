@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import { BarChart3, Heart, TrendingUp, MessageSquare } from 'lucide-react';
 
 // Components
 import StatsCard from '../components/StatsCard';
@@ -25,13 +26,13 @@ interface DashboardProps {
 interface DashboardData {
   stats: {
     totalAnalyses: number;
-    successfulMatches: number;
-    improvementScore: number;
+    successRate: number;
+    matchRate: number;
     responseRate: number;
   };
   recentActivity: any[];
   performanceMetrics: any;
-  insights: any[];
+  tierUsage: any;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ user, tier, usage }) => {
@@ -39,17 +40,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, tier, usage }) => {
   const [loading, setLoading] = useState(true);
   const [selectedTimeRange, setSelectedTimeRange] = useState('7d');
 
-  useEffect(() => {
-    loadDashboardData();
-    
-    // Track dashboard view
-    AnalyticsService.trackEvent('dashboard_viewed', {
-      user_tier: tier?.name,
-      time_range: selectedTimeRange
-    });
-  }, [selectedTimeRange, tier]);
-
-  const loadDashboardData = async () => {
+  const loadDashboardData = useCallback(async () => {
     try {
       setLoading(true);
       const data = await DashboardService.getDashboardData(selectedTimeRange);
@@ -60,7 +51,17 @@ const Dashboard: React.FC<DashboardProps> = ({ user, tier, usage }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedTimeRange]);
+
+  useEffect(() => {
+    loadDashboardData();
+    
+    // Track dashboard view
+    AnalyticsService.trackEvent('dashboard_viewed', {
+      user_tier: tier?.name,
+      time_range: selectedTimeRange
+    });
+  }, [selectedTimeRange, tier, loadDashboardData]);
 
   const handleQuickAction = async (action: string) => {
     AnalyticsService.trackEvent('quick_action_clicked', { action });
@@ -137,35 +138,31 @@ const Dashboard: React.FC<DashboardProps> = ({ user, tier, usage }) => {
         <StatsCard
           title="Total Analyses"
           value={dashboardData?.stats.totalAnalyses || 0}
-          change={+12}
-          icon="📊"
-          color="blue"
+          icon={BarChart3}
+          trend={{ value: 12, isPositive: true }}
         />
         <StatsCard
-          title="Successful Matches"
-          value={dashboardData?.stats.successfulMatches || 0}
-          change={+25}
-          icon="❤️"
-          color="red"
+          title="Success Rate"
+          value={`${dashboardData?.stats.successRate || 0}%`}
+          icon={Heart}
+          trend={{ value: 25, isPositive: true }}
         />
         <StatsCard
-          title="Improvement Score"
-          value={`${dashboardData?.stats.improvementScore || 0}%`}
-          change={+8}
-          icon="📈"
-          color="green"
+          title="Match Rate"
+          value={`${dashboardData?.stats.matchRate || 0}%`}
+          icon={TrendingUp}
+          trend={{ value: 8, isPositive: true }}
         />
         <StatsCard
           title="Response Rate"
           value={`${dashboardData?.stats.responseRate || 0}%`}
-          change={+15}
-          icon="💬"
-          color="purple"
+          icon={MessageSquare}
+          trend={{ value: 15, isPositive: true }}
         />
       </div>
 
       {/* Quick Actions */}
-      <QuickActions onAction={handleQuickAction} tier={tier} />
+      <QuickActions onAction={handleQuickAction} />
 
       {/* Main Content Grid */}
       <div className="dashboard-grid">
@@ -189,8 +186,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, tier, usage }) => {
             </div>
           </div>
           <AnalysisChart 
-            data={dashboardData?.performanceMetrics}
-            timeRange={selectedTimeRange}
+            data={dashboardData?.performanceMetrics || { labels: [], matchRates: [], responseRates: [] }}
           />
         </div>
 
@@ -213,41 +209,19 @@ const Dashboard: React.FC<DashboardProps> = ({ user, tier, usage }) => {
           <PerformanceMetrics metrics={dashboardData?.performanceMetrics} />
         </div>
 
-        {/* AI Insights */}
-        <div className="dashboard-card insights-card" id="insights-section">
-          <div className="card-header">
-            <h3>AI Insights & Recommendations</h3>
-            <span className="insights-badge">New</span>
-          </div>
-          <div className="insights-list">
-            {dashboardData?.insights?.map((insight, index) => (
-              <div key={index} className="insight-item">
-                <div className="insight-icon">{insight.icon}</div>
-                <div className="insight-content">
-                  <h4 className="insight-title">{insight.title}</h4>
-                  <p className="insight-description">{insight.description}</p>
-                  {insight.action && (
-                    <button 
-                      className="insight-action"
-                      onClick={() => handleQuickAction(insight.action)}
-                    >
-                      {insight.actionText}
-                    </button>
-                  )}
-                </div>
-                <div className="insight-priority">
-                  <span className={`priority-badge ${insight.priority}`}>
-                    {insight.priority}
-                  </span>
-                </div>
-              </div>
-            )) || (
-              <div className="no-insights">
-                <p>No new insights available. Keep using the app to get personalized recommendations!</p>
-              </div>
-            )}
-          </div>
-        </div>
+        {/* Tier Usage */}
+        <TierUsageWidget 
+          usage={dashboardData?.tierUsage || { 
+            photos: { used: 0, limit: 5 },
+            conversations: { used: 0, limit: 10 },
+            voice: { used: 0, limit: 3 },
+            screenshots: { used: 0, limit: 5 }
+          }} 
+          tier={tier?.name || 'free'} 
+        />
+
+        {/* Performance Metrics */}
+        <PerformanceMetrics />
 
         {/* Feature Highlights */}
         <div className="dashboard-card features-card">
@@ -291,8 +265,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, tier, usage }) => {
         {/* Upgrade Prompt (for free/basic users) */}
         {tier?.name !== 'pro' && (
           <UpgradePrompt 
-            currentTier={tier?.name}
-            usage={usage}
+            currentTier={tier?.name || 'free'}
             onUpgrade={() => {
               window.location.href = '/pricing';
               AnalyticsService.trackEvent('dashboard_upgrade_clicked', {

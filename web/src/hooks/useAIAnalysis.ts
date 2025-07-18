@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase'
-import { useAuth } from '@/contexts/AuthContext'
+import { useAuth } from '@/hooks/useAuth'
 import { PhotoAnalysis, ConversationAnalysis, VoiceAnalysis, AIAnalysisRequest, SubscriptionTier } from '@/types'
 import toast from 'react-hot-toast'
 
